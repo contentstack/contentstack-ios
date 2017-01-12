@@ -16,8 +16,8 @@ s.social_media_url = 'https://twitter.com/builtio'
 
 s.ios.deployment_target = '7.0'
 
-s.source_files = 'ThirdPartyExtension/AFNetworking/*.{h,m}','ThirdPartyExtension/ISO8601DateFormatter/*.{h,m}','ThirdPartyExtension/MMarkDown/*.{h,m}', 'ContentStackIO/*.{h,m}', 'ContentStackIO_Internal/*.{h,m}'
-s.public_header_files = 'ContentStackIO/*.h'
+s.source_files = 'ThirdPartyExtension/AFNetworking/*.{h,m}','ThirdPartyExtension/ISO8601DateFormatter/*.{h,m}','ThirdPartyExtension/MMarkDown/*.{h,m}', 'ContentStackIO/*.{h,m}', 'ContentStackIO/ThirdPartyNamespaceHeader/*.h', 'ContentStackIO_Internal/*.{h,m}'
+s.public_header_files = 'ContentStackIO/*.h','ContentStackIO/ThirdPartyNamespaceHeader/*.h'
 
 s.frameworks =  'CoreGraphics', 'MobileCoreServices', 'Security', 'SystemConfiguration'
 s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
