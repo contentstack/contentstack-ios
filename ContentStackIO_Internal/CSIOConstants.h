@@ -69,7 +69,6 @@ FOUNDATION_EXPORT NSString *const kCSIO_EnvironmentUID;
 FOUNDATION_EXPORT NSString *const kCSIO_ContentTypeUID;
 
 // Entry
-FOUNDATION_EXPORT NSString *const kCSIO_PublishDetails;
 FOUNDATION_EXPORT NSString *const kCSIO_EntryUID;
 FOUNDATION_EXPORT NSString *const kCSIO_Metadata;
 FOUNDATION_EXPORT NSString *const kCSIO_Entry;

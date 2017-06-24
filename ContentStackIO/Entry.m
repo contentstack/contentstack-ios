@@ -34,7 +34,6 @@
 @property (nonatomic, copy) NSString *updatedBy;
 @property (nonatomic, copy) NSDate *deletedAt;
 @property (nonatomic, copy) NSString *deletedBy;
-@property (nonatomic, copy) NSArray *publishDetails;
 
 @end
 
@@ -94,10 +93,6 @@
     
     if (self.objectProperties[kCSIO_Locale]) {
         self.language = [self indexOfLocaleCodeString:self.objectProperties[kCSIO_Locale]];
-    }
-    
-    if (self.objectProperties[kCSIO_PublishDetails]) {
-        self.publishDetails = self.objectProperties[kCSIO_PublishDetails];
     }
     
     if (self.objectProperties[kCSIO_Tags]) {

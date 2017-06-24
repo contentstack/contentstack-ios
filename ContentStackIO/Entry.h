@@ -84,10 +84,6 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) NSString *deletedBy;
 
-/**
- *  Readonly property to check publish details of entry.
- */
-@property (nonatomic, copy, readonly) NSArray *publishDetails;
 
 /**
  *  property to assign cache policy like CACHE_THEN_NETWORK, NETWORK_ELSE_CACHE, NETWORK_ONLY, etc.

@@ -29,7 +29,6 @@
 @property (nonatomic, copy) NSString *updatedBy;
 @property (nonatomic, copy) NSDate *deletedAt;
 @property (nonatomic, copy) NSString *deletedBy;
-@property (nonatomic, copy) NSDictionary *publishDetails;
 @property (nonatomic, assign) Language language;
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, assign) unsigned int fileSize;
@@ -77,10 +76,6 @@
     
     if (self.objectProperties[kCSIO_Locale]) {
         self.language = [self indexOfLocaleCodeString:self.objectProperties[kCSIO_Locale]];
-    }
-    
-    if (self.objectProperties[kCSIO_PublishDetails]) {
-        self.publishDetails = self.objectProperties[kCSIO_PublishDetails];
     }
     
     if (self.objectProperties[kCSIO_Tags]) {

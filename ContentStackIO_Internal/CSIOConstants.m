@@ -75,7 +75,6 @@ NSString *const kCSIO_EnvironmentUID = @"environment_uid";
 NSString *const kCSIO_ContentTypeUID = @"form_uid";
 
 //Entry
-NSString *const kCSIO_PublishDetails = @"publish_details";
 NSString *const kCSIO_EntryUID = @"entry_uid";
 NSString *const kCSIO_Metadata = @"_metadata";
 NSString *const kCSIO_Entry = @"entry";
