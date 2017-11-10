@@ -42,7 +42,7 @@ To use this SDK on iOS platform, you will have to install the SDK according to t
 
 You can import header file in Objective-C project as:
 ```sh
-#import &lt;Contentstack/Contentstack.h&gt;
+#import <Contentstack/Contentstack.h>;
 
 You can also import as a Module:
 
