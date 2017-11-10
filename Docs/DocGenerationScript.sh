@@ -11,10 +11,10 @@
 
 #appledoc Xcode script
 # Start constants
-company="Built.io Contentstack";
+company="Contentstack";
 companyForFeed="Contentstack";
 companyID="com.builtio";
-companyURL="http://contentstack.io";
+companyURL="http://contentstack.com";
 target="iphoneos";
 #target="macosx";
 #outputPath ="./../../BuiltIO-Xcode-Generated-Docs/helpdocs";
@@ -25,7 +25,7 @@ target="iphoneos";
 /usr/local/bin/appledoc \
 --project-name "Built.io Contentstack" \
 --project-company "Built.io" \
---project-version "3.1.1" \
+--project-version "3.2.0" \
 --company-id "${companyID}" \
 --docset-bundle-id "${companyID}.${companyForFeed}" \
 --docset-bundle-name "${companyForFeed}" \
@@ -45,4 +45,4 @@ target="iphoneos";
 --no-warn-invalid-crossref \
 --index-desc "${PROJECT_DIR}/Docs/overview.md" \
 --exit-threshold 2 \
-./Build/Products/Release-universal/Contentstack.framework/Headers
+./DerivedData/ContentStackSDK/Build/Products/Release-universal/Contentstack.framework/Headers

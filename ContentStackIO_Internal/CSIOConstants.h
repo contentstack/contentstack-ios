@@ -53,6 +53,7 @@ FOUNDATION_EXPORT NSString *const kCSIO_DontSelect;
 FOUNDATION_EXPORT NSString *const kCSIO_Regex;
 FOUNDATION_EXPORT NSString *const kCSIO_Options;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeSchema;
+FOUNDATION_EXPORT NSString *const kCSIO_IncludeContentType;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeCount;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeUnpublished;
 FOUNDATION_EXPORT NSString *const kCSIO_BeforeUID;
