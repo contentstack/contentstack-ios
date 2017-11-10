@@ -87,4 +87,14 @@
     return nil;
 }
 
+//MARK: Get content_type -
+
+- (NSDictionary *)content_type{
+    if ([self.resultsDictionary objectForKey:kCSIO_ContetnType] && [[self.resultsDictionary objectForKey:kCSIO_ContetnType] isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *objectsArray = (NSDictionary *)[self.resultsDictionary objectForKey:kCSIO_ContetnType];
+        return objectsArray;
+    }
+    return nil;
+}
+
 @end

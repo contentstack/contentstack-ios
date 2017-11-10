@@ -55,6 +55,22 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return Returns schemas.
  */
 - (BUILT_NULLABLE NSArray *)schema;
+/**
+ @abstract Gets the content type of objects returned by Query alongwith objects themselves.
+ 
+     //Obj-C
+     [projectQuery execInBackground:^(ResponseType type, QueryResult *result, NSError *error) {
+         NSDictionary *result = [result content_type];
+     }];
+ 
+     //Swift
+     projectQuery.execInBackground { (ResponseType, QueryResult!, NSError!) -> Void in
+         var schema:NSDictionary  =  QueryResult.content_type()
+     }
+ 
+ @return Returns content type.
+ */
+- (BUILT_NULLABLE NSDictionary *)content_type;
 
 //MARK: Count -
 /**---------------------------------------------------------------------------------------

@@ -159,6 +159,25 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 - (Asset *)assetWithUID:(NSString *)uid;
 
+/**
+ Transforms provided image url based on transformation parameters.
+ 
+     //Obj-C
+     NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"width", [NSNumber numberWithInt:100], @"height", nil];
+     NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+ 
+     //Swift
+     let params:[String : AnyObject?] = [
+     "width":100 as AnyObject,
+     "height":100 as AnyObject,
+     ];
+     let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+
+ @param url Url on which transformations to be applied.
+ @param params Transformation parameters.
+ @return new instance of transform url.
+ */
+- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params;
 
 @end
 

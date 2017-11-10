@@ -578,7 +578,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = Built.io;
+				ORGANIZATIONNAME = Contentstack;
 				TargetAttributes = {
 					230B38BF1C16E98B00444A14 = {
 						CreatedOnToolsVersion = 7.1;
@@ -809,6 +809,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.builtio.Contentstack;
 				SKIP_INSTALL = YES;
@@ -835,6 +836,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.builtio.Contentstack;
 				SKIP_INSTALL = YES;
@@ -876,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BITCODE_GENERATION_MODE = marker;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = NO;
@@ -914,6 +917,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-fembed-bitcode-marker";
 				OTHER_LDFLAGS = "-fembed-bitcode";
 				PRODUCT_MODULE_NAME = Contentstack;
 				PRODUCT_NAME = Contentstack;
@@ -929,6 +933,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = NO;
@@ -961,6 +966,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "-fembed-bitcode";
 				PRODUCT_MODULE_NAME = Contentstack;
 				PRODUCT_NAME = Contentstack;
@@ -1015,6 +1021,8 @@
 		23A8E71D1B70C872002F13C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1022,6 +1030,8 @@
 		23A8E71E1B70C872002F13C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

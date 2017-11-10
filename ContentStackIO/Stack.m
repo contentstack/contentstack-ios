@@ -98,6 +98,21 @@
     }
 }
 
+- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params{
+    if([url rangeOfString:@"?" options:NSCaseInsensitiveSearch].length==0) {
+        url = [url stringByAppendingString:@"?"];
+    }
+    for (id key in params) {
+        id value = [params objectForKey:key];
+        url = [url stringByAppendingString:[NSString stringWithFormat: @"&%@=%@", key, value]];
+    }
+    url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
+    url = [url stringByReplacingOccurrencesOfString:@"?&" withString:@"?"];
+    return url;
+}
+
+
+
 //- (void)fetchLastActivity:(void (^)(ResponseType responseType, NSDictionary *lastActivity, NSError *error))completionBlock {
 //    NSString *path = [CSIOAPIURLs fetchContentTypeSchemaQueryURLWithVersion:self.version];
 //    

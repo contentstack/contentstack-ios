@@ -251,7 +251,19 @@ This method also includes the schema of the contenttype for the entries returned
      blogQuery.includeSchema()
  
  */
-- (void)includeSchema;
+- (void)includeSchema __attribute((deprecated("Use the includeContentType instead.")));;
+
+/**
+ This method also includes the contenttype for the entries returned in the response.
+ 
+     //Obj-C
+     [blogQuery includeContentType];
+ 
+     //Swift
+     blogQuery.includeContentType()
+ 
+ */
+- (void)includeContentType;
 
 /**
 This method also includes owner information for all the entries returned in the response.

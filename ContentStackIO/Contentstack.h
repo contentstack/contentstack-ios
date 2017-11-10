@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Built.io. All rights reserved.
 //
 
-//  sdk-version: 3.1.1
+//  sdk-version: 3.2.0
 
 #import <Foundation/Foundation.h>
 #import <Contentstack/Config.h>

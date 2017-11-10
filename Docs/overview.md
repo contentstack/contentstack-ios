@@ -1,6 +1,6 @@
 #Overview
 
-[Built.io Contentstack](https://www.built.io/products/contentstack/overview) is a content management system that facilitates the process of publication by separating the content from site-related programming and design.
+[Contentstack](https://www.contentstack.com/) is a content management system that facilitates the process of publication by separating the content from site-related programming and design.
 
 #### Installation
 #####**[CocoaPods (Recommended)](https://cocoapods.org)**

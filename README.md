@@ -10,7 +10,7 @@ Contentstack provides iOS SDK to build application on top of iOS. Given below is
 ### Prerequisite
 
 
-Xcode 7.0 and later and Mac OS X 10.10.4 and later
+Latest Xcode and Mac OS X
 
 
 ### Setup and Installation
@@ -41,7 +41,7 @@ To use this SDK on iOS platform, you will have to install the SDK according to t
 ##### Import Header/Module
 
 You can import header file in Objective-C project as:
-
+```sh
 #import &lt;Contentstack/Contentstack.h&gt;
 
 You can also import as a Module:
@@ -53,7 +53,7 @@ You can also import as a Module:
 //Swift
 
 import Contentstack
-
+```
 ### Key Concepts for using Contentstack
 
 #### Stack
@@ -84,14 +84,14 @@ A publishing environment corresponds to one or more deployment servers or a cont
 #### Initializing your SDK
 
 To start using the SDK in your application, you will need to initialize the stack by providing the required keys and values associated with them:
-
+```sh
 //Objc
 
 Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
 //Swift
 
-let stack:Stack =     Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
-
+let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
+```
 To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Access Token
 
 The stack object that is returned is a Contentstack client object, which can be used to initialize different modules and make queries against our [Content Delivery API](https://contentstack.com/docs/apis/content-delivery-api/). The initialization process for each module is explained in the following section.
@@ -100,7 +100,7 @@ The stack object that is returned is a Contentstack client object, which can be 
 #### Querying content from your stack
 
 To fetch all entries of of a content type, use the query given below:
-
+```sh
 //Obj-C
 
 ContentType *contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
@@ -114,11 +114,11 @@ Query *queryObject = [contentTypeObj query];
 var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
 
 var queryObject:Query = contentTypeObj.query()
-
+```
 
 
 To fetch a specific entry from a content type, use the following query:
-
+```sh
 //Obj-C
 
 ContentType * contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
@@ -130,7 +130,7 @@ Entry *entryObject  = [contentTypeObject entryWithUID:@"ENTRY_UID"];
 var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
 
 var entryObject:Entry = contentTypeObject.entryWithUID("ENTRY_UID")
-
+```
 ### Advanced Queries
 
 You can query for content types, entries, assets and more using our iOS API Reference.
@@ -145,7 +145,43 @@ For example, if you want to crop an image (with width as 300 and height as 400),
 
 [Read Image Delivery API documentation](https://www.contentstack.com/docs/apis/image-delivery-api/).
 
-SDK functions for Image Delivery API coming soon.
+You can use the Image Delivery API functions in this SDK as well. Here are a few examples of its usage in the SDK.
+
+```sh
+//Obj-C
+/* set the image quality to 100 */
+NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"quality", nil];
+NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+
+/* resize the image by specifying width and height */
+NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"width", [NSNumber numberWithInt:100], @"height", nil];
+NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+
+/* enable auto optimization for the image */
+NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:@"webp", @"auto", nil];
+NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+
+
+//Swift
+/* set the image quality to 100 */
+let params:[String : AnyObject?] = [
+"quality":100 as AnyObject
+];
+let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+
+/* resize the image by specifying width and height */
+let params:[String : AnyObject?] = [
+"width":100 as AnyObject,
+"height":100 as AnyObject,
+];
+let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+
+let params:[String : AnyObject?] = [
+"auto":"webp" as AnyObject
+];
+let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+
+```
 
 ### Helpful Links
 

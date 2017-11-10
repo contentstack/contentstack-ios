@@ -113,8 +113,18 @@ static NSString *kNOT_HAVING = @"$nin_query";
 }
 
 - (void)includeSchema {
-    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeSchema];
+    if ([self.queryDictionary valueForKey:kCSIO_IncludeContentType] == nil){
+        [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeSchema];
+    }
 }
+
+- (void)includeContentType {
+    if ([self.queryDictionary valueForKey:kCSIO_IncludeSchema] != nil){
+        [self.queryDictionary  removeObjectForKey:kCSIO_IncludeSchema];
+    }
+    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
+}
+
 
 - (void)includeOwner {
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeUser];
