@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString *updatedBy;
 @property (nonatomic, copy) NSDate *deletedAt;
 @property (nonatomic, copy) NSString *deletedBy;
+@property (nonatomic, copy) id responseJSON;
 @property (nonatomic, assign) Language language;
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, assign) unsigned int fileSize;
@@ -135,6 +136,18 @@
     }];
 }
 
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value{
+    if (key != nil){
+        if ([self.postParamDictionary objectForKey:key] != nil) {
+            [self.postParamDictionary removeObjectForKey:key];
+            [self.postParamDictionary setObject:value forKey:key];
+        } else {
+            [self.postParamDictionary setObject:value forKey:key];
+        }
+    }
+}
+
+
 - (void)removeHeaderForKey:(NSString *)headerKey {
     if (self.localHeaders[headerKey]) {
         [self.localHeaders removeObjectForKey:headerKey];
@@ -160,11 +173,17 @@
         if (error) {
             callback(responseType,error);
         }else {
+            self.responseJSON = responseJSON;
             [self configureWithDictionary:[responseJSON objectForKey:kCSIO_Upload]];
             callback(responseType, nil);
         }
     }];
     
+}
+
+//MARK: - Properties
+-(NSDictionary *)properties {
+    return self.objectProperties;
 }
 
 //MARK: - Cancel -

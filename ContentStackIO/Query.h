@@ -26,6 +26,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CachePolicy cachePolicy;
 
+
 //MARK: Manually set headers -
 /**---------------------------------------------------------------------------------------
  * @name Manually set headers
@@ -616,6 +617,23 @@ This method provides all entries that also contain data from the referred entry 
  @param fieldUIDs Uid of the reference field that is to be taken into consideration
  */
 - (void)includeReferenceFieldWithKey:(NSString *)key excludingFields:(NSArray *)fieldUIDs;
+
+/**
+ This method adds key and value to a query.
+ 
+     //Obj-C
+     Query *blogQuery = [contentTypeObj query];
+     [blogQuery addParamKey:@"key" andValue:@"value"];
+ 
+     //Swift
+     var blogQuery:Query = contentTypeObj.query()
+     blogQuery.addParamKey("key", andValue:"value")
+ 
+ @param key The key as string which needs to be added to the Query
+ @param value The value as string which needs to be added to the Query
+ */
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value;
+
 
 //MARK: Execute Query -
 /**---------------------------------------------------------------------------------------

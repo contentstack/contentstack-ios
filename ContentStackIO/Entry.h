@@ -401,6 +401,20 @@ Specifies an array of keys in reference class object that would be 'excluded' fr
  */
 - (void)includeRefFieldWithKey:(NSString *)key excludingRefValuesWithKeys:(NSArray *)values;
 
+/**
+ This method adds key and value to an Entry.
+ 
+     //Obj-C
+     [entryObj addParamKey:@"key" andValue:@"value"];
+ 
+     //Swift
+     entryObj.addParamKey("key", andValue:"value")
+ 
+ @param key The key as string which needs to be added to an Entry
+ @param value The value as string which needs to be added to an Entry
+ */
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value;
+
 //MARK: - Fetch
 /**---------------------------------------------------------------------------------------
  * @name Fetch

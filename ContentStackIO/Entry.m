@@ -263,6 +263,16 @@
     }
 }
 
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value{
+    if (key != nil){
+        if ([self.postParamDictionary objectForKey:key] != nil) {
+            [self.postParamDictionary removeObjectForKey:key];
+            [self.postParamDictionary setObject:value forKey:key];
+        } else {
+            [self.postParamDictionary setObject:value forKey:key];
+        }
+    }
+}
 //MARK: - Asset -
 
 - (Asset *)assetForKey:(NSString *)key {

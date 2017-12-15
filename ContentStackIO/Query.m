@@ -284,6 +284,18 @@ static NSString *kNOT_HAVING = @"$nin_query";
     }
 }
 
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value{
+    if (key != nil){
+        if ([self.queryDictionary objectForKey:key] != nil) {
+            [self.queryDictionary removeObjectForKey:key];
+            [self.queryDictionary setObject:value forKey:key];
+        } else {
+            [self.queryDictionary setObject:value forKey:key];
+        }
+    }
+}
+
+
 //MARK: - Helper -
 - (void)prepareComplexQueryWithQueries:(NSArray *)queries andOperation:(NSString *)operation {
     NSMutableArray *queriesArray = [NSMutableArray array];

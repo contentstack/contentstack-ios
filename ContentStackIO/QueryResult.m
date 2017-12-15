@@ -14,6 +14,7 @@
 
 @interface QueryResult ()
 @property (nonatomic, strong) NSMutableDictionary *resultsDictionary;
+
 @end
 
 @implementation QueryResult

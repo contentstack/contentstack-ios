@@ -80,6 +80,11 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) NSString *deletedBy;
 
+/**
+ *  Readonly property to get data of entry.
+ */
+@property (nonatomic, copy, readonly) NSDictionary *properties;
+
 
 /**
  *  property to assign cache policy like CACHE_THEN_NETWORK, NETWORK_ELSE_CACHE, NETWORK_ONLY, etc.
@@ -154,6 +159,27 @@ BUILT_ASSUME_NONNULL_BEGIN
  @param headers  The headers as dictionary which needs to be added to the application
  */
 - (void)addHeadersWithDictionary:(NSDictionary *)headers;
+
+
+/**
+ This method adds key and value to an Asset.
+ 
+     //'blt5d4sample2633b' is a dummy Stack API key
+
+     //Obj-C
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Asset *asset = [stack asset];
+     [blogQuery addParamKey:@"key" andValue:@"value"];
+ 
+     //Swift
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var asset:Asset = stack.asset()
+     blogQuery.addParamKey("key", andValue:"value")
+ 
+ @param key The key as string which needs to be added to an Asset
+ @param value The value as string which needs to be added to an Asset
+ */
+- (void)addParamKey:(NSString *)key andValue:(NSString *)value;
 
 /**
  Removes a header from this Asset
