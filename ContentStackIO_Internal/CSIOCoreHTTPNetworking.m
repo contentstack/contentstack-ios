@@ -15,7 +15,7 @@
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
 
-NSString *const sdkVersion = @"3.2.0";
+NSString *const sdkVersion = @"3.3.0";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
@@ -220,6 +220,7 @@ NSString *const sdkVersion = @"3.2.0";
             [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             break;
     }
+    NSLog(@"%@",request.URL.absoluteString);
     // Initiate request
     AFHTTPRequestOperation *op = [self.httpRequestOperationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (cachePolicy != NETWORK_ONLY) {
