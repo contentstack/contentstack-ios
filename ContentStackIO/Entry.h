@@ -445,7 +445,7 @@ Specifies an array of keys in reference class object that would be 'excluded' fr
  
  @param callback Completion block with params NSError
  */
-- (void)fetch:(void(^)(ResponseType type, NSError *error))callback;
+- (void)fetch:(void(^)(ResponseType type, NSError * BUILT_NULLABLE_P error))callback;
 
 /**
  Returns an array of Entries for the specified reference key

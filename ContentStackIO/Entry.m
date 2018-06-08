@@ -404,7 +404,7 @@
 
 //MARK: - Fetch -
 
-- (void)fetch:(void(^)(ResponseType type, NSError *error))callback {
+- (void)fetch:(void(^)(ResponseType type, NSError * BUILT_NULLABLE_P error))callback {
     
     [self cancelRequest];
     
