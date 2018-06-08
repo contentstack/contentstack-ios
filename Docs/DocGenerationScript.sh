@@ -25,7 +25,7 @@ target="iphoneos";
 /usr/local/bin/appledoc \
 --project-name "Built.io Contentstack" \
 --project-company "Built.io" \
---project-version "3.3.0" \
+--project-version "3.3.1" \
 --company-id "${companyID}" \
 --docset-bundle-id "${companyID}.${companyForFeed}" \
 --docset-bundle-name "${companyForFeed}" \
