@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 11/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,6 +13,7 @@
 @class ContentType;
 @class AssetLibrary;
 @class Asset;
+@class SyncStack;
 
 BUILT_ASSUME_NONNULL_BEGIN
 
@@ -178,6 +179,231 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return new instance of transform url.
  */
 - (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params;
+
+/**
+Perform a synchronization operation.
+
+     //Obj-C
+         [stack sync:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+
+         }];
+
+     //Swift
+         stack.sync({ ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+
+@param completionBlock called synchronization is done.
+*/
+- (void)sync:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+/**
+ Perform a synchronization operation.
+ 
+     //Obj-C
+         NSString *token = @"blt129393939"; //Sync token
+         [stack syncToken:token completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+         }];
+ 
+     //Swift
+         var token = @"blt129393939"; //Sync token
+         stack.syncToken(token, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+
+ @param token Sync token from where to perform sync
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncToken:(NSString*)token completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+ Perform a synchronization operation.
+     //Obj-C
+         NSString *token = @"blt129393939"; //Pagination token
+         [stack syncPaginationToken:token completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+         }];
+ 
+     //Swift
+         var token = @"blt129393939"; //Pagination token
+         syncPaginationToken(token, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+
+
+ @param token Pagination token from where to perform sync
+ @param completionBlock called synchronization is done.
+ */
+-(void)syncPaginationToken:(NSString *)token completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+Perform a synchronization operation from date.
+
+     //Obj-C
+         NSDate *date = [NSDate date]; //date from where synchronization is called
+         [stack syncFrom:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+
+         }];
+
+     //Swift
+         let date = Date.date() //date from where synchronization is called
+         stack.syncFrom(date, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+
+@param date date from where sync data is needed.
+@param completionBlock called synchronization is done.
+*/
+- (void)syncFrom:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+Perform a synchronization operation on specified classes.
+
+     //Obj-C
+         NSArray *contentTypeArray = @[@"product", @"multifield"]; //Content type uids that want to sync.
+         [stack syncOnly:contentTypeArray completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+
+         }];
+
+     //Swift
+         let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
+         stack.syncOnly(contentTypeArray, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+
+@param contentType uid of classes to be expected.
+@param completionBlock called synchronization is done.
+*/
+- (void)syncOnly:(NSString*)contentType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+Perform a synchronization operation on specified classes and from date.
+
+     //Obj-C
+         NSArray *contentTypeArray = @[@"product", @"multifield"]; //Content type uids that want to sync.
+         NSDate *date = [NSDate date]; //date from where synchronization is called
+         [[csStack syncOnly:contentTypeArray from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+
+         }];
+
+     //Swift
+         let date = Date.date() //date from where synchronization is called
+         let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
+         stack.syncOnly(contentTypeArray, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+         })
+@param contentType uid of classes to be expected.
+@param date from where sync data is needed.
+@param completionBlock called synchronization is done.
+*/
+- (void)syncOnly:(NSString*)contentType from:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+/**
+ Perform a synchronization operation on specified classes and from date.
+ 
+ //Obj-C
+ [[csStack syncLocale:ENGLISH_UNITED_STATES completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ stack.syncLocale(ENGLISH_UNITED_STATES, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+ })
+
+ @param language for which sync is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncLocale:(Language)language completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+/**
+ 
+ //Obj-C
+ NSDate *date = [NSDate date]; //date from where synchronization is called
+ [[csStack syncLocale:ENGLISH_UNITED_STATES from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ let date = Date.date() //date from where synchronization is called
+ stack.syncLocale(ENGLISH_UNITED_STATES, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+ })
+
+ @param language for which sync is needed.
+ @param date from where sync data is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncLocale:(Language)language from:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+/**
+ 
+ //Obj-C
+ NSDate *date = [NSDate date]; //date from where synchronization is called
+ [[csStack syncPublishType:ENTRY_PUBLISHED completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ let date = Date.date() //date from where synchronization is called
+ stack.syncPublishType:ENTRY_PUBLISHED, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+ })
+
+ @param publishType for which sync is needed.
+ @param completionBlock called synchronization is done.
+ */
+-(void)syncPublishType:(PublishType)publishType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+/**
+ //Obj-C
+ NSArray *contentTypeArray = @[@"product", @"multifield"]; //Content type uids that want to sync.
+ NSDate *date = [NSDate date]; //date from where synchronization is called
+ [[csStack syncOnly: contentTypeArray locale:ENGLISH_UNITED_STATES from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
+ let date = Date.date() //date from where synchronization is called
+ stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+ })
+
+
+ @param contentType uid of classes to be expected.
+ @param language for which sync is needed.
+ @param date from where sync data is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncOnly:(NSString*)contentType locale:(Language)language from:(NSDate* BUILT_NULLABLE_P)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+/**
+ //Obj-C
+ NSArray *contentTypeArray = @[@"product", @"multifield"]; //Content type uids that want to sync.
+ NSDate *date = [NSDate date]; //date from where synchronization is called
+ [[csStack syncOnly: contentTypeArray locale:ENGLISH_UNITED_STATES from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
+ let date = Date.date() //date from where synchronization is called
+ stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ 
+ })
+ 
+ 
+ @param contentType uid of classes to be expected.
+ @param language for which sync is needed.
+ @param date from where sync data is needed.
+ @param publishType for which sync is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncOnly:(NSString*)contentType locale:(Language)language from:(NSDate* BUILT_NULLABLE_P)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 @end
 

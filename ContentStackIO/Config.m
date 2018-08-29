@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Priyanka Mistry on 01/06/16.
-//  Copyright © 2016 Built.io. All rights reserved.
+//  Copyright © 2016 Contentstack. All rights reserved.
 //
 
 #import "Config.h"

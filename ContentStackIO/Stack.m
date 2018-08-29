@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 11/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "Stack.h"
@@ -21,8 +21,7 @@
 @property (nonatomic, copy) Config *config;
 
 @property (nonatomic, copy) NSString *environment;
-//@property (nonatomic, strong) NSMutableSet *requestOperationSet;
-
+@property (nonatomic, strong) NSMutableSet *requestOperationSet;
 
 @end
 
@@ -46,7 +45,7 @@
         _commonDateFormatter = formatter;
         _commonDateFormatter.includeTime = YES;
         
-//        _requestOperationSet = [NSMutableSet set];
+        _requestOperationSet = [NSMutableSet set];
 
         
         [self setHeader:_apiKey forKey:kCSIO_SiteApiKey];
@@ -111,71 +110,135 @@
     return url;
 }
 
+- (void)syncCallWithParams:(NSDictionary*)params withCompletion:(void (^)(NSDictionary *responseDictionary, NSError *error))completionBlock {
+    NSString *path = [CSIOAPIURLs syncWithVersion:self.version];
+    NSMutableDictionary *paramsDictionary = [NSMutableDictionary dictionaryWithDictionary:params];
+    AFHTTPRequestOperation *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+        if (completionBlock) {
+            if (error) {
+                completionBlock(nil, error);
+            }else {
+                NSDictionary *responseData = responseJSON;
+                completionBlock(responseData, nil);
+            }
+        }
+    }];
+    
+    if (op && ![op isKindOfClass:[NSNull class]]) {
+        [self.requestOperationSet addObject:op];
+    }
+}
 
+-(void)sync:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:nil];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
 
-//- (void)fetchLastActivity:(void (^)(ResponseType responseType, NSDictionary *lastActivity, NSError *error))completionBlock {
-//    NSString *path = [CSIOAPIURLs fetchContentTypeSchemaQueryURLWithVersion:self.version];
-//    
-//    NSMutableDictionary *paramsDictionary = [NSMutableDictionary dictionary];
-//    [paramsDictionary setObject:@"true" forKey:@"only_last_activity"];
-//    [paramsDictionary setObject:self.environment forKey:kCSIO_Environment];
-//
-//   AFHTTPRequestOperation *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
-//        NSMutableDictionary *lastActivityDict = [NSMutableDictionary dictionary];
-//        if (completionBlock) {
-//            if (!error) {
-//                
-//                NSArray *content_types = responseJSON[@"content_types"];
-//                [content_types enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-//                    NSArray *details = [obj valueForKeyPath:@"last_activity.environment.details"];
-//                    if (details) {
-//                        [lastActivityDict setObject:details forKey:obj[@"uid"]];
-//                    }
-//                }];
-//                
-//                completionBlock(responseType, lastActivityDict, nil);
-//            }else {
-//                completionBlock(responseType, nil, error);
-//            }
-//        }
-//
-//    }];
-//    
-//    if (op && ![op isKindOfClass:[NSNull class]]) {
-//        [self.requestOperationSet addObject:op];
-//    }
-//}
-//
-//- (void)fetchSchema:(void (^)(ResponseType responseType, NSArray * BUILT_NULLABLE_P schema, NSError * BUILT_NULLABLE_P error))completionBlock {
-//    NSString *path = [CSIOAPIURLs fetchSchemaWithVersion:self.version];
-//
-//    NSMutableDictionary *paramsDictionary = [NSMutableDictionary dictionary];
-////    [paramsDictionary setObject:@(YES) forKey:@"content_types"];
-//
-//    AFHTTPRequestOperation *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
-//        if (completionBlock) {
-//            if (!error) {
-//                NSArray *content_types = responseJSON[@"content_types"];
-//                completionBlock(responseType, content_types, nil);
-//            }else {
-//                completionBlock(responseType, nil, error);
-//            }
-//        }
-//    }];
-//    
-//    if (op && ![op isKindOfClass:[NSNull class]]) {
-//        [self.requestOperationSet addObject:op];
-//    }
-//}
-//
-////MARK: - Cancel -
-//
-//- (void)cancelRequests {
-//    [self.requestOperationSet enumerateObjectsUsingBlock:^(AFHTTPRequestOperation *op, BOOL *stop) {
-//        if (op.isExecuting) {
-//            [op cancel];
-//        }
-//    }];
-//}
+-(void)syncToken:(NSString *)token completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{@"sync_token": token}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncPaginationToken:(NSString *)token completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{@"pagination_token": token}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+- (void)syncFrom:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Start_From : [_commonDateFormatter stringFromDate:date]}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+- (void)syncOnly:(NSString *)contentType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Content_Type: contentType}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+- (void)syncOnly:(NSString *)contentType from:(NSDate *)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Start_From : [_commonDateFormatter stringFromDate:date], kCSIO_Content_Type: contentType}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncLocale:(Language)language completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : [self localeCode:language]}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncLocale:(Language)language from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : [self localeCode:language], kCSIO_Start_From : [_commonDateFormatter stringFromDate:date]}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncPublishType:(PublishType)publishType completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Type : [self publishType:publishType]}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncOnly:(NSString *)contentType locale:(Language)language from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
+    [paramsDict setValue:contentType forKey:kCSIO_Content_Type];
+    [paramsDict setValue:[self localeCode:language] forKey:kCSIO_Locale];
+    if (date != nil) {
+        [paramsDict setValue:[_commonDateFormatter stringFromDate:date] forKey:kCSIO_Start_From];
+    }
+    SyncStack *syncStack = [self getCurrentSyncStack:paramsDict];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+-(void)syncOnly:(NSString *)contentType locale:(Language)language from:(NSDate *)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
+    [paramsDict setValue:contentType forKey:kCSIO_Content_Type];
+    [paramsDict setValue:[self localeCode:language] forKey:kCSIO_Locale];
+    [paramsDict setValue:[self publishType:publishType] forKey:kCSIO_Type];
+    if (date != nil) {
+        [paramsDict setValue:[_commonDateFormatter stringFromDate:date] forKey:kCSIO_Start_From];
+    }
+    SyncStack *syncStack = [self getCurrentSyncStack:paramsDict];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
+- (void)sync:(SyncStack *)syncResult completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[syncResult getParameters]];
+    if (syncResult.paginationToken == nil && syncResult.syncToken == nil) {
+        [params setValue:self.environment forKey:@"environment"];
+    }
+    [params setValue:@"607a456d7f3afc20cd9fcb1f" forKey:@"web_ui_api_key"];
+    [self syncCallWithParams:params withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
+        if (error == nil) {
+            [syncResult parseSyncResult:responseDictionary];
+            if (syncResult.hasMorePages) {
+                [self sync:syncResult completion:completionBlock];
+            }
+        }
+        completionBlock(syncResult, error);
+    }];
+}
+
+- (SyncStack*) getCurrentSyncStack:(NSDictionary*) params {
+    SyncStack *syncResult = [[SyncStack alloc] initWithParmas:params];
+    return syncResult;
+}
 
 @end

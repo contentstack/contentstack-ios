@@ -3,14 +3,14 @@
 //  Contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface CSIOAPIURLs : NSObject
 
-// BuiltQuery
+// EntriesQuery
 //===========================================================================================
 +(NSString *)fetchContentTypeEntriesQueryURLWithUID:(NSString *)contentTypeUID withVersion:(NSString*)version;
 
@@ -28,5 +28,7 @@
 //AssetLibrary
 + (NSString *)fetchAssetLibraryWithVersion:(NSString*)version;
 
+//sync
++(NSString *)syncWithVersion:(NSString*)version;
 @end
 

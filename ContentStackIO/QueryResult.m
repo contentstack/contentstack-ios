@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 11/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "QueryResult.h"
@@ -91,8 +91,8 @@
 //MARK: Get content_type -
 
 - (NSDictionary *)content_type{
-    if ([self.resultsDictionary objectForKey:kCSIO_ContetnType] && [[self.resultsDictionary objectForKey:kCSIO_ContetnType] isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *objectsArray = (NSDictionary *)[self.resultsDictionary objectForKey:kCSIO_ContetnType];
+    if ([self.resultsDictionary objectForKey:kCSIO_ContentType] && [[self.resultsDictionary objectForKey:kCSIO_ContentType] isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *objectsArray = (NSDictionary *)[self.resultsDictionary objectForKey:kCSIO_ContentType];
         return objectsArray;
     }
     return nil;

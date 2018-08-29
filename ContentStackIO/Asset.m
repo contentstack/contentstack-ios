@@ -3,7 +3,7 @@
 //  contentstack
 //
 //  Created by Priyanka Mistry on 19/05/16.
-//  Copyright © 2016 Built.io. All rights reserved.
+//  Copyright © 2016 Contentstack. All rights reserved.
 //
 
 #import "Asset.h"
@@ -95,8 +95,8 @@
         self.url = self.objectProperties[kCSIO_URL];
     }
     
-    if (self.objectProperties[kCSIO_ContetnType]) {
-        self.fileType = self.objectProperties[kCSIO_ContetnType];
+    if (self.objectProperties[kCSIO_ContentType]) {
+        self.fileType = self.objectProperties[kCSIO_ContentType];
     }
     
     if (self.objectProperties[kCSIO_CreatedAt]) {
@@ -156,7 +156,7 @@
 
 // MARK: - Fetch -
 
-- (void)fetch:(void(^)(ResponseType type, NSError *error))callback {
+- (void)fetch:(void(^)(ResponseType type, NSError *BUILT_NULLABLE_P error))callback {
     
     [self cancelRequest];
     

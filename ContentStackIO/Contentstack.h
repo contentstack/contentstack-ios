@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 22/06/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 //  sdk-version: 3.3.1
@@ -18,6 +18,7 @@
 #import <Contentstack/AssetLibrary.h>
 #import <Contentstack/QueryResult.h>
 #import <Contentstack/Group.h>
+#import <Contentstack/SyncStack.h>
 
 @class Stack;
 
@@ -44,7 +45,7 @@ Create a new Stack instance with stack's apikey, token, environment name and con
      let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b",accessToken:"blt3esampletokeneb02", environmentName:@"prod", config:config)
 
 @param apiKey          stack apiKey.
-@param acesstoken      stack acessToken.
+@param accessToken     stack accessToken.
 @param environmentName environment name in which to perform action.
 @param config          config of stack.
 
@@ -63,7 +64,7 @@ Create a new Stack instance with stack's apikey, token, environment name and con
      let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"prod")
  
  @param apiKey          stack apiKey.
- @param token           acesstoken of stack.
+ @param token           accessToken of stack.
  @param environmentName environment name in which to perform action.
  
  @return new instance of Stack.

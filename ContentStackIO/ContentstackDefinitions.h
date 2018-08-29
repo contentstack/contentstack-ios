@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #ifndef CSIO_Definitions_h
@@ -212,6 +212,16 @@
         UZBEK_CYRILLIC_UZBEKISTAN,
         UZBEK_LATIN_UZEBEKISTAN,
         VIETNAMESE_VIETNAM
+    };
+
+    typedef NS_ENUM(NSUInteger, PublishType) {
+        ASSET_PUBLISHED = 0,
+        ENTRY_PUBLISHED,
+        ASSET_UNPUBLISHED,
+        ENTRY_UNPUBLISHED,
+        ASSET_DELETED,
+        ENTRY_DELETED,
+        CONTENT_TYPE_DELETED
     };
 
 #endif

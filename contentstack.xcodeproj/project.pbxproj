@@ -32,7 +32,6 @@
 		230B38D11C16EA0100444A14 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E848C1B50ED2400BFDB32 /* Entry.m */; };
 		230B38D21C16EA0100444A14 /* ContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E848E1B50ED2400BFDB32 /* ContentType.m */; };
 		230B38D31C16EA0100444A14 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E84901B50ED2400BFDB32 /* Query.m */; };
-		230B38D41C16EA0100444A14 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E84A11B50EDBC00BFDB32 /* Stack.m */; };
 		230B38D51C16EA0100444A14 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E857C1B562C4D00BFDB32 /* QueryResult.m */; };
 		230B38E31C16EA6500444A14 /* NamespacedDependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 238E84921B50ED2400BFDB32 /* NamespacedDependencies.h */; };
 		230B38E41C16EB4400444A14 /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
@@ -119,6 +118,10 @@
 		993067A21CEDD21E003226B2 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9930679F1CEDD21E003226B2 /* Asset.m */; };
 		997FB2AE1DA4E2110020B7F0 /* AssetLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 997FB2AC1DA4E2110020B7F0 /* AssetLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		997FB2AF1DA4E2110020B7F0 /* AssetLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FB2AD1DA4E2110020B7F0 /* AssetLibrary.m */; };
+		FA07D4E520F755D800D3D7C7 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 238E84A11B50EDBC00BFDB32 /* Stack.m */; };
+		FA36C00820ECABDF000FF701 /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA36C00720ECABDF000FF701 /* SyncTest.m */; };
+		FA36C00920ECC768000FF701 /* SyncStack.h in Headers */ = {isa = PBXBuildFile; fileRef = FA5A3F8120EA450A0050A6DE /* SyncStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA36C00A20ECE004000FF701 /* SyncStack.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A3F8220EA450A0050A6DE /* SyncStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +244,10 @@
 		997FB2AC1DA4E2110020B7F0 /* AssetLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLibrary.h; sourceTree = "<group>"; };
 		997FB2AD1DA4E2110020B7F0 /* AssetLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetLibrary.m; sourceTree = "<group>"; };
 		9980728A1E1BDC5000524FD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FA36C00620ECABDF000FF701 /* SyncTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncTest.h; sourceTree = "<group>"; };
+		FA36C00720ECABDF000FF701 /* SyncTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
+		FA5A3F8120EA450A0050A6DE /* SyncStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncStack.h; sourceTree = "<group>"; };
+		FA5A3F8220EA450A0050A6DE /* SyncStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncStack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +350,8 @@
 				997FB2AD1DA4E2110020B7F0 /* AssetLibrary.m */,
 				990BC2041DED9FFC00FB6DF5 /* Group.h */,
 				990BC2051DED9FFC00FB6DF5 /* Group.m */,
+				FA5A3F8120EA450A0050A6DE /* SyncStack.h */,
+				FA5A3F8220EA450A0050A6DE /* SyncStack.m */,
 			);
 			path = ContentStackIO;
 			sourceTree = "<group>";
@@ -434,6 +443,8 @@
 			children = (
 				23A53F571E277CD3001DBE35 /* ContentstackTest.m */,
 				23A53F591E277CD3001DBE35 /* Info.plist */,
+				FA36C00620ECABDF000FF701 /* SyncTest.h */,
+				FA36C00720ECABDF000FF701 /* SyncTest.m */,
 			);
 			path = ContentstackTest;
 			sourceTree = "<group>";
@@ -502,6 +513,7 @@
 				230B39011C16EB8D00444A14 /* ISO8601DateFormatter.h in Headers */,
 				23A53F401E276C83001DBE35 /* CSIOInternalHeaders.h in Headers */,
 				230B38E31C16EA6500444A14 /* NamespacedDependencies.h in Headers */,
+				FA36C00920ECC768000FF701 /* SyncStack.h in Headers */,
 				230B38CA1C16E9EB00444A14 /* Contentstack.h in Headers */,
 				993067A01CEDD21E003226B2 /* Asset.h in Headers */,
 				230B38CD1C16E9EB00444A14 /* Query.h in Headers */,
@@ -681,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA07D4E520F755D800D3D7C7 /* Stack.m in Sources */,
 				230B390C1C16EBBB00444A14 /* AFHTTPRequestOperation.h in Sources */,
 				230B390D1C16EBBB00444A14 /* AFHTTPRequestOperationManager.h in Sources */,
 				230B390E1C16EBBB00444A14 /* AFHTTPSessionManager.h in Sources */,
@@ -724,10 +737,10 @@
 				230B39071C16EBA200444A14 /* AFSecurityPolicy.m in Sources */,
 				230B390B1C16EBA200444A14 /* AFURLSessionManager.m in Sources */,
 				230B38D11C16EA0100444A14 /* Entry.m in Sources */,
+				FA36C00A20ECE004000FF701 /* SyncStack.m in Sources */,
 				230B39041C16EBA200444A14 /* AFHTTPRequestOperationManager.m in Sources */,
 				230B38D01C16EA0100444A14 /* Contentstack.m in Sources */,
 				230B390A1C16EBA200444A14 /* AFURLResponseSerialization.m in Sources */,
-				230B38D41C16EA0100444A14 /* Stack.m in Sources */,
 				230B38E41C16EB4400444A14 /* MMDocument.m in Sources */,
 				230B39051C16EBA200444A14 /* AFHTTPSessionManager.m in Sources */,
 				230B39061C16EBA200444A14 /* AFNetworkReachabilityManager.m in Sources */,
@@ -766,6 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA36C00820ECABDF000FF701 /* SyncTest.m in Sources */,
 				23A53F581E277CD3001DBE35 /* ContentstackTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

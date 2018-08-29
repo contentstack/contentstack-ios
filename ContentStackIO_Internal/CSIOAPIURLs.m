@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "CSIOAPIURLs.h"
@@ -25,6 +25,8 @@ static NSString *fetchAssetLibrary = @"/%@/assets";
 static NSString *fetchLastActivity = @"/%@/content_types";
 // stack
 static NSString *fetchSchema = @"/%@/content_types";
+// sync
+static NSString *syncData = @"/%@/stacks/sync";
 
 //MARK: Methods -
 
@@ -57,4 +59,8 @@ static NSString *fetchSchema = @"/%@/content_types";
     return [NSString stringWithFormat:fetchAssetLibrary,version];
 }
 
+//sync
++(NSString *)syncWithVersion:(NSString*)version {
+    return [NSString stringWithFormat:syncData,version];
+}
 @end

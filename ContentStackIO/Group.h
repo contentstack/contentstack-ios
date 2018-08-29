@@ -3,7 +3,7 @@
 //  contentstack
 //
 //  Created by Priyanka Mistry on 29/11/16.
-//  Copyright © 2016 Built.io. All rights reserved.
+//  Copyright © 2016 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -175,7 +175,7 @@ BUILT_ASSUME_NONNULL_BEGIN
      //Swift
      grpObj.entriesForKey("detail" withContentType:"description")
  
- @param key      the reference field key
+ @param referenceKey      the reference field key
  @param contentTypeName set the contentTypeName to which the object(s) belongs
  @return An array of Entries for the specified key
  */

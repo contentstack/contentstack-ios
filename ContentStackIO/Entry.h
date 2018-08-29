@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 22/06/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -458,7 +458,7 @@ Specifies an array of keys in reference class object that would be 'excluded' fr
      //Swift
      entryObj.entriesForKey("detail" withContentType:"description")
  
- @param key      the reference field key
+ @param referenceKey      the reference field key
  @param contentTypeName set the contentTypeName to which the object(s) belongs
  @return An array of Entries for the specified key
  */

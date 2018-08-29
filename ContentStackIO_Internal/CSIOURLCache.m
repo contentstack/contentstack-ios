@@ -3,7 +3,7 @@
 //  contentstack
 //
 //  Created by Reefaq on 28/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "CSIOURLCache.h"

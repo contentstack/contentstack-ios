@@ -3,7 +3,7 @@
 //  contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -105,12 +105,21 @@ FOUNDATION_EXPORT NSString *const kCSIO_Upload;
 FOUNDATION_EXPORT NSString *const kCSIO_Uploads;
 FOUNDATION_EXPORT NSString *const kCSIO_FileSize;
 FOUNDATION_EXPORT NSString *const kCSIO_FileName;
-FOUNDATION_EXPORT NSString *const kCSIO_ContetnType;
+FOUNDATION_EXPORT NSString *const kCSIO_ContentType;
 FOUNDATION_EXPORT NSString *const kCSIO_RelativeUrls;
 
 
 FOUNDATION_EXPORT NSString *const kCSIO_CreatedAt;
 FOUNDATION_EXPORT NSString *const kCSIO_UpdatedAt;
 FOUNDATION_EXPORT NSString *const kCSIO_DeletedAt;
+
+//sync
+FOUNDATION_EXPORT NSString *const kCSIO_Init;
+FOUNDATION_EXPORT NSString *const kCSIO_Start_From;
+FOUNDATION_EXPORT NSString *const kCSIO_Pagination_Token;
+FOUNDATION_EXPORT NSString *const kCSIO_Sync_Token;
+FOUNDATION_EXPORT NSString *const kCSIO_Content_Type;
+FOUNDATION_EXPORT NSString *const kCSIO_Type;
+FOUNDATION_EXPORT NSString *const kCSIO_Items;
 
 @end

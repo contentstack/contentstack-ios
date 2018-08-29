@@ -4,7 +4,7 @@
 #  contentstack
 #
 #  Created by Reefaq on 12/01/17.
-#  Copyright © 2017 Built.io. All rights reserved.
+#  Copyright © 2017 Contentstack. All rights reserved.
 
 #--keep-undocumented-objects \
 #--keep-undocumented-members \
@@ -13,7 +13,7 @@
 # Start constants
 company="Contentstack";
 companyForFeed="Contentstack";
-companyID="com.builtio";
+companyID="com.contentstack.com";
 companyURL="http://contentstack.com";
 target="iphoneos";
 #target="macosx";
@@ -23,8 +23,8 @@ target="iphoneos";
 #--publish-docset \
 # End constants
 /usr/local/bin/appledoc \
---project-name "Built.io Contentstack" \
---project-company "Built.io" \
+--project-name "Contentstack" \
+--project-company "Contentstack.com" \
 --project-version "3.3.1" \
 --company-id "${companyID}" \
 --docset-bundle-id "${companyID}.${companyForFeed}" \
