@@ -3,11 +3,12 @@
 //  contentstack
 //
 //  Created by Reefaq on 15/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "CSIOCoreNetworkingProtocol.h"
 #import "Contentstack.h"
+#import "SyncStack.h"
 #import "Stack.h"
 #import "Query.h"
 #import "ContentType.h"
@@ -85,5 +86,21 @@
 - (void)configureWithDictionary:(NSDictionary*)dictionary;
 - (instancetype)initWithStack:(Stack *)stack;
 - (instancetype)initWithStack:(Stack *)stack andField:(NSString*)field;
+
+@end
+
+
+@interface SyncStack ()
+-(instancetype)initWithParmas:(NSDictionary*) parmas;
+-(void)parseSyncResult:(NSDictionary*) dictionary;
+-(NSDictionary*)getParameters;
+@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, copy) NSString *paginationToken;
+@property (nonatomic, copy) NSString *syncToken;
+
+@property (nonatomic, assign) BOOL hasMorePages;
+@property (nonatomic, assign) unsigned int totalCount;
+@property (nonatomic, strong) NSDictionary *params;
+
 
 @end

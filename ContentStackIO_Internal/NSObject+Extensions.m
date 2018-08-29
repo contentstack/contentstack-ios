@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "NSObject+Extensions.h"
@@ -191,6 +191,24 @@
     return [[self localeCodes] indexOfObject:locale];
 }
 
+-(NSArray*)publishTypes {
+    static NSArray* publishTypes;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        publishTypes = @[@"asset_published",
+                         @"entry_published",
+                         @"asset_unpublished",
+                         @"entry_unpublished",
+                         @"asset_deleted",
+                         @"entry_deleted",
+                         @"content_type_deleted"];
+    });
+    return publishTypes;
+}
+
+-(NSString*)publishType:(NSUInteger)publishType {
+    return [self publishTypes][publishType];
+}
 
 - (void)assertPropertyTypes:(NSDictionary *)properties {
     for (id k in properties.allKeys) {

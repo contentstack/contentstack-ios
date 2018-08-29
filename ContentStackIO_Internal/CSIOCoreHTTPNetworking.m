@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 22/06/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "CSIOCoreHTTPNetworking.h"
@@ -220,7 +220,7 @@ NSString *const sdkVersion = @"3.3.1";
             [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             break;
     }
-    NSLog(@"%@",request.URL.absoluteString);
+
     // Initiate request
     AFHTTPRequestOperation *op = [self.httpRequestOperationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (cachePolicy != NETWORK_ONLY) {

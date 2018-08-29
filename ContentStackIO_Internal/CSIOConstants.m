@@ -3,7 +3,7 @@
 //  contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import "CSIOConstants.h"
@@ -111,7 +111,7 @@ NSString *const kCSIO_Upload = @"asset";
 NSString *const kCSIO_Uploads = @"assets";
 NSString *const kCSIO_FileName = @"filename";
 NSString *const kCSIO_FileSize = @"file_size";
-NSString *const kCSIO_ContetnType = @"content_type";
+NSString *const kCSIO_ContentType = @"content_type";
 NSString *const kCSIO_RelativeUrls = @"relative_urls";
 
 
@@ -119,5 +119,13 @@ NSString *const kCSIO_CreatedAt = @"created_at";
 NSString *const kCSIO_UpdatedAt = @"updated_at";
 NSString *const kCSIO_DeletedAt = @"deleted_at";
 
+//sync
+NSString *const kCSIO_Init = @"init";
+NSString *const kCSIO_Start_From = @"start_from";
+NSString *const kCSIO_Pagination_Token = @"pagination_token";
+NSString *const kCSIO_Sync_Token = @"sync_token";
+NSString *const kCSIO_Content_Type = @"content_type_uid";
+NSString *const kCSIO_Items = @"items";
+NSString *const kCSIO_Type = @"type";
 
 @end

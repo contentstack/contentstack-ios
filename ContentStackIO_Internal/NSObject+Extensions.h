@@ -3,7 +3,7 @@
 //  Contentstack
 //
 //  Created by Reefaq on 13/07/15.
-//  Copyright (c) 2015 Built.io. All rights reserved.
+//  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,6 +22,9 @@
 
 - (NSString*)localeCode:(NSUInteger)locale;
 - (NSUInteger)indexOfLocaleCodeString:(NSString*)locale;
+
+-(NSString*)publishType:(NSUInteger)publishType;
+
 + (void)performAndWait:(void (^)(dispatch_semaphore_t semaphore))perform;
 
 @end
