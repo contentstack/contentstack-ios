@@ -22,7 +22,7 @@ To use this SDK on iOS platform, you will have to install the SDK according to t
 ##### Manual
 
 
-1. Download the [Latest iOS SDK release](https://github.com/raweng/BuiltIOContentstack-iOS/releases) and extract the zip file to your local disk.
+1. Download the [Latest iOS SDK release](https://www.contentstack.com/docs/platforms/ios/ios_sdk_latest) and extract the zip file to your local disk.
 2. Drag and drop Contentstack.framework into your project folder in Xcode. A window will appear, prompting you to choose one of the options for adding files. Click the ‘Destination’ checkbox to copy items into the destination group’s folder. This will add the SDK to your project.
 3. In the project editor, select your app under TARGETS. Under the General tab, open Linked Frameworks and Libraries and add the following libraries:
 - CoreGraphics.framework

@@ -25,6 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
  *Readonly property to delta sync.
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable syncToken;
+/**
+ *  Readonly property to check skip count
+ */
+@property (nonatomic, assign, readonly) unsigned int skip;
+/**
+ *  Readonly property to check limit
+ */
+@property (nonatomic, assign, readonly) unsigned int limit;
 
 /**
  *  Readonly property to check totalCount

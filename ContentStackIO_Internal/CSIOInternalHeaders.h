@@ -99,6 +99,8 @@
 @property (nonatomic, copy) NSString *syncToken;
 
 @property (nonatomic, assign) BOOL hasMorePages;
+@property (nonatomic, assign) unsigned int skip;
+@property (nonatomic, assign) unsigned int limit;
 @property (nonatomic, assign) unsigned int totalCount;
 @property (nonatomic, strong) NSDictionary *params;
 

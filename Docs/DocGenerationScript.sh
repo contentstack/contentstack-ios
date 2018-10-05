@@ -17,9 +17,9 @@ companyID="com.contentstack.com";
 companyURL="http://contentstack.com";
 target="iphoneos";
 #target="macosx";
-#outputPath ="./../../BuiltIO-Xcode-Generated-Docs/helpdocs";
+#outputPath ="./../../Contentstack-Xcode-Generated-Docs/helpdocs";
 #outputPath ="~/CSIOiOSDOC";
-#overviewPath ="./../../BuiltIO-Xcode-Generated-Docs/Overview.md";
+#overviewPath ="./../../Contentstack-Xcode-Generated-Docs/Overview.md";
 #--publish-docset \
 # End constants
 /usr/local/bin/appledoc \
