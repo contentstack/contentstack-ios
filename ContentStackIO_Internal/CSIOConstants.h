@@ -21,6 +21,7 @@ FOUNDATION_EXPORT NSString *const kCSIO_HTTPDELETE;
 FOUNDATION_EXPORT NSString *const kCSIO_HTTPMethod;
 
 FOUNDATION_EXPORT NSString *const kCSIO_Authtoken;
+FOUNDATION_EXPORT NSString *const kCSIO_Accesstoken;
 
 FOUNDATION_EXPORT NSString *const kCSIO_Queryable;
 FOUNDATION_EXPORT NSString *const kCSIO_Include;
