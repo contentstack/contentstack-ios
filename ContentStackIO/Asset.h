@@ -126,12 +126,12 @@ BUILT_ASSUME_NONNULL_BEGIN
      //'blt5d4sample2633b' is a dummy Stack API key
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      Asset *asset = [stack asset];
      [asset setHeader:@"MyValue" forKey:@"My-Custom-Header"];
  
      //Swift
-      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
       var asset:Asset = stack.asset()
       asset.setHeader("MyValue", forKey: "My-Custom-Header")
  
@@ -146,12 +146,12 @@ BUILT_ASSUME_NONNULL_BEGIN
       //'blt5d4sample2633b' is a dummy Stack API key
  
       //Obj-C
-      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
       Asset *asset = [stack asset];
       [asset addHeadersWithDictionary:@{@"My-Custom-Header": @"MyValue"}];
  
       //Swift
-      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
       var asset:Asset = stack.asset()
       asset.addHeadersWithDictionary(["My-Custom-Header":"MyValue"])
  
@@ -167,12 +167,12 @@ BUILT_ASSUME_NONNULL_BEGIN
      //'blt5d4sample2633b' is a dummy Stack API key
 
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      Asset *asset = [stack asset];
      [blogQuery addParamKey:@"key" andValue:@"value"];
  
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      var asset:Asset = stack.asset()
      blogQuery.addParamKey("key", andValue:"value")
  
@@ -187,12 +187,12 @@ BUILT_ASSUME_NONNULL_BEGIN
      //'blt5d4sample2633b' is a dummy Stack API key
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      Asset *asset = [stack asset];
      [asset removeHeaderForKey:@"My-Custom-Header"];
  
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      var asset:Asset = stack.asset()
      asset.removeHeaderForKey("My-Custom-Header")
  
@@ -210,7 +210,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  Fetches an asset asynchronously provided asset UID
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      //'bltf4fsamplec857bk' is uid of an asset
      Asset* assetObj = [stack assetWithUID:@"bltf4fsamplec857bk"];
      [assetObj fetch:^(ResponseType type, NSError *error) {
@@ -218,7 +218,7 @@ BUILT_ASSUME_NONNULL_BEGIN
      }];
      
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      //'bltf4fsamplec857bk' is uid of an asset
      var assetObj:Asset = stack.assetWithUID("bltf4fsamplec857bk")
      assetObj.fetch { (responseType, error!) -> Void in

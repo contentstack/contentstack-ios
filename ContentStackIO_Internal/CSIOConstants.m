@@ -22,6 +22,7 @@ NSString *const kCSIO_HTTPDELETE = @"DELETE";
 NSString *const kCSIO_HTTPMethod = @"_method";
 
 NSString *const kCSIO_Authtoken = @"authtoken";
+NSString *const kCSIO_Accesstoken = @"access_token";
 
 //Query
 NSString *const kCSIO_Queryable = @"query";

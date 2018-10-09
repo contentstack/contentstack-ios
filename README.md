@@ -87,12 +87,12 @@ To start using the SDK in your application, you will need to initialize the stac
 ```sh
 //Objc
 
-Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
+Stack *stack = [Contentstack stackWithAPIKey: API_KEY deliveryToken: DELIVERY_TOKEN environmentName: ENVIRONMENT];
 //Swift
 
-let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
+let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, deliveryToken: DELIVERY_TOKEN, environmentName: ENVIRONMENT)
 ```
-To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Access Token
+To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Delivery Token
 
 The stack object that is returned is a Contentstack client object, which can be used to initialize different modules and make queries against our [Content Delivery API](https://contentstack.com/docs/apis/content-delivery-api/). The initialization process for each module is explained in the following section.
 

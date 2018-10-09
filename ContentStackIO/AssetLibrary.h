@@ -104,12 +104,12 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
      //'blt5d4sample2633b' is a dummy Stack API key
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      AssetLibrary *assetLib = [stack assetLibrary];
      [assetLib setHeader:@"MyValue" forKey:@"My-Custom-Header"];
  
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      var assetLib:AssetLibrary = stack.assetLibrary()
      assetLib.setHeader("MyValue", forKey: "My-Custom-Header")
  
@@ -124,12 +124,12 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
      //'blt5d4sample2633b' is a dummy Stack API key
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      AssetLibrary *assetLib = [stack assetLibrary];
      [assetLib addHeadersWithDictionary:@{@"My-Custom-Header": @"MyValue"}];
  
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      var assetLib:AssetLibrary = stack.assetLibrary()
      assetLib.addHeadersWithDictionary(["My-Custom-Header":"MyValue"])
  
@@ -143,12 +143,12 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
       //'blt5d4sample2633b' is a dummy Stack API key
  
       //Obj-C
-      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
       AssetLibrary *assetLib = [stack assetLibrary];
       [assetLib removeHeaderForKey:@"My-Custom-Header"];
  
       //Swift
-      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
       var assetLib:AssetLibrary = stack.assetLibrary()
       assetLib.removeHeaderForKey("My-Custom-Header")
  

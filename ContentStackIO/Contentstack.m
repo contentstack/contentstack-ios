@@ -26,13 +26,13 @@
     return stack;
 }
 
-+ (Stack*)stackWithAPIKey:(NSString*)apiKey accessToken:(NSString*)token environmentName:(NSString*)environmentName;{
++ (Stack*)stackWithAPIKey:(NSString*)apiKey deliveryToken:(NSString*)token environmentName:(NSString*)environmentName;{
     Config *config = [[Config alloc] init];
-    return [Contentstack stackWithAPIKey:apiKey accessToken:token environmentName:environmentName config:config];
+    return [Contentstack stackWithAPIKey:apiKey deliveryToken:token environmentName:environmentName config:config];
 }
 
-+ (Stack*)stackWithAPIKey:(NSString*)apiKey accessToken:(NSString *)accessToken environmentName:(NSString*)environmentName config:(Config *)config; {
-    Stack *stack = [[Stack alloc] initWithAPIKey:apiKey andAccessToken:accessToken andEnvironment:environmentName andConfig:config];
++ (Stack*)stackWithAPIKey:(NSString*)apiKey deliveryToken:(NSString *)deliveryToken environmentName:(NSString*)environmentName config:(Config *)config; {
+    Stack *stack = [[Stack alloc] initWithAPIKey:apiKey anddeliveryToken:deliveryToken andEnvironment:environmentName andConfig:config];
     return stack;
 }
 

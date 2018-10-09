@@ -17,7 +17,7 @@
 
 @interface Stack ()
 @property (nonatomic, copy) NSString *apiKey;
-@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSString *deliveryToken;
 @property (nonatomic, copy) Config *config;
 
 @property (nonatomic, copy) NSString *environment;
@@ -27,7 +27,7 @@
 
 @implementation Stack
 
-- (instancetype)initWithAPIKey:(NSString*)apiKey andAccessToken:(NSString *)accessToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig {
+- (instancetype)initWithAPIKey:(NSString*)apiKey anddeliveryToken:(NSString *)deliveryToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig {
     if (self = [super init]) {
         _config = sConfig;
 
@@ -37,7 +37,7 @@
         _environment = [environment copy];
 
         _apiKey = apiKey;
-        _accessToken = accessToken;
+        _deliveryToken = deliveryToken;
         
         _network = [[CSIOCoreHTTPNetworking alloc] init];
         _stackHeaders = [NSMutableDictionary dictionary];
@@ -49,7 +49,7 @@
 
         
         [self setHeader:_apiKey forKey:kCSIO_SiteApiKey];
-        [self setHeader:_accessToken forKey:kCSIO_Authtoken];
+        [self setHeader:_deliveryToken forKey:kCSIO_Accesstoken];
      
     }
     return self;
@@ -224,7 +224,6 @@
     if (syncResult.paginationToken == nil && syncResult.syncToken == nil) {
         [params setValue:self.environment forKey:@"environment"];
     }
-    [params setValue:@"607a456d7f3afc20cd9fcb1f" forKey:@"web_ui_api_key"];
     [self syncCallWithParams:params withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
         if (error == nil) {
             [syncResult parseSyncResult:responseDictionary];

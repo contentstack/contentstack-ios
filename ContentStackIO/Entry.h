@@ -425,7 +425,7 @@ Specifies an array of keys in reference class object that would be 'excluded' fr
  Fetches an entry asynchronously provided entry UID
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
      ContentType *contentTypeObj = [stack contentTypeWithName:@"blog"];
      //'bltf4fsamplec851db' is uid of an entry of 'blog' contenttype
      Entry *entryObj  = [contentTypeObj entryWithUID:@"bltf4fsamplec851db"];
@@ -435,7 +435,7 @@ Specifies an array of keys in reference class object that would be 'excluded' fr
      
      
      //Swift
-     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+     var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"dummy")
      var contentTypeObj:ContentType = stack.contentTypeWithName("blog")
      //'bltf4fsamplec851db' is uid of an entry of 'blog' contenttype
      var entryObj:Entry = contentTypeObj.entryWithUID("bltf4fsamplec851db")
