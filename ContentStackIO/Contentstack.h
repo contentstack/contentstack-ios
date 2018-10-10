@@ -37,39 +37,39 @@ Create a new Stack instance with stack's apikey, token, environment name and con
      //Obj-C
      Config *config = [[Config alloc] init];
      config.host = @"customcontentstack.io";
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"prod" config:config];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"prod" config:config];
  
      //Swift
      let config:Config = Config()
      config.host = "customcontentstack.io"
-     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b",deliveryToken:"blt3esampletokeneb02", environmentName:@"prod", config:config)
+     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b",accessToken:"blt3esampletokeneb02", environmentName:@"prod", config:config)
 
 @param apiKey          stack apiKey.
-@param deliveryToken     stack deliveryToken.
+@param accessToken     stack accessToken.
 @param environmentName environment name in which to perform action.
 @param config          config of stack.
 
 @return new instance of Stack.
  */
-+ (Stack*)stackWithAPIKey:(NSString*)apiKey deliveryToken:(NSString *)deliveryToken environmentName:(NSString*)environmentName config:(Config *)config;
++ (Stack*)stackWithAPIKey:(NSString*)apiKey accessToken:(NSString *)accessToken environmentName:(NSString*)environmentName config:(Config *)config;
 
 
 /**
  Create a new Stack instance with stack's apikey, token and environment name.
  
      //Obj-C
-     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" deliveryToken:@"blt3esampletokeneb02" environmentName:@"prod"];
+     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"prod"];
      
      //Swift
-     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", deliveryToken:"blt3esampletokeneb02", environmentName:@"prod")
+     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"prod")
  
  @param apiKey          stack apiKey.
- @param token           deliveryToken of stack.
+ @param token           accessToken of stack.
  @param environmentName environment name in which to perform action.
  
  @return new instance of Stack.
  */
-+ (Stack*)stackWithAPIKey:(NSString*)apiKey deliveryToken:(NSString*)token environmentName:(NSString*)environmentName;
++ (Stack*)stackWithAPIKey:(NSString*)apiKey accessToken:(NSString*)token environmentName:(NSString*)environmentName;
 
 
 /**

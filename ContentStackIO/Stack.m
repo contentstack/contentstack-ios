@@ -17,7 +17,7 @@
 
 @interface Stack ()
 @property (nonatomic, copy) NSString *apiKey;
-@property (nonatomic, copy) NSString *deliveryToken;
+@property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) Config *config;
 
 @property (nonatomic, copy) NSString *environment;
@@ -27,7 +27,7 @@
 
 @implementation Stack
 
-- (instancetype)initWithAPIKey:(NSString*)apiKey anddeliveryToken:(NSString *)deliveryToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig {
+- (instancetype)initWithAPIKey:(NSString*)apiKey andaccessToken:(NSString *)accessToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig {
     if (self = [super init]) {
         _config = sConfig;
 
@@ -37,7 +37,7 @@
         _environment = [environment copy];
 
         _apiKey = apiKey;
-        _deliveryToken = deliveryToken;
+        _accessToken = accessToken;
         
         _network = [[CSIOCoreHTTPNetworking alloc] init];
         _stackHeaders = [NSMutableDictionary dictionary];
@@ -49,7 +49,7 @@
 
         
         [self setHeader:_apiKey forKey:kCSIO_SiteApiKey];
-        [self setHeader:_deliveryToken forKey:kCSIO_Accesstoken];
+        [self setHeader:_accessToken forKey:kCSIO_Accesstoken];
      
     }
     return self;

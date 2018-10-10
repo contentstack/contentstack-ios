@@ -87,12 +87,12 @@ To start using the SDK in your application, you will need to initialize the stac
 ```sh
 //Objc
 
-Stack *stack = [Contentstack stackWithAPIKey: API_KEY deliveryToken: DELIVERY_TOKEN environmentName: ENVIRONMENT];
+Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
 //Swift
 
-let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, deliveryToken: DELIVERY_TOKEN, environmentName: ENVIRONMENT)
+let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
 ```
-To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Delivery Token
+To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Access Token
 
 The stack object that is returned is a Contentstack client object, which can be used to initialize different modules and make queries against our [Content Delivery API](https://contentstack.com/docs/apis/content-delivery-api/). The initialization process for each module is explained in the following section.
 
@@ -182,6 +182,125 @@ let params:[String : AnyObject?] = [
 let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
 
 ```
+
+### Syncronization
+The Sync API allows you to keep a local copy of all content in a space up-to-date via delta updates, or only the content that has changed.
+#### Initial Sync
+##### Sync all Entries and Assets
+Now to sync stack call following method:
+In completion block user will get paginated response with ``` <pagination_token>```  in SyncStack object until end of sync where user get ```<sync_token>```.
+```sh
+
+//Obj-C
+[stack sync:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+
+
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token For next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+if (syncStack.paginationToken != nil) {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
+}else {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+}
+}];
+
+//Swift
+stack.sync({ (syncStack:SyncStack, error:NSError)  in
+
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token For next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+If let token = syncStack.paginationToken {
+UserDefault.standard.setValue(token, forKey:"PaginationToken")
+}else if let token = syncStack.syncToken {
+UserDefault.standard.setValue(token, forKey:"SyncToken")
+}
+})
+```
+
+#### Paginating Sync
+If you get ```<pagination_token>``` and there is break in between sync because of network issue, you can use this pagination token to re-initiate broken sync again.
+
+```sh
+//Obj-C
+
+[stack syncPaginationToken: <pagination_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token For next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+if (syncStack.paginationToken != nil) {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
+}else {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+}
+}];
+
+//Swift
+
+stack.syncPaginationToken(<pagination_token>, completion: { (syncStack:SyncStack, error:NSError)  in
+
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token for next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+If let token = syncStack.paginationToken {
+UserDefault.standard.setValue(token, forKey:"PaginationToken")
+}else if let token = syncStack.syncToken {
+UserDefault.standard.setValue(token, forKey:"SyncToken")
+}
+})
+
+```
+#### Subsequent Sync
+Once all the contents are loaded you will get ```<sync_token>``` which you use to make requests in the future and retrieve delta updates between the current content on Contentstack and what you retrieved with your last sync request. Upon completion, you will receive a new ```<sync_token>``` which you can again use for future updates.
+
+```sh
+//Obj-C
+
+[stack syncToken: <sync_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token For next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+if (syncStack.paginationToken != nil) {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"PaginationToken"];
+}else {
+[[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+}
+}];
+
+
+//Swift
+
+stack.syncToken(<sync_token>, completion: { (syncStack:SyncStack, error:NSError)  in
+//error for any error description
+//syncStack for SyncStack
+//syncStack.syncToken: contains token for next sync Store this token for next sync
+//syncStack.paginationToken: contains token for next sync page this token for next sync
+//syncStack.items: contains sync data
+If let token = syncStack.paginationToken {
+UserDefault.standard.setValue(token, forKey:"PaginationToken")
+}else if let token = syncStack.syncToken {
+UserDefault.standard.setValue(token, forKey:"SyncToken")
+}
+})
+
+```
+
+#### Advance Sync Queries
+You can make Sync query for Content Types, Locale and Date using our iOS API Reference.
+
+[iOS API Reference Doc](https://www.contentstack.com/docs/platforms/ios/api-reference/)
+
 
 ### Helpful Links
 

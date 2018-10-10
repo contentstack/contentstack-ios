@@ -32,7 +32,7 @@
 @property (nonatomic, strong) NSMutableDictionary *stackHeaders;
 @property (nonatomic, strong) NSObject<CSIOCoreNetworkingProtocol> *network;
 @property (nonatomic, strong) ISO8601DateFormatter *commonDateFormatter;
-- (instancetype)initWithAPIKey:(NSString*)apiKey anddeliveryToken:(NSString *)deliveryToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig;
+- (instancetype)initWithAPIKey:(NSString*)apiKey andaccessToken:(NSString *)accessToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig;
 @end
 
 @interface Contentstack()

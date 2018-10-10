@@ -29,9 +29,9 @@ BUILT_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *apiKey;
 
 /**
- *  Readonly property to check value of delivery token
+ *  Readonly property to check value of access token
  */
-@property (nonatomic, copy, readonly) NSString *deliveryToken;
+@property (nonatomic, copy, readonly) NSString *accessToken;
 
 /**
  *  Readonly property to check value of environment provided
