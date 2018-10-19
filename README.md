@@ -185,6 +185,7 @@ let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andPara
 
 ### Syncronization
 The Sync API allows you to keep a local copy of all content in a space up-to-date via delta updates, or only the content that has changed.
+
 #### Initial Sync
 ##### Sync all Entries and Assets
 Now to sync stack call following method:
