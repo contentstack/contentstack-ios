@@ -184,12 +184,12 @@ let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andPara
 ```
 
 ### Syncronization
-The Sync API allows you to keep a local copy of all content in a space up-to-date via delta updates, or only the content that has changed.
+The Sync API takes care of syncing your Contentstack data with your app and ensures that the data is always up-to-date by providing delta updates. Contentstack’s iOS SDK supports Sync API, which you can use to build powerful apps. Read through to understand how to use the Sync API with Contentstack iOS SDK.
 
 #### Initial Sync
-##### Sync all Entries and Assets
-Now to sync stack call following method:
-In completion block user will get paginated response with ``` <pagination_token>```  in SyncStack object until end of sync where user get ```<sync_token>```.
+The Initial Sync process performs a complete sync of your app data. It returns all the published entries and assets of the specified stack in response.
+
+To start the Initial Sync process, use the syncStack method.
 ```sh
 
 //Obj-C
@@ -224,8 +224,15 @@ UserDefault.standard.setValue(token, forKey:"SyncToken")
 })
 ```
 
+The response also contains a sync token, which you need to store, since this token is used to get subsequent delta updates later, as shown in the Subsequent Sync section below.
+
+You can also fetch custom results in initial sync by using advanced sync queries.
+
+
 #### Paginating Sync
-If you get ```<pagination_token>``` and there is break in between sync because of network issue, you can use this pagination token to re-initiate broken sync again.
+If the result of the initial sync (or subsequent sync) contains more than 100 records, the response would be paginated. It provides pagination token in the response. However, you don’t have to use the pagination token manually to get the next batch; the SDK does that automatically, until the sync is complete.
+
+Pagination token can be used in case you want to fetch only selected batches. It is especially useful if the sync process is interrupted mid way (due to network issues, etc.). In such cases, this token can be used to restart the sync process from where it was interrupted.
 
 ```sh
 //Obj-C
@@ -261,7 +268,7 @@ UserDefault.standard.setValue(token, forKey:"SyncToken")
 
 ```
 #### Subsequent Sync
-Once all the contents are loaded you will get ```<sync_token>``` which you use to make requests in the future and retrieve delta updates between the current content on Contentstack and what you retrieved with your last sync request. Upon completion, you will receive a new ```<sync_token>``` which you can again use for future updates.
+You can use the sync token (that you receive after initial sync) to get the updated content next time. The sync token fetches only the content that was added after your last sync, and the details of the content that was deleted or updated.
 
 ```sh
 //Obj-C
