@@ -182,14 +182,17 @@ let params:[String : AnyObject?] = [
 let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
 
 ```
+[iOS API Reference Doc](https://www.contentstack.com/docs/platforms/ios/api-reference/)
 
-### Syncronization
+
+### Using the Sync API with iOS SDK
 The Sync API takes care of syncing your Contentstack data with your app and ensures that the data is always up-to-date by providing delta updates. Contentstack’s iOS SDK supports Sync API, which you can use to build powerful apps. Read through to understand how to use the Sync API with Contentstack iOS SDK.
 
 #### Initial Sync
 The Initial Sync process performs a complete sync of your app data. It returns all the published entries and assets of the specified stack in response.
 
 To start the Initial Sync process, use the syncStack method.
+
 ```sh
 
 //Obj-C
@@ -224,15 +227,15 @@ UserDefault.standard.setValue(token, forKey:"SyncToken")
 })
 ```
 
-The response also contains a sync token, which you need to store, since this token is used to get subsequent delta updates later, as shown in the Subsequent Sync section below.
+The response also contains a sync token, which you need to store, since this token is used to get subsequent delta updates later, as shown in the Subsequent Sync section below. 
 
-You can also fetch custom results in initial sync by using advanced sync queries.
+You can also fetch custom results in initial sync by using advanced sync queries. 
 
 
-#### Paginating Sync
-If the result of the initial sync (or subsequent sync) contains more than 100 records, the response would be paginated. It provides pagination token in the response. However, you don’t have to use the pagination token manually to get the next batch; the SDK does that automatically, until the sync is complete.
+#### Sync Pagination
+If the result of the initial sync (or subsequent sync) contains more than 100 records, the response would be paginated. It provides pagination token in the response. However, you don’t have to use the pagination token manually to get the next batch; the SDK does that automatically, until the sync is complete. 
 
-Pagination token can be used in case you want to fetch only selected batches. It is especially useful if the sync process is interrupted mid way (due to network issues, etc.). In such cases, this token can be used to restart the sync process from where it was interrupted.
+Pagination token can be used in case you want to fetch only selected batches. It is especially useful if the sync process is interrupted midway (due to network issues, etc.). In such cases, this token can be used to restart the sync process from where it was interrupted.
 
 ```sh
 //Obj-C
@@ -305,9 +308,7 @@ UserDefault.standard.setValue(token, forKey:"SyncToken")
 ```
 
 #### Advance Sync Queries
-You can make Sync query for Content Types, Locale and Date using our iOS API Reference.
-
-[iOS API Reference Doc](https://www.contentstack.com/docs/platforms/ios/api-reference/)
+You can use advanced sync queries to fetch custom results while performing initial sync. Read [advanced sync queries](http://www.contentstack.com/docs/guide/synchronization/using-the-sync-api-with-ios-sdk#advanced-sync-queries) documentation.
 
 
 ### Helpful Links
