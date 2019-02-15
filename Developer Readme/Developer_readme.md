@@ -19,7 +19,7 @@
 
 - All 3rd party libraries files should be added in target 'ThirdPartyExtension'
 - Generate header by setting scheme as 'ThirdPartyExtension' and compiling them
-- Add 3rd party libraries files from target dependency of 'ContentStackIO' target under compile sources.
+- Add 3rd party libraries files from target dependency of 'ContentstackIO' target under compile sources.
 - Mention library name, its version and URL below
 
 
