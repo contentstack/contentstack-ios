@@ -325,7 +325,7 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		238E846A1B50ECE300BFDB32 /* ContentStackIO */ = {
+		238E846A1B50ECE300BFDB32 /* ContentstackIO */ = {
 			isa = PBXGroup;
 			children = (
 				238E84911B50ED2400BFDB32 /* ThirdPartyNamespaceHeader */,
@@ -353,7 +353,7 @@
 				FA5A3F8120EA450A0050A6DE /* SyncStack.h */,
 				FA5A3F8220EA450A0050A6DE /* SyncStack.m */,
 			);
-			path = ContentStackIO;
+			path = ContentstackIO;
 			sourceTree = "<group>";
 		};
 		238E84911B50ED2400BFDB32 /* ThirdPartyNamespaceHeader */ = {
@@ -383,8 +383,8 @@
 				9980728A1E1BDC5000524FD3 /* README.md */,
 				23C545FA1C1976FE007BBD27 /* Script */,
 				238E841C1B4FE29A00BFDB32 /* ThirdPartyExtension */,
-				23A53F261E276ADB001DBE35 /* ContentStackIO_Internal */,
-				238E846A1B50ECE300BFDB32 /* ContentStackIO */,
+				23A53F261E276ADB001DBE35 /* ContentstackIO_Internal */,
+				238E846A1B50ECE300BFDB32 /* ContentstackIO */,
 				230B38C11C16E98B00444A14 /* Contentstack */,
 				23A53F561E277CD3001DBE35 /* ContentstackTest */,
 				23A0F8571B3801D1003334E9 /* Products */,
@@ -401,7 +401,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		23A53F261E276ADB001DBE35 /* ContentStackIO_Internal */ = {
+		23A53F261E276ADB001DBE35 /* ContentstackIO_Internal */ = {
 			isa = PBXGroup;
 			children = (
 				23A53F271E276BA5001DBE35 /* Common.h */,
@@ -418,7 +418,7 @@
 				23A53F321E276BA5001DBE35 /* NSObject+Extensions.h */,
 				23A53F331E276BA5001DBE35 /* NSObject+Extensions.m */,
 			);
-			path = ContentStackIO_Internal;
+			path = ContentstackIO_Internal;
 			sourceTree = "<group>";
 		};
 		23A53F391E276BEF001DBE35 /* Developer Readme */ = {
@@ -670,7 +670,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/Docs/DocGenerationScript.sh";
+			shellScript = "${PROJECT_DIR}/Docs/DocGenerationScript.sh\n";
 		};
 		23C545FD1C197722007BBD27 /* Framework Generation Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -684,7 +684,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/Script/ios-build-framework-script.sh";
+			shellScript = "${PROJECT_DIR}/Script/ios-build-framework-script.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -816,7 +816,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdPartyExtension",
 				);
-				GCC_PREFIX_HEADER = ./ContentStackIO/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
+				GCC_PREFIX_HEADER = ./ContentstackIO/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -844,7 +844,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThirdPartyExtension",
 				);
-				GCC_PREFIX_HEADER = ./ContentStackIO/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
+				GCC_PREFIX_HEADER = ./ContentstackIO/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

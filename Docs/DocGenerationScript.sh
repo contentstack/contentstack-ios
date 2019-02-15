@@ -45,4 +45,4 @@ target="iphoneos";
 --no-warn-invalid-crossref \
 --index-desc "${PROJECT_DIR}/Docs/overview.md" \
 --exit-threshold 2 \
-./DerivedData/ContentStackSDK/Build/Products/Release-universal/Contentstack.framework/Headers
+./Build/Products/Release-universal/Contentstack.framework/Headers
