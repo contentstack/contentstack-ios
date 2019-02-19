@@ -1,6 +1,6 @@
 # This script is a modified version of this: https://github.com/jverkoey/nimbus/blob/master/scripts/generate_namespace_header
 
-header=$SRCROOT/ContentstackIO/ThirdPartyNamespaceHeader/NamespacedDependencies.h
+header=$SRCROOT/Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h
 prefix="CSIO"
 
 echo "Generating $header from $CODESIGNING_FOLDER_PATH..."
