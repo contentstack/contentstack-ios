@@ -25,6 +25,8 @@ static NSString *fetchAssetLibrary = @"/%@/assets";
 static NSString *fetchLastActivity = @"/%@/content_types";
 // stack
 static NSString *fetchSchema = @"/%@/content_types";
+// Content Type
+static NSString *fetchContentTypeSchema = @"/%@/content_types/%@";
 // sync
 static NSString *syncData = @"/%@/stacks/sync";
 
@@ -33,6 +35,11 @@ static NSString *syncData = @"/%@/stacks/sync";
 //stack
 +(NSString *)fetchSchemaWithVersion:(NSString*)version {
     return [NSString stringWithFormat:fetchSchema,version];
+}
+
+//stack
++(NSString *)fetchContenTypeSchema:(NSString*)contentTypeUID withVersion:(NSString*)version {
+    return [NSString stringWithFormat:fetchContentTypeSchema, version, contentTypeUID];
 }
 
 //Query

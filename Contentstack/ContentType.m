@@ -8,6 +8,10 @@
 
 #import "ContentType.h"
 #import "CSIOInternalHeaders.h"
+#import "CSIOConstants.h"
+#import "CSIOCoreHTTPNetworking.h"
+#import "CSIOAPIURLs.h"
+#import "NSObject+Extensions.h"
 #import "Stack.h"
 #import "Query.h"
 #import "Entry.h"
@@ -62,5 +66,29 @@
     }
 }
 
+//MARK: - Get ContentTypes
+
+- (void)fetch:(void (^)(NSDictionary * _Nullable, NSError * _Nullable))completionBlock {
+    NSString *path = [CSIOAPIURLs fetchContenTypeSchema:self.name withVersion:self.stack.version];
+    AFHTTPRequestOperation *op = [self.stack.network requestForStack:self.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:nil additionalHeaders:self.stack.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+        if (completionBlock) {
+            if (error) {
+                completionBlock(nil, error);
+            }else {
+                NSDictionary *responseData = responseJSON;
+                if ([[responseData allKeys] containsObject:@"content_type"] && [responseData objectForKey:@"content_type"] != nil && [[responseData objectForKey:@"content_type"] isKindOfClass:[NSDictionary class]]) {
+                    completionBlock([responseData objectForKey:@"content_type"], nil);
+                }else {
+                    NSError *error = [NSError errorWithDomain:@"Error" code:-4001 userInfo:@{@"error": @"Failed to retreive data."}];
+                    completionBlock(nil, error);
+                }
+            }
+        }
+    }];
+    
+    if (op && ![op isKindOfClass:[NSNull class]]) {
+        [self.stack.requestOperationSet addObject:op];
+    }
+}
 
 @end

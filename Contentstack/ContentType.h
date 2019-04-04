@@ -106,6 +106,22 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
  */
 - (Query*)query;
 
+/**
+ Gets ContentType Schema defination.
+ //Obj-C
+  ContentType * contentType = [stack contentTypeWithName:@"<content_type_id>"]
+ [contentType fetch:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
+ 
+ }];
+ //Swift
+ let contentType = stack.contentTypeWithName("<content_type_id>")
+ contentType.fetch({ (contentType, error) in
+ 
+ })
+ @param completionBlock block to be called once operation is done.
+ */
+-(void)fetch:(void (^)(NSDictionary * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
 @end
 
 BUILT_ASSUME_NONNULL_END

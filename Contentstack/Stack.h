@@ -45,6 +45,22 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
+
+
+/**
+ Gets all the ContentTypes and its Schema defination.
+     //Obj-C
+     [csStack getContentTypes:^(NSArray * _Nullable contentTypes, NSError * _Nullable error) {
+ 
+     }];
+     //Swift
+     csStack.getContentTypes({ (contentTypes, error) in
+ 
+     })
+ @param completionBlock block to be called once operation is done.
+ */
+-(void)getContentTypes:(void (^)(NSArray * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
 //MARK: ContentType -
 /**---------------------------------------------------------------------------------------
  * @name ContentType
@@ -197,7 +213,7 @@ BUILT_ASSUME_NONNULL_BEGIN
          }];
 
      //Swift
-         stack.sync({ ( SyncStack:syncStack, error: NSError) in
+         stack.sync({ ( syncStack:SyncStack, error: NSError) in
  
          })
 
@@ -223,7 +239,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  //Swift
  var token = @"blt129393939"; //Pagination token
- syncPaginationToken(token, completion: { ( SyncStack:syncStack, error: NSError) in
+ syncPaginationToken(token, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
  
@@ -246,7 +262,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
      //Swift
          var token = @"blt129393939"; //Sync token
-         stack.syncToken(token, completion: { ( SyncStack:syncStack, error: NSError) in
+         stack.syncToken(token, completion: { ( syncStack:SyncStack, error: NSError) in
  
          })
 
@@ -269,7 +285,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 
      //Swift
          let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
-         stack.syncOnly(contentTypeArray, completion: { ( SyncStack:syncStack, error: NSError) in
+         stack.syncOnly(contentTypeArray, completion: { ( syncStack:SyncStack, error: NSError) in
  
          })
 
@@ -290,7 +306,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  //Swift
  let date = Date.date() //date from where synchronization is called
- stack.syncFrom(date, completion: { ( SyncStack:syncStack, error: NSError) in
+ stack.syncFrom(date, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
  
@@ -309,7 +325,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  }];
  
  //Swift
- stack.syncLocale(ENGLISH_UNITED_STATES, completion: { ( SyncStack:syncStack, error: NSError) in
+ stack.syncLocale(ENGLISH_UNITED_STATES, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
  
@@ -332,7 +348,7 @@ Perform a synchronization operation on specified classes and from date.
      //Swift
          let date = Date.date() //date from where synchronization is called
          let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
-         stack.syncOnly(contentTypeArray, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+         stack.syncOnly(contentTypeArray, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
  
          })
 @param contentType uid of classes to be expected.
@@ -354,7 +370,7 @@ Perform a synchronization operation on specified classes and from date.
  //Swift
  
  let date = Date.date() //date from where synchronization is called.
- stack.syncLocale(ENGLISH_UNITED_STATES, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ stack.syncLocale(ENGLISH_UNITED_STATES, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
 
@@ -379,7 +395,7 @@ Perform a synchronization operation on specified classes and from date.
  
          let date = Date.date() //date from where synchronization is called.
  
-         stack.syncPublishType:ENTRY_PUBLISHED, completion: { ( SyncStack:syncStack, error: NSError) in
+         stack.syncPublishType:ENTRY_PUBLISHED, completion: { ( syncStack:SyncStack, error: NSError) in
  
          })
 
@@ -409,7 +425,7 @@ Perform a synchronization operation on specified classes and from date.
  let contentTypeArray = ["product", "multifield"]; //Content type uids that want to sync.
  let date = Date.date() //date from where synchronization is called.
  
- stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, completion: { ( SyncStack:syncStack, error: NSError) in
+ stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
 
@@ -440,7 +456,7 @@ Perform a synchronization operation on specified classes and from date.
  
  let date = Date.date() //date from where synchronization is called.
  
- stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, publishType:ENTRY_PUBLISHED, completion: { ( SyncStack:syncStack, error: NSError) in
+ stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, publishType:ENTRY_PUBLISHED, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
 
