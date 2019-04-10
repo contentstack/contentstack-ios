@@ -42,7 +42,7 @@
      config.isSSL = true
  
  */
-@property (nonatomic, assign) BOOL isSSL DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL isSSL;
 
 /**
  API version of Contentstack api server.

@@ -10,7 +10,7 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "NSObject+Extensions.h"
 #import "MMMarkdown.h"
 
@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *resultDictionary;
 @property (nonatomic, strong, getter=stack) Stack *csStack;
-@property (nonatomic, strong) AFHTTPRequestOperation *requestOperation;
+@property (nonatomic, strong) NSURLSessionDataTask *requestOperation;
 
 @end
 
@@ -136,7 +136,7 @@
 //MARK: - Cancel -
 
 - (void)cancelRequest {
-    if (self.requestOperation.isExecuting) {
+    if (self.requestOperation.state == NSURLSessionTaskStateRunning) {
         [self.requestOperation cancel];
     }
 }

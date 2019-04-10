@@ -1,0 +1,6 @@
+framework module Contentstack {
+  umbrella header "Contentstack.h"
+
+  export *
+  module * { export * }
+}

@@ -11,13 +11,13 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "NSObject+Extensions.h"
 #import "MMMarkdown.h"
 
 @interface Asset ()
 @property (nonatomic, strong) NSMutableDictionary *objectProperties;
-@property (nonatomic, strong) AFHTTPRequestOperation *requestOperation;
+@property (nonatomic, strong) NSURLSessionDataTask *requestOperation;
 @property (nonatomic, strong) NSMutableDictionary *localHeaders;
 
 @property (nonatomic, copy) NSString *uid;
@@ -189,7 +189,7 @@
 //MARK: - Cancel -
 
 - (void)cancelRequest {
-    if (self.requestOperation.isExecuting) {
+    if (self.requestOperation.state == NSURLSessionTaskStateRunning) {
         [self.requestOperation cancel];
     }
 }

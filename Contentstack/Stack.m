@@ -7,7 +7,7 @@
 //
 
 #import "Stack.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOCoreHTTPNetworking.h"
@@ -113,7 +113,7 @@
 - (void)syncCallWithParams:(NSDictionary*)params withCompletion:(void (^)(NSDictionary *responseDictionary, NSError *error))completionBlock {
     NSString *path = [CSIOAPIURLs syncWithVersion:self.version];
     NSMutableDictionary *paramsDictionary = [NSMutableDictionary dictionaryWithDictionary:params];
-    AFHTTPRequestOperation *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
             if (error) {
                 completionBlock(nil, error);

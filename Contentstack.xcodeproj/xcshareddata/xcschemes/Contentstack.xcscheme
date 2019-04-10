@@ -17,7 +17,7 @@
                BlueprintIdentifier = "230B38BF1C16E98B00444A14"
                BuildableName = "Contentstack.framework"
                BlueprintName = "Contentstack"
-               ReferencedContainer = "container:contentstack.xcodeproj">
+               ReferencedContainer = "container:Contentstack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "23A53F541E277CD3001DBE35"
                BuildableName = "ContentstackTest.xctest"
                BlueprintName = "ContentstackTest"
-               ReferencedContainer = "container:contentstack.xcodeproj">
+               ReferencedContainer = "container:Contentstack.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "230B38BF1C16E98B00444A14"
             BuildableName = "Contentstack.framework"
             BlueprintName = "Contentstack"
-            ReferencedContainer = "container:contentstack.xcodeproj">
+            ReferencedContainer = "container:Contentstack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "230B38BF1C16E98B00444A14"
             BuildableName = "Contentstack.framework"
             BlueprintName = "Contentstack"
-            ReferencedContainer = "container:contentstack.xcodeproj">
+            ReferencedContainer = "container:Contentstack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "230B38BF1C16E98B00444A14"
             BuildableName = "Contentstack.framework"
             BlueprintName = "Contentstack"
-            ReferencedContainer = "container:contentstack.xcodeproj">
+            ReferencedContainer = "container:Contentstack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
