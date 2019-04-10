@@ -42,14 +42,14 @@ To use this SDK on iOS platform, you will have to install the SDK according to t
 
 You can import header file in Objective-C project as:
    
-    - Objective-C
-        ```sh
-        #import <Contentstack/Contentstack.h>;
-        ```
-    - Swift
-        ```sh
-        import Contentstack
-        ```
+ - Objective-C
+     ```sh
+     #import <Contentstack/Contentstack.h>;
+     ```
+ - Swift
+     ```sh
+     import Contentstack
+     ```
 ### Key Concepts for using Contentstack
 
 #### Stack
@@ -81,14 +81,14 @@ A publishing environment corresponds to one or more deployment servers or a cont
 
 To start using the SDK in your application, you will need to initialize the stack by providing the required keys and values associated with them:
     
-    - Objective-C
-        ```sh
-        Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
-        ```
-    - Swift
-        ```
-        let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
-        ```
+ - Objective-C
+     ```sh
+     Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
+     ```
+ - Swift
+     ```
+     let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
+     ```
 To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Access Token
 
 The stack object that is returned is a Contentstack client object, which can be used to initialize different modules and make queries against our [Content Delivery API](https://contentstack.com/docs/apis/content-delivery-api/). The initialization process for each module is explained in the following section.
@@ -98,34 +98,34 @@ The stack object that is returned is a Contentstack client object, which can be 
 
 To fetch all entries of of a content type, use the query given below:
 
-    - Objective-C
-        ```sh
-        ContentType *contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
+ - Objective-C
+     ```sh
+     ContentType *contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
 
-        Query *queryObject = [contentTypeObj query];
-        ```
-    - Swift
-        ```
-        var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
+     Query *queryObject = [contentTypeObj query];
+     ```
+ - Swift
+     ```
+     var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
 
-        var queryObject:Query = contentTypeObj.query()
-        ```
+     var queryObject:Query = contentTypeObj.query()
+     ```
 
 To fetch a specific entry from a content type, use the following query:
 
-    - Objective-C
-        ```sh
-        ContentType * contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
+ - Objective-C
+     ```sh
+     ContentType * contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
 
-        Entry *entryObject  = [contentTypeObject entryWithUID:@"ENTRY_UID"];
+     Entry *entryObject  = [contentTypeObject entryWithUID:@"ENTRY_UID"];
 
-        ```
-    - Swift
-        ```
-        var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
+     ```
+ - Swift
+     ```
+     var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
 
-        var entryObject:Entry = contentTypeObject.entryWithUID("ENTRY_UID")
-        ```
+     var entryObject:Entry = contentTypeObject.entryWithUID("ENTRY_UID")
+     ```
 ### Advanced Queries
 
 You can query for content types, entries, assets and more using our iOS API Reference.
@@ -143,43 +143,43 @@ For example, if you want to crop an image (with width as 300 and height as 400),
 You can use the Image Delivery API functions in this SDK as well. Here are a few examples of its usage in the SDK.
 
 
-    - Objective-C
-        ```sh
-        /* set the image quality to 100 */
-        NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"quality", nil];
-        NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+ - Objective-C
+     ```sh
+     /* set the image quality to 100 */
+     NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"quality", nil];
+     NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
 
-        /* resize the image by specifying width and height */
-        NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"width", [NSNumber numberWithInt:100], @"height", nil];
-        NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+     /* resize the image by specifying width and height */
+     NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:100], @"width", [NSNumber numberWithInt:100], @"height", nil];
+     NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
 
-        /* enable auto optimization for the image */
-        NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:@"webp", @"auto", nil];
-        NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
+     /* enable auto optimization for the image */
+     NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:@"webp", @"auto", nil];
+     NSString *transformedUrl = [stack imageTransformWithUrl:imageURL andParams:params];
 
 
-        ```
-    - Swift
-        ```
-        /* set the image quality to 100 */
-        let params:[String : AnyObject?] = [
-            "quality":100 as AnyObject
-        ];
-        let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+     ```
+ - Swift
+     ```
+     /* set the image quality to 100 */
+     let params:[String : AnyObject?] = [
+         "quality":100 as AnyObject
+     ];
+     let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
 
-        /* resize the image by specifying width and height */
-        let params:[String : AnyObject?] = [
-            "width":100 as AnyObject,
-            "height":100 as AnyObject,
-        ];
-        let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+     /* resize the image by specifying width and height */
+     let params:[String : AnyObject?] = [
+         "width":100 as AnyObject,
+         "height":100 as AnyObject,
+     ];
+     let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
 
-        let params:[String : AnyObject?] = [
-            "auto":"webp" as AnyObject
-        ];
-        let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
+     let params:[String : AnyObject?] = [
+         "auto":"webp" as AnyObject
+     ];
+     let transformedUrl:String = stack.imageTransformation(withUrl: imageURL, andParams: params);
 
-        ```
+     ```
 [iOS API Reference Doc](https://www.contentstack.com/docs/platforms/ios/api-reference/)
 
 
@@ -191,37 +191,37 @@ The Initial Sync process performs a complete sync of your app data. It returns a
 
 To start the Initial Sync process, use the syncStack method.
 
-    - Objective-C
-        ```sh
-        [stack sync:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token For next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            if (syncStack.paginationToken != nil) {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
-            }else {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
-            }
-        }];
-        ```
-    - Swift
-        ```
-        stack.sync({ (syncStack:SyncStack, error:NSError)  in
+ - Objective-C
+     ```sh
+     [stack sync:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token For next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         if (syncStack.paginationToken != nil) {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
+         }else {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+         }
+     }];
+     ```
+ - Swift
+     ```
+     stack.sync({ (syncStack:SyncStack, error:NSError)  in
 
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token For next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            If let token = syncStack.paginationToken {
-                UserDefault.standard.setValue(token, forKey:"PaginationToken")
-            }else if let token = syncStack.syncToken {
-                UserDefault.standard.setValue(token, forKey:"SyncToken")
-            }
-        })
-        ```
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token For next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         If let token = syncStack.paginationToken {
+             UserDefault.standard.setValue(token, forKey:"PaginationToken")
+         }else if let token = syncStack.syncToken {
+             UserDefault.standard.setValue(token, forKey:"SyncToken")
+         }
+     })
+     ```
 
 The response also contains a sync token, which you need to store, since this token is used to get subsequent delta updates later, as shown in the Subsequent Sync section below. 
 
@@ -233,75 +233,75 @@ If the result of the initial sync (or subsequent sync) contains more than 100 re
 
 Pagination token can be used in case you want to fetch only selected batches. It is especially useful if the sync process is interrupted midway (due to network issues, etc.). In such cases, this token can be used to restart the sync process from where it was interrupted.
 
-    - Objective-C
-        ```sh
-        [stack syncPaginationToken: <pagination_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token For next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            if (syncStack.paginationToken != nil) {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
-            }else {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
-            }
-        }];
+ - Objective-C
+     ```sh
+     [stack syncPaginationToken: <pagination_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token For next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         if (syncStack.paginationToken != nil) {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"Token"];
+         }else {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+         }
+     }];
 
-        ```
-    - Swift
-        ```
-        stack.syncPaginationToken(<pagination_token>, completion: { (syncStack:SyncStack, error:NSError)  in
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token for next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            If let token = syncStack.paginationToken {
-                UserDefault.standard.setValue(token, forKey:"PaginationToken")
-            }else if let token = syncStack.syncToken {
-                UserDefault.standard.setValue(token, forKey:"SyncToken")
-            }
-        })
+     ```
+ - Swift
+     ```
+     stack.syncPaginationToken(<pagination_token>, completion: { (syncStack:SyncStack, error:NSError)  in
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token for next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         If let token = syncStack.paginationToken {
+             UserDefault.standard.setValue(token, forKey:"PaginationToken")
+         }else if let token = syncStack.syncToken {
+             UserDefault.standard.setValue(token, forKey:"SyncToken")
+         }
+     })
 
-        ```
+     ```
 #### Subsequent Sync
 You can use the sync token (that you receive after initial sync) to get the updated content next time. The sync token fetches only the content that was added after your last sync, and the details of the content that was deleted or updated.
 
-    - Objective-C
+ - Objective-C
 
-        ```sh
-        [stack syncToken: <sync_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token For next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            if (syncStack.paginationToken != nil) {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"PaginationToken"];
-            }else {
-                [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
-            }
-        }];
+     ```sh
+     [stack syncToken: <sync_token> completion:^(SyncStack * _Nullable syncStack, NSError* _Nullable error) {
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token For next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         if (syncStack.paginationToken != nil) {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"PaginationToken"];
+         }else {
+             [[NSUserDefaults standardUserDefaults]  setValue:syncStack.syncToken forKey:@"SyncToken"];
+         }
+     }];
 
 
-        ```
-    - Swift
-        ```
-        stack.syncToken(<sync_token>, completion: { (syncStack:SyncStack, error:NSError)  in
-            //error for any error description
-            //syncStack for SyncStack
-            //syncStack.syncToken: contains token for next sync Store this token for next sync
-            //syncStack.paginationToken: contains token for next sync page this token for next sync
-            //syncStack.items: contains sync data
-            If let token = syncStack.paginationToken {
-                UserDefault.standard.setValue(token, forKey:"PaginationToken")
-            }else if let token = syncStack.syncToken {
-                UserDefault.standard.setValue(token, forKey:"SyncToken")
-            }
-        })
+     ```
+ - Swift
+     ```
+     stack.syncToken(<sync_token>, completion: { (syncStack:SyncStack, error:NSError)  in
+         //error for any error description
+         //syncStack for SyncStack
+         //syncStack.syncToken: contains token for next sync Store this token for next sync
+         //syncStack.paginationToken: contains token for next sync page this token for next sync
+         //syncStack.items: contains sync data
+         If let token = syncStack.paginationToken {
+             UserDefault.standard.setValue(token, forKey:"PaginationToken")
+         }else if let token = syncStack.syncToken {
+             UserDefault.standard.setValue(token, forKey:"SyncToken")
+         }
+     })
 
-        ```
+     ```
 
 #### Advance Sync Queries
 You can use advanced sync queries to fetch custom results while performing initial sync. Read [advanced sync queries](http://www.contentstack.com/docs/guide/synchronization/using-the-sync-api-with-ios-sdk#advanced-sync-queries) documentation.
