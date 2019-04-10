@@ -10,31 +10,167 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "Stack.h"
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
 
-NSString *const sdkVersion = @"3.4.0";
+NSString *const sdkVersion = @"3.4.1";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
 }
 
-@property (nonatomic, strong) AFHTTPRequestOperationManager *httpRequestOperationManager;
+@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
 
 @end
 
+@interface CSIOQueryStringPair : NSObject
+@property (readwrite, nonatomic, strong) id field;
+@property (readwrite, nonatomic, strong) id value;
+
+- (instancetype)initWithField:(id)field value:(id)value;
+
+- (NSString *)URLEncodedStringValue;
+@end
+
+static NSString * CSIOPercentEscapedStringFromString(NSString *string) {
+    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
+    static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
+    
+    NSMutableCharacterSet * allowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+    [allowedCharacterSet removeCharactersInString:[kAFCharactersGeneralDelimitersToEncode stringByAppendingString:kAFCharactersSubDelimitersToEncode]];
+    
+    // FIXME: https://github.com/AFNetworking/AFNetworking/pull/3028
+    // return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+    
+    static NSUInteger const batchSize = 50;
+    
+    NSUInteger index = 0;
+    NSMutableString *escaped = @"".mutableCopy;
+    
+    while (index < string.length) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wgnu"
+        NSUInteger length = MIN(string.length - index, batchSize);
+#pragma GCC diagnostic pop
+        NSRange range = NSMakeRange(index, length);
+        
+        // To avoid breaking up character sequences such as 👴🏻👮🏽
+        range = [string rangeOfComposedCharacterSequencesForRange:range];
+        
+        NSString *substring = [string substringWithRange:range];
+        NSString *encoded = [substring stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+        [escaped appendString:encoded];
+        
+        index += range.length;
+    }
+    
+    return escaped;
+}
+@implementation CSIOQueryStringPair
+
+- (instancetype)initWithField:(id)field value:(id)value {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.field = field;
+    self.value = value;
+    
+    return self;
+}
+
+- (NSString *)URLEncodedStringValue {
+    if (!self.value || [self.value isEqual:[NSNull null]]) {
+        return CSIOPercentEscapedStringFromString([self.field description]);
+    } else {
+        return [NSString stringWithFormat:@"%@=%@", CSIOPercentEscapedStringFromString([self.field description]), CSIOPercentEscapedStringFromString([self.value description])];
+    }
+}
+
+@end
+FOUNDATION_EXPORT NSArray * CSIOQueryStringPairsFromDictionary(NSDictionary *dictionary);
+FOUNDATION_EXPORT NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value);
+
+static NSString * CSIOQueryStringFromParameters(NSDictionary *parameters) {
+    NSMutableArray *mutablePairs = [NSMutableArray array];
+    for (CSIOQueryStringPair *pair in CSIOQueryStringPairsFromDictionary(parameters)) {
+        [mutablePairs addObject:[pair URLEncodedStringValue]];
+    }
+    
+    return [mutablePairs componentsJoinedByString:@"&"];
+}
+
+NSArray * CSIOQueryStringPairsFromDictionary(NSDictionary *dictionary) {
+    return CSIOQueryStringPairsFromKeyAndValue(nil, dictionary);
+}
+
+NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
+    NSMutableArray *mutableQueryStringComponents = [NSMutableArray array];
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES selector:@selector(compare:)];
+    
+    if ([value isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = value;
+        // Sort dictionary keys to ensure consistent ordering in query string, which is important when deserializing potentially ambiguous sequences, such as an array of dictionaries
+        for (id nestedKey in [dictionary.allKeys sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
+            id nestedValue = dictionary[nestedKey];
+            if (nestedValue) {
+                [mutableQueryStringComponents addObjectsFromArray:CSIOQueryStringPairsFromKeyAndValue((key ? [NSString stringWithFormat:@"%@[%@]", key, nestedKey] : nestedKey), nestedValue)];
+            }
+        }
+    } else if ([value isKindOfClass:[NSArray class]]) {
+        NSArray *array = value;
+        for (id nestedValue in array) {
+            [mutableQueryStringComponents addObjectsFromArray:CSIOQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@[]", key], nestedValue)];
+        }
+    } else if ([value isKindOfClass:[NSSet class]]) {
+        NSSet *set = value;
+        for (id obj in [set sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
+            [mutableQueryStringComponents addObjectsFromArray:CSIOQueryStringPairsFromKeyAndValue(key, obj)];
+        }
+    } else {
+        [mutableQueryStringComponents addObject:[[CSIOQueryStringPair alloc] initWithField:key value:value]];
+    }
+    
+    return mutableQueryStringComponents;
+}
 @implementation CSIOCoreHTTPNetworking
 
 -(instancetype)init {
     if (self=[super init]) {
-        _httpRequestOperationManager = [AFHTTPRequestOperationManager manager];
+        _httpSessionManager = [AFHTTPSessionManager manager];
         [NSURLCache setSharedURLCache:[CSIOURLCache standardURLCache]];
+        [self updateUserAgent];
+        [self sessionManagerQueryStringSerialization];
     }
     return self;
 }
 
+- (void)updateUserAgent {
+    NSString *userAgent = [_httpSessionManager.requestSerializer valueForHTTPHeaderField:@"User-Agent"];
+    NSString *version = sdkVersion;
+    [_httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"User-Agent"];
+}
+    
+- (void)sessionManagerQueryStringSerialization {
+    __weak typeof(self) weakSelf = self;
+    [self.httpSessionManager.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
+        NSMutableDictionary *requestParameters = [NSMutableDictionary dictionaryWithDictionary:[parameters copy]];
+        [requestParameters removeObjectForKey:@"query"];
+        NSString * query = CSIOQueryStringFromParameters(requestParameters);
+        NSDictionary *queryJson = [parameters objectForKey:@"query"];
+        if (queryJson) {
+            NSString *queryValue = [[weakSelf jsonStringFromDictonary:queryJson] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            query = [NSString stringWithFormat:@"%@&query=%@",query,queryValue];
+        }
+        return query;
+    }];
+
+}
+    
 - (NSString *)protocolStringForSSL:(BOOL)isSSL {
     return isSSL ? @"https" : @"http";
 }
@@ -61,9 +197,11 @@ NSString *const sdkVersion = @"3.4.0";
     }
 }
 
-- (void)saveToCacheWithOperation:(AFHTTPRequestOperation *)operation{
-    NSCachedURLResponse *cacheResponse = [[NSCachedURLResponse alloc] initWithResponse:operation.response data:operation.responseData];
-    [[NSURLCache sharedURLCache] storeCachedResponse:cacheResponse forRequest:operation.request];
+- (void)saveToCacheDataTask:(NSURLSessionDataTask *)task responseObject:(nonnull id) responseObject{
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:responseObject options:(NSJSONWritingPrettyPrinted) error:&error];
+    NSCachedURLResponse *cacheResponse = [[NSCachedURLResponse alloc] initWithResponse:task.response data:data];
+    [[NSURLCache sharedURLCache] storeCachedResponse:cacheResponse forRequest:task.originalRequest];
 }
 
 - (id)cachedJSONResponseForRequest:(NSURLRequest *)request {
@@ -136,43 +274,11 @@ NSString *const sdkVersion = @"3.4.0";
     return request;
 }
 
-- (NSMutableURLRequest *)urlRequestForStack:(Stack*)stack
-                                    withURLPath:(NSString*)urlPath
-                                    requestType:(CSIOCoreNetworkingRequestType)requestType
-                                         params:(NSDictionary*)paramDict
-                              additionalHeaders:(NSDictionary*)additionalHeaders
-                                    withFileKey:(NSString*)fileKey
-                                   withFileData:(id)filedata {
-    
-    NSString* urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL:stack.ssl], stack.hostURL, urlPath];
-    NSString* requestMethod = [self reqestMethodStringForRequestType:requestType];
-    
-    NSError *err;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:requestMethod URLString:urlString parameters:paramDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        if ([filedata isKindOfClass:[NSString class]]) {
-            [formData appendPartWithFileURL:[NSURL URLWithString:((NSString*)filedata)] name:@"upload[upload]" error:nil];
-        }else if ([filedata isKindOfClass:[NSData class]]) {
-            [formData appendPartWithFileData:filedata name:@"upload[upload]" fileName:fileKey mimeType:@"application/octet-stream"];
-        }else if ([filedata isKindOfClass:[UIImage class]]) {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(filedata, 0.8) name:@"upload[upload]" fileName:fileKey mimeType:@"image/jpeg"];
-        }
-    } error:&err];
-    [stack.stackHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [request setValue:obj forHTTPHeaderField:key];
-    }];
-    [additionalHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [request setValue:obj forHTTPHeaderField:key];
-    }];
-    
-    return request;
-}
-
-
 //MARK: - CSIOCoreNetworkingProtocol
 
 //MARK: - async
 
-- (AFHTTPRequestOperation*)requestForStack:(Stack*)stack
+- (NSURLSessionDataTask*)requestForStack:(Stack*)stack
                   withURLPath:(NSString*)urlPath
                   requestType:(CSIOCoreNetworkingRequestType)requestType
                        params:(NSDictionary*)paramDict
@@ -182,7 +288,7 @@ NSString *const sdkVersion = @"3.4.0";
     return [self requestForStack:stack withURLPath:urlPath requestType:requestType params:paramDict additionalHeaders:additionalHeaders cachePolicy:NETWORK_ONLY completion:completionBlock];
 }
 
-- (AFHTTPRequestOperation*)requestForStack:(Stack*)stack
+- (NSURLSessionDataTask*)requestForStack:(Stack*)stack
                   withURLPath:(NSString*)urlPath
                   requestType:(CSIOCoreNetworkingRequestType)requestType
                        params:(NSDictionary*)paramDict
@@ -190,104 +296,73 @@ NSString *const sdkVersion = @"3.4.0";
                   cachePolicy:(CachePolicy)cachePolicy
                    completion:(CSIONetworkCompletionHandler)completionBlock {
     
-    NSMutableURLRequest *request = [self urlRequestForStack:stack withURLPath:urlPath requestType:requestType params:paramDict additionalHeaders:additionalHeaders];
+    NSString* urlString = urlPath;
+    if (urlPath && !([urlPath hasPrefix:@"http"] || [urlPath hasPrefix:@"https"])) {
+        urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL:stack.ssl], stack.hostURL, urlPath];
+    }
     // Cache handler
     ResponseType resType = NETWORK;
     switch (cachePolicy) {
         case NETWORK_ONLY:
-            [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             break;
-            
         case CACHE_ONLY:
-            [request setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
             resType = CACHE;
             break;
-            
         case CACHE_ELSE_NETWORK:
-            [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
+            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
             break;
-            
         case NETWORK_ELSE_CACHE:
 //            [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
             break;
-            
         case CACHE_THEN_NETWORK:
-            [self fullfillRequestWithCache:request completion:completionBlock];
-            [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             break;
-            
         default:
-            [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             break;
     }
-
+   
+    [stack.stackHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
+    [additionalHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
+    
     // Initiate request
-    AFHTTPRequestOperation *op = [self.httpRequestOperationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (cachePolicy != NETWORK_ONLY) {
-            [self saveToCacheWithOperation:operation];
+    NSURLSessionDataTask *task = [self.httpSessionManager GET:urlString parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
+            [self saveToCacheDataTask:task responseObject:responseObject];
         }
         completionBlock(resType, responseObject, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (cachePolicy == NETWORK_ELSE_CACHE) {
-            [self fullfillRequestWithCache:operation.request completion:completionBlock];
+            [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
         } else {
-            completionBlock(resType, operation.responseObject, error);
+            completionBlock(resType, task.response, error);
         }
     }];
-    
-    [self.httpRequestOperationManager.operationQueue addOperation:op];
-    
-    return op;
+    if (cachePolicy == CACHE_THEN_NETWORK) {
+        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+    }else if (cachePolicy == CACHE_ELSE_NETWORK) {
+        NSError *error;
+        if ([self fullfillRequestWithCache:task.originalRequest error:&error]) {
+            [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+            [task suspend];
+        }
+    }else if (cachePolicy == CACHE_ONLY) {
+        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+        [task suspend];
+    }
+    return task;
 }
-
-- (AFHTTPRequestOperation*)requestForStack:(Stack*)stack
-                                        withURLPath:(NSString*)urlPath
-                                        requestType:(CSIOCoreNetworkingRequestType)requestType
-                                             params:(NSDictionary*)paramDict
-                                        withFileKey:(NSString*)fileKey
-                                       withFileData:(id)filedata
-                                  additionalHeaders:(NSDictionary*)additionalHeaders
-                                         completion:(CSIONetworkCompletionHandler)completionBlock {
-    
-    NSMutableURLRequest *request = [self urlRequestForStack:stack withURLPath:urlPath requestType:requestType params:paramDict additionalHeaders:additionalHeaders withFileKey:fileKey withFileData:filedata];
-
-    // Initiate request
-    AFHTTPRequestOperation *op = [self.httpRequestOperationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        completionBlock(NETWORK, responseObject, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completionBlock(NETWORK, operation.responseObject, error);
-    }];
-    
-    [self.httpRequestOperationManager.operationQueue addOperation:op];
-    return op;
-}
-
-- (AFHTTPRequestOperation*)requestDataForStack:(Stack*)stack
-                                        withURLPath:(NSString*)urlPath
-                                        requestType:(CSIOCoreNetworkingRequestType)requestType
-                                             params:(NSDictionary*)paramDict
-                                  additionalHeaders:(NSDictionary*)additionalHeaders
-                                         completion:(CSIONetworkCompletionHandler)completionBlock {
-    
-    NSMutableURLRequest *request = [self urlRequestForStack:stack withURLPath:urlPath requestType:requestType params:paramDict additionalHeaders:additionalHeaders];
-
-    // Initiate request
-    AFHTTPRequestOperation *op = [self.httpRequestOperationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        completionBlock(NETWORK, responseObject, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completionBlock(NETWORK, operation.responseObject, error);
-    }];
-    op.responseSerializer = [AFCompoundResponseSerializer serializer];
-    
-    [self.httpRequestOperationManager.operationQueue addOperation:op];
-    return op;
-}
-
 
 //MARK: - cancel
 
 - (void)cancelAllOperations {
-    [self.httpRequestOperationManager.operationQueue cancelAllOperations];
+    [self.httpSessionManager.operationQueue cancelAllOperations];
 }
 
 - (void)dealloc {
