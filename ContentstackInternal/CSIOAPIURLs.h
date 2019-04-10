@@ -17,6 +17,9 @@
 //stack
 +(NSString *)fetchSchemaWithVersion:(NSString*)version;
 
+//Content Type
++(NSString *)fetchContenTypeSchema:(NSString*)contentTypeUID withVersion:(NSString*)version;
+
 //Entry
 + (NSString *)fetchEntryURLWithContentTypeUID:(NSString *)contentTypeUID entryUID:(NSString*)entryUID withVersion:(NSString*)version;
 
