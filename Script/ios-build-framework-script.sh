@@ -53,6 +53,8 @@ rm -r "${UNIVERSAL_OUTPUTFOLDER}/${SF_TARGET_NAME}.framework/Info.plist"
 lipo -create  "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${SF_TARGET_NAME}.framework/${SF_TARGET_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/arm64/${SF_TARGET_NAME}.framework/${SF_TARGET_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/armv7/${SF_TARGET_NAME}.framework/${SF_TARGET_NAME}" -output "${UNIVERSAL_OUTPUTFOLDER}/${SF_TARGET_NAME}.framework/${SF_TARGET_NAME}"
 
 #Convenience step to copy the framework to the project's directory
+mkdir -p "${PROJECT_DIR}/Build"
+
 cp -R "${UNIVERSAL_OUTPUTFOLDER}/${SF_TARGET_NAME}.framework" "${PROJECT_DIR}/Build"
 cp -R "${BUILD_DIR}" "${PROJECT_DIR}/Build"
 cp -R "${OBJROOT}" "${PROJECT_DIR}/Build"
