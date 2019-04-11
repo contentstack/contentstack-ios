@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0F0A70AE225DEDDF00E0284F /* Contentstack.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 0F0A70AD225DEDDF00E0284F /* Contentstack.podspec */; };
 		0F1F2145225B844F00358EB0 /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1F2144225B844F00358EB0 /* libPods-Contentstack.a */; };
 		0F9C0FB1221ADAC90091205A /* AssetLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0F98221ADAC70091205A /* AssetLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FB2221ADAC90091205A /* AssetLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C0F99221ADAC70091205A /* AssetLibrary.m */; };
@@ -129,7 +128,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F0A70AD225DEDDF00E0284F /* Contentstack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contentstack.podspec; sourceTree = "<group>"; };
+		0F0A70AD225DEDDF00E0284F /* Contentstack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contentstack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		0F1F2142225B6F7800358EB0 /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1F2144225B844F00358EB0 /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F6C89AC225CCE9F004C342A /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -596,7 +595,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F0A70AE225DEDDF00E0284F /* Contentstack.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
