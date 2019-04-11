@@ -1,5 +1,5 @@
-### Version: 3.4.1
-#### Date: 
+### Version: 3.5.0
+#### Date: Apr-12-2019
 
 ##### API deprecation:
 - Config
@@ -7,6 +7,12 @@
 - Stack
    - removed property attribute 'ssl'
 
+##### New Features:
+- Stack
+  - added method 'getContentTypes:'
+- ContentType
+  - added method 'fetch:'
+  
 ##### 
 ### Version: 3.4.0
 #### Date: Oct-22-2018

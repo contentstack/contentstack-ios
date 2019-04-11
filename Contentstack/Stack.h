@@ -45,23 +45,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
-
-
-/**
- Gets all the ContentTypes and its Schema defination.
-     //Obj-C
-     [csStack getContentTypes:^(NSArray * _Nullable contentTypes, NSError * _Nullable error) {
- 
-     }];
-     //Swift
-     csStack.getContentTypes({ (contentTypes, error) in
- 
-     })
- @param completionBlock block to be called once operation is done.
- */
--(void)getContentTypes:(void (^)(NSArray * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
-
-//MARK: ContentType -
+//MARK: - ContentType
 /**---------------------------------------------------------------------------------------
  * @name ContentType
  *  ---------------------------------------------------------------------------------------
@@ -81,7 +65,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 - (ContentType*)contentTypeWithName:(NSString*)contentTypeName;
 
-//MARK: Manually set headers -
+//MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------
  * @name Manually set headers
  *  ---------------------------------------------------------------------------------------
@@ -128,7 +112,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)removeHeaderForKey:(NSString *)headerKey;
 
 
-//MARK: Asset and AssetLibrary -
+//MARK: - Asset and AssetLibrary
 /**---------------------------------------------------------------------------------------
  * @name Asset and AssetLibrary
  *  ---------------------------------------------------------------------------------------
@@ -196,7 +180,29 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params;
 
-//MARK: Sync -
+//MARK: - Content-Types Schema
+/**---------------------------------------------------------------------------------------
+ * @name ContentTypes Schema
+ *  ---------------------------------------------------------------------------------------
+ */
+/**
+ Gets all the ContentTypes and its Schema defination.
+ 
+     //Obj-C
+     [csStack getContentTypes:^(NSArray * _Nullable contentTypes, NSError * _Nullable error) {
+ 
+     }];
+ 
+     //Swift
+     csStack.getContentTypes({ (contentTypes, error) in
+ 
+     })
+ @param completionBlock block to be called once operation is done.
+ */
+-(void)getContentTypes:(void (^)(NSArray * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+//MARK: - Sync
 /**---------------------------------------------------------------------------------------
  * @name Sync
  *  ---------------------------------------------------------------------------------------
