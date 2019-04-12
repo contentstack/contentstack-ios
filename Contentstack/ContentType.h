@@ -19,7 +19,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
-//MARK: Manually set headers -
+//MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------
  * @name Manually set headers
  *  ---------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ Removes a header from this ContentType.
  */
 - (void)removeHeaderForKey:(NSString *)headerKey;
 
-//MARK: - Entry with UID -
+//MARK: - Entry with UID
 /**---------------------------------------------------------------------------------------
  * @name Entry
  *  ---------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Gets the new instance of Entry object with specified UID.
  */
 - (Entry*)entryWithUID:(NSString*)uid;
 
-//MARK: - Query -
+//MARK: - Query
 /**---------------------------------------------------------------------------------------
  * @name Query
  *  ---------------------------------------------------------------------------------------
@@ -105,6 +105,31 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
  @return Returns new Query instance
  */
 - (Query*)query;
+
+//MARK: - Content-Type Schema
+/**---------------------------------------------------------------------------------------
+ * @name ContentType Schema
+ *  ---------------------------------------------------------------------------------------
+ */
+/**
+ Gets ContentType Schema defination.
+ 
+     //Obj-C
+ 
+     ContentType * contentType = [stack contentTypeWithName:@"<content_type_id>"]
+     [contentType fetch:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
+ 
+     }];
+ 
+     //Swift
+ 
+     let contentType = stack.contentTypeWithName("<content_type_id>")
+     contentType.fetch({ (contentType, error) in
+ 
+     })
+ @param completionBlock block to be called once operation is done.
+ */
+-(void)fetch:(void (^)(NSDictionary * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 @end
 

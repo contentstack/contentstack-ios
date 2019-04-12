@@ -25,7 +25,6 @@
 
 #### 3rd party library used
 
-- AFNetworking - 2.4.1
 - MMMarkDown - 0.5
 - ISO8601DateFormatter
 

@@ -7,7 +7,7 @@
 //
 
 #import "Stack.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOCoreHTTPNetworking.h"
@@ -21,7 +21,6 @@
 @property (nonatomic, copy) Config *config;
 
 @property (nonatomic, copy) NSString *environment;
-@property (nonatomic, strong) NSMutableSet *requestOperationSet;
 
 @end
 
@@ -53,6 +52,30 @@
      
     }
     return self;
+}
+
+//MARK: - Get ContentTypes
+-(void)getContentTypes:(void (^)(NSArray * _Nullable contentTypes, NSError * _Nullable error))completionBlock {
+    NSString *path = [CSIOAPIURLs fetchSchemaWithVersion:self.version];
+    NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:nil additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+        if (completionBlock) {
+            if (error) {
+                completionBlock(nil, error);
+            }else {
+                NSDictionary *responseData = responseJSON;
+                if ([[responseData allKeys] containsObject:@"content_types"] && [responseData objectForKey:@"content_types"] != nil && [[responseData objectForKey:@"content_types"] isKindOfClass:[NSArray class]]) {
+                    completionBlock([responseData objectForKey:@"content_types"], nil);
+                }else {
+                    NSError *error = [NSError errorWithDomain:@"Error" code:-4001 userInfo:@{@"error": @"Failed to retreive data."}];
+                    completionBlock(nil, error);
+                }
+            }
+        }
+    }];
+    
+    if (op && ![op isKindOfClass:[NSNull class]]) {
+        [self.requestOperationSet addObject:op];
+    }
 }
 
 //MARK: - ContentType
@@ -113,7 +136,7 @@
 - (void)syncCallWithParams:(NSDictionary*)params withCompletion:(void (^)(NSDictionary *responseDictionary, NSError *error))completionBlock {
     NSString *path = [CSIOAPIURLs syncWithVersion:self.version];
     NSMutableDictionary *paramsDictionary = [NSMutableDictionary dictionaryWithDictionary:params];
-    AFHTTPRequestOperation *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramsDictionary additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
             if (error) {
                 completionBlock(nil, error);

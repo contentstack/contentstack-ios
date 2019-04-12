@@ -6,7 +6,10 @@
 Build/
 build/
 DerivedData
-
+Podfile.lock
+Pods
+Pods/
+ContentstackTest/TestResult/
 .DS_Store
 
 ## Various settings

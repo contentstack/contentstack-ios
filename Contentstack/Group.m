@@ -10,7 +10,7 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "NSObject+Extensions.h"
 #import "MMMarkdown.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "Query.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 #import "ISO8601DateFormatter.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
@@ -454,7 +454,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
     
-    AFHTTPRequestOperation *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
 
         if (error) {
             completionBlock(responseType, nil, error);
@@ -483,7 +483,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
     
-    AFHTTPRequestOperation *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (error) {
             completionBlock(responseType, nil, error);
         }else {
@@ -504,7 +504,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
 //MARK: - Cancel request -
 
 - (void)cancelRequests {
-    [self.requestOperationSet enumerateObjectsUsingBlock:^(AFHTTPRequestOperation *op, BOOL *stop) {
+    [self.requestOperationSet enumerateObjectsUsingBlock:^(NSURLSessionDataTask *op, BOOL *stop) {
         [op cancel];
     }];
 }
