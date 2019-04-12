@@ -37,22 +37,6 @@ typedef void (^CSIONetworkCompletionHandler)(ResponseType responseType, id respo
          cachePolicy:(CachePolicy)cachePolicy
           completion:(CSIONetworkCompletionHandler)completionBlock;
 
-- (id)requestForStack:(Stack*)stack
-         withURLPath:(NSString*)urlPath
-         requestType:(CSIOCoreNetworkingRequestType)requestType
-              params:(NSDictionary*)paramDict
-         withFileKey:(NSString*)fileKey
-        withFileData:(id)filedata
-   additionalHeaders:(NSDictionary*)additionalHeaders
-          completion:(CSIONetworkCompletionHandler)completionBlock;
-
-- (id)requestDataForStack:(Stack*)stack
-         withURLPath:(NSString*)urlPath
-         requestType:(CSIOCoreNetworkingRequestType)requestType
-              params:(NSDictionary*)paramDict
-   additionalHeaders:(NSDictionary*)additionalHeaders
-          completion:(CSIONetworkCompletionHandler)completionBlock;
-
 //MARK: - cancel
 
 - (void)cancelAllOperations;
