@@ -43,7 +43,7 @@
     return NO;
 }
 
-- (Group*)groupForKey:(NSString*)key {
+- (Group *)groupForKey:(NSString *)key {
     id obj = [self.objectProperties objectForKey:key];
     if (obj && [obj isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dict = (NSDictionary *)obj;
@@ -54,7 +54,7 @@
     return nil;
 }
 
-- (NSArray*)groupsForKey:(NSString*)key{
+- (NSArray *)groupsForKey:(NSString *)key{
     id obj = [self.objectProperties objectForKey:key];
     if (obj && [obj isKindOfClass:[NSArray class]]) {
         NSMutableArray *groupArray = [NSMutableArray array];

@@ -48,7 +48,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to check tags of asset
  */
-@property (nonatomic, copy, readonly) NSArray *tags;
+@property (nonatomic, copy, readonly) NSArray<NSString *> *tags;
 
 /**
  *  Readonly property to check createAt of asset
@@ -83,7 +83,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to get data of entry.
  */
-@property (nonatomic, copy, readonly) NSDictionary *properties;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *properties;
 
 
 /**
@@ -112,7 +112,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param dictionary User Info
  */
-- (void)configureWithDictionary:(NSDictionary*)dictionary;
+- (void)configureWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 
 //MARK: Manually set headers -
 /**---------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param headers  The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 
 /**

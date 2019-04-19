@@ -54,7 +54,7 @@
     [self.headers setObject:headerValue forKey:headerKey];
 }
 
-- (void)addHeadersWithDictionary:(NSDictionary *)headers {
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self.headers setObject:obj forKey:key];
     }];
@@ -68,7 +68,7 @@
 
 //MARK: - Get ContentTypes
 
-- (void)fetch:(void (^)(NSDictionary * _Nullable, NSError * _Nullable))completionBlock {
+- (void)fetch:(void (^)(NSDictionary<NSString *, NSString *> * _Nullable, NSError * _Nullable))completionBlock {
     NSString *path = [CSIOAPIURLs fetchContenTypeSchema:self.name withVersion:self.stack.version];
     NSURLSessionDataTask *op = [self.stack.network requestForStack:self.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:nil additionalHeaders:self.stack.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {

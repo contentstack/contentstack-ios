@@ -32,7 +32,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to check tags of entry
  */
-@property (nonatomic, copy, readonly) NSArray *tags;
+@property (nonatomic, copy, readonly) NSArray<NSString *> *tags;
 
 /**
  *  Readonly property to check ContentType name of entry
@@ -93,7 +93,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to get data of entry.
  */
-@property (nonatomic, copy, readonly) NSDictionary *properties;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *properties;
 
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
@@ -133,7 +133,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param headers  The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 /**
  Removes a header from this Entry.
@@ -167,7 +167,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param dictionary User Info
  */
-- (void)configureWithDictionary:(NSDictionary*)dictionary;
+- (void)configureWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 
 //MARK: - Check for key existence
 /**---------------------------------------------------------------------------------------
@@ -261,7 +261,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @param key Key containing the value of Group
  @return Instance of Group
  */
--(nullable Group*)groupForKey:(NSString*)key;
+-(nullable Group*)groupForKey:(NSString *)key;
 
 /**
  Get the info of the specified key of content type  and returns array of Group.
@@ -278,7 +278,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return NSArray of Groups
  */
 
-- (NSArray*)groupsForKey:(NSString*)key;
+- (NSArray*)groupsForKey:(NSString *)key;
 
 //MARK: - HTML String from Markdown
 /**---------------------------------------------------------------------------------------

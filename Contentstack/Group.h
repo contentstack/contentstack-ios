@@ -102,7 +102,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @param key Key containing the value of Group
  @return Instance of Group
  */
--(nullable Group*)groupForKey:(NSString*)key;
+-(nullable Group*)groupForKey:(NSString *)key;
 
 /**
  Get the info of the specified key of group with multiple sub group and returns array of Group.
@@ -120,7 +120,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return NSArray of Groups
  */
 
-- (NSArray*)groupsForKey:(NSString*)key;
+- (NSArray*)groupsForKey:(NSString *)key;
 
 //MARK: - HTML String from Markdown
 /**---------------------------------------------------------------------------------------

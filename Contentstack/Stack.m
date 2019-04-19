@@ -55,7 +55,7 @@
 }
 
 //MARK: - Get ContentTypes
--(void)getContentTypes:(void (^)(NSArray * _Nullable contentTypes, NSError * _Nullable error))completionBlock {
+-(void)getContentTypes:(void (^)(NSArray<NSString *> * _Nullable contentTypes, NSError * _Nullable error))completionBlock {
     NSString *path = [CSIOAPIURLs fetchSchemaWithVersion:self.version];
     NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:nil additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
@@ -120,7 +120,7 @@
     }
 }
 
-- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params{
+- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary<NSString *, id> *)params{
     if([url rangeOfString:@"?" options:NSCaseInsensitiveSearch].length==0) {
         url = [url stringByAppendingString:@"?"];
     }

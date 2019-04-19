@@ -62,7 +62,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param headers The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 /**
  Removes a header from this query.
@@ -115,7 +115,7 @@ This method provides all the entries for the specified language in the response.
  
  @param searchString The value used to match or compare
  */
-- (void)search:(NSString*)searchString;
+- (void)search:(NSString *)searchString;
 
 //MARK: - Tags -
 /**---------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ This method provides all the entries for the specified language in the response.
  
  @param tagsArray An array of tags that are to be included for the key
  */
-- (void)tags:(NSArray*)tagsArray;
+- (void)tags:(NSArray<NSString *> *)tagsArray;
 
 //MARK: Subqueryies with AND / OR -
 /**---------------------------------------------------------------------------------------
@@ -165,7 +165,7 @@ This method provides all the entries for the specified language in the response.
  
  @param queries Array of queries to be taken into consideration
  */
-- (void)orWithSubqueries:(NSArray *)queries;
+- (void)orWithSubqueries:(NSArray<Query *> *)queries;
 
 /**
  This method performs the AND operation on the specified query objects and provides only the matching entries.
@@ -190,7 +190,7 @@ This method provides all the entries for the specified language in the response.
  
  @param queries Array of queries to be taken into consideration
  */
-- (void)andWithSubqueries:(NSArray *)queries;
+- (void)andWithSubqueries:(NSArray<Query *> *)queries;
 
 //MARK: - Sorting
 /**---------------------------------------------------------------------------------------
@@ -355,7 +355,7 @@ This method limits the response by providing only the specified number of entrie
  @param queryDict A dictionary with all the necessary conditions for retrieving objects.
  @discussion If a complex query needs to be performed and if it is difficult to specify it using the query methods, a dictionary can be provided that specifies all the conditions. The dictionary should be as per the JSON format specified in the REST API docs.
  */
-- (void)addQueryParams:(NSDictionary *)queryDict;
+- (void)addQueryParams:(NSDictionary<NSString *, NSString *> *)queryDict;
 
 /**
  Removes custom query.
@@ -556,7 +556,7 @@ This method provides only the entries that match the specified field uids and co
 
 @param fieldUIDs An array of values that are to be included for the key
  */
-- (void)onlyFields:(NSArray *)fieldUIDs;
+- (void)onlyFields:(NSArray<NSString *> *)fieldUIDs;
 
 /**
  This method provides all entries except those that match the specified field uids and corresponding values.
@@ -569,7 +569,7 @@ This method provides only the entries that match the specified field uids and co
  
  @param fieldUIDs An array of values that are to be included for the key
  */
-- (void)exceptFields:(NSArray *)fieldUIDs;
+- (void)exceptFields:(NSArray<NSString *> *)fieldUIDs;
 
 //MARK: Reference Query (Query Conditions on Reference fields) -
 /**---------------------------------------------------------------------------------------
@@ -588,7 +588,7 @@ This method provides all entries that also contain data from the referred entry 
  
 @param key Uid of the reference field that is to be taken into consideration
  */
-- (void)includeReferenceFieldWithKey:(NSArray *)key;
+- (void)includeReferenceFieldWithKey:(NSArray<NSString *> *)key;
 
 /**
  This method provides all entries incuding referred entry containing only specified fields.
@@ -602,7 +602,7 @@ This method provides all entries that also contain data from the referred entry 
  @param key Uid of the reference field that is to be taken into consideration
  @param fieldUIDs Uid of the reference field that is to be taken into consideration
  */
-- (void)includeReferenceFieldWithKey:(NSString *)key onlyFields:(NSArray *)fieldUIDs;
+- (void)includeReferenceFieldWithKey:(NSString *)key onlyFields:(NSArray<NSString *> *)fieldUIDs;
 
 /**
  This method provides all entries incuding referred entry containing all fields except specified fields.
@@ -616,7 +616,7 @@ This method provides all entries that also contain data from the referred entry 
  @param key Uid of the reference field that is to be taken into consideration
  @param fieldUIDs Uid of the reference field that is to be taken into consideration
  */
-- (void)includeReferenceFieldWithKey:(NSString *)key excludingFields:(NSArray *)fieldUIDs;
+- (void)includeReferenceFieldWithKey:(NSString *)key excludingFields:(NSArray<NSString *> *)fieldUIDs;
 
 /**
  This method adds key and value to a query.

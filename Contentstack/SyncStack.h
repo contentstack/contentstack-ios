@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Readonly property contains all the Contents
  */
-@property (nonatomic, copy, readonly) NSArray * _Nullable items;
+@property (nonatomic, copy, readonly) NSArray<NSDictionary<NSString *, id> *> * _Nullable items;
 
 /**
  * Readonly property for paginating sync

@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
     OrderByDescending
 };
 
+@class Asset;
 @interface AssetLibrary : NSObject
 
 /**----------------------------------------------------------------------------------------
@@ -135,7 +136,7 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
  
  @param headers  The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 /**
  Removes a header from this AssetLibrary.
@@ -180,7 +181,7 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
  @param completionBlock block to be called once operation is done. The result data contains all the assets.
  */
 
-- (void)fetchAll:(void (^) (ResponseType type,NSArray * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock;
+- (void)fetchAll:(void (^) (ResponseType type,NSArray<Asset *> * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock;
 @end
 
 BUILT_ASSUME_NONNULL_END

@@ -59,7 +59,7 @@
 
 //MARK: - Cuonfigure -
 
--(void)configureWithDictionary:(NSDictionary*)dictionary {
+-(void)configureWithDictionary:(NSDictionary<NSString *, id> *)dictionary {
     
     [[dictionary allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.objectProperties setObject:dictionary[key] forKey:key];
@@ -130,7 +130,7 @@
     [self.localHeaders setObject:headerValue forKey:headerKey];
 }
 
-- (void)addHeadersWithDictionary:(NSDictionary *)headers {
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self.localHeaders setObject:obj forKey:key];
     }];

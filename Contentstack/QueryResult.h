@@ -12,6 +12,7 @@
 BUILT_ASSUME_NONNULL_BEGIN
 
 @class ContentType;
+@class Entry;
 @interface QueryResult : NSObject
 
 
@@ -38,7 +39,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @return Returns an array of entries returned by Query.
  */
-- (BUILT_NULLABLE NSArray *)getResult;
+- (BUILT_NULLABLE NSArray<Entry *> *)getResult;
 /**
  @abstract Gets the schema of objects returned by Query alongwith objects themselves.
  

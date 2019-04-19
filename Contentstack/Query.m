@@ -46,7 +46,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.localHeaders setObject:headerValue forKey:headerKey];
 }
 
-- (void)addHeadersWithDictionary:(NSDictionary *)headers {
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self.localHeaders setObject:obj forKey:key];
     }];
@@ -90,11 +90,11 @@ static NSString *kNOT_HAVING = @"$nin_query";
 //}
 
 //MARK: - AND OR -
-- (void)orWithSubqueries:(NSArray *)queries {
+- (void)orWithSubqueries:(NSArray<Query *> *)queries {
     [self prepareComplexQueryWithQueries:queries andOperation:kOR];
 }
 
-- (void)andWithSubqueries:(NSArray *)queries {
+- (void)andWithSubqueries:(NSArray<Query *> *)queries {
     [self prepareComplexQueryWithQueries:queries andOperation:kAND];
 }
 
@@ -157,7 +157,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
 }
 
 //MARK: - Conditions -
-- (void)onlyFields:(NSArray *)fieldUIDs {
+- (void)onlyFields:(NSArray<NSString *> *)fieldUIDs {
     NSMutableArray *keybundle = [NSMutableArray array];
     for (id keyname in fieldUIDs) {
         [keybundle addObject:keyname];

@@ -50,7 +50,7 @@
 
 //MARK: Result of the Query -
 
-- (NSArray *)getResult{
+- (NSArray<Entry *> *)getResult{
     if ([self.resultsDictionary objectForKey:kCSIO_Entries] && [[self.resultsDictionary objectForKey:kCSIO_Entries] isKindOfClass:[NSArray class]]) {
         NSArray *objectsArray = (NSArray*)[self.resultsDictionary objectForKey:kCSIO_Entries];
         NSMutableArray *entryObjects = [NSMutableArray array];

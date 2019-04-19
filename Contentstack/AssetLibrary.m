@@ -43,7 +43,7 @@
     [self.localHeaders setObject:headerValue forKey:headerKey];
 }
 
-- (void)addHeadersWithDictionary:(NSDictionary *)headers {
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self.localHeaders setObject:obj forKey:key];
     }];
@@ -109,7 +109,7 @@
     }
 }
 //MARK: Fetch
-- (void)fetchAll:(void (^) (ResponseType type,NSArray * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock {
+- (void)fetchAll:(void (^) (ResponseType type,NSArray<Asset *> * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock {
 
     [self cancelRequest];
     

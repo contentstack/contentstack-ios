@@ -63,7 +63,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @param contentTypeName name of the contentType to perform action.
  @return instance of ContentType.
  */
-- (ContentType*)contentTypeWithName:(NSString*)contentTypeName;
+- (ContentType *)contentTypeWithName:(NSString *)contentTypeName;
 
 //MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  
  @param headers The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 /**
  Removes a header from this Stack.
@@ -130,7 +130,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return Returns new AssetLibrary instance
  */
 
--(AssetLibrary*)assetLibrary;
+-(AssetLibrary *)assetLibrary;
 
 /**
  Represents a Asset on 'Stack' which can be executed to get Asset object
@@ -144,7 +144,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return Returns new Asset instance
  */
 
--(Asset*)asset;
+-(Asset *)asset;
 
 /**
  Gets the new instance of Asset object with specified UID.
@@ -178,7 +178,7 @@ BUILT_ASSUME_NONNULL_BEGIN
  @param params Transformation parameters.
  @return new instance of transform url.
  */
-- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary *)params;
+- (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary<NSString *, id> *)params;
 
 //MARK: - Content-Types Schema
 /**---------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@ BUILT_ASSUME_NONNULL_BEGIN
      })
  @param completionBlock block to be called once operation is done.
  */
--(void)getContentTypes:(void (^)(NSArray * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
+-(void)getContentTypes:(void (^)(NSArray<NSString *> * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 
 //MARK: - Sync

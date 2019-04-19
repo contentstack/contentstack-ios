@@ -51,7 +51,7 @@ Set a header for ContentType
  
  @param headers The headers as dictionary which needs to be added to the application
  */
-- (void)addHeadersWithDictionary:(NSDictionary *)headers;
+- (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 
 /**
 Removes a header from this ContentType.
@@ -129,7 +129,7 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
      })
  @param completionBlock block to be called once operation is done.
  */
--(void)fetch:(void (^)(NSDictionary * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
+-(void)fetch:(void (^)(NSDictionary<NSString *, NSString *> * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 @end
 
