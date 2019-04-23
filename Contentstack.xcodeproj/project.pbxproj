@@ -46,6 +46,7 @@
 		0F9C0FC6221ADAC90091205A /* SyncStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAD221ADAC90091205A /* SyncStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC7221ADAC90091205A /* Entry.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAE221ADAC90091205A /* Entry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC8221ADAC90091205A /* NamespacedDependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */; };
+		0FFF87B2226F251B005243EA /* FallbackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFF87B0226F1A59005243EA /* FallbackTest.m */; };
 		230B38E41C16EB4400444A14 /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
 		230B38E51C16EB4400444A14 /* MMElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AD1BD76654005AD47F /* MMElement.m */; };
 		230B38E61C16EB4400444A14 /* MMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AF1BD76654005AD47F /* MMGenerator.m */; };
@@ -156,6 +157,7 @@
 		0F9C0FAD221ADAC90091205A /* SyncStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncStack.h; sourceTree = "<group>"; };
 		0F9C0FAE221ADAC90091205A /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NamespacedDependencies.h; sourceTree = "<group>"; };
+		0FFF87B0226F1A59005243EA /* FallbackTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FallbackTest.m; sourceTree = "<group>"; };
 		230B38C01C16E98B00444A14 /* Contentstack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Contentstack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		230B38C41C16E98B00444A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThirdPartyExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +214,6 @@
 		D36158266EF475AC2496807A /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32D688A33248F4030DC4D01 /* libPods-ThirdPartyExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThirdPartyExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80C908DA99E7A5AF5E1492D /* Pods-Contentstack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contentstack.debug.xcconfig"; path = "Target Support Files/Pods-Contentstack/Pods-Contentstack.debug.xcconfig"; sourceTree = "<group>"; };
-		FA36C00620ECABDF000FF701 /* SyncTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncTest.h; sourceTree = "<group>"; };
 		FA36C00720ECABDF000FF701 /* SyncTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -380,8 +381,8 @@
 			children = (
 				23A53F571E277CD3001DBE35 /* ContentstackTest.m */,
 				23A53F591E277CD3001DBE35 /* Info.plist */,
-				FA36C00620ECABDF000FF701 /* SyncTest.h */,
 				FA36C00720ECABDF000FF701 /* SyncTest.m */,
+				0FFF87B0226F1A59005243EA /* FallbackTest.m */,
 			);
 			path = ContentstackTest;
 			sourceTree = "<group>";
@@ -758,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FFF87B2226F251B005243EA /* FallbackTest.m in Sources */,
 				FA36C00820ECABDF000FF701 /* SyncTest.m in Sources */,
 				23A53F581E277CD3001DBE35 /* ContentstackTest.m in Sources */,
 			);
@@ -986,7 +988,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 32QM644P7J;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = ContentstackTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1021,7 +1023,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 32QM644P7J;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ContentstackTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

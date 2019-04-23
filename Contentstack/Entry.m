@@ -27,7 +27,6 @@
 @property (nonatomic, copy) NSString *contentTypeName;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *url;
-@property (nonatomic, assign) Language language;
 @property (nonatomic, copy) NSDate *createdAt;
 @property (nonatomic, copy) NSString *createdBy;
 @property (nonatomic, copy) NSDate *updatedAt;
@@ -49,6 +48,11 @@
         _contentTypeName = contentType.name;
     }
     return self;
+}
+
+-(void)setLanguage:(Language)language {
+    _language = language;
+    [self.postParamDictionary setValue:[self localeCode:language] forKey:kCSIO_Locale];
 }
 
 - (instancetype)initWithContentType:(ContentType*)contentType {

@@ -52,7 +52,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to check Language of entry
  */
-@property (nonatomic, assign, readonly) Language language;
+@property (nonatomic, assign) Language language;
 
 /**
  *  Readonly property to check createAt of entry

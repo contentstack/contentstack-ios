@@ -355,7 +355,7 @@ This method limits the response by providing only the specified number of entrie
  @param queryDict A dictionary with all the necessary conditions for retrieving objects.
  @discussion If a complex query needs to be performed and if it is difficult to specify it using the query methods, a dictionary can be provided that specifies all the conditions. The dictionary should be as per the JSON format specified in the REST API docs.
  */
-- (void)addQueryParams:(NSDictionary<NSString *, NSString *> *)queryDict;
+- (void)addQueryParams:(NSDictionary<NSString *, id> *)queryDict;
 
 /**
  Removes custom query.
