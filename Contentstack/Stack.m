@@ -31,7 +31,6 @@
         _config = sConfig;
 
         _hostURL = [sConfig.host copy];
-        _ssl = sConfig.isSSL;
         _version = [sConfig.version copy];
         _environment = [environment copy];
 

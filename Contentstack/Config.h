@@ -31,20 +31,6 @@
 @property (nonatomic, copy) NSString *host;
 
 /**
- SSL state of Contentstack api server.
- 
-     //Obj-C
-    Config *config = [[Config alloc] init];
-     config.isSSL = YES;
-     
-     //Swift
-     var config:Config = Config()
-     config.isSSL = true
- 
- */
-@property (nonatomic, assign) BOOL isSSL DEPRECATED_ATTRIBUTE;
-
-/**
  API version of Contentstack api server.
  
      //Obj-C

@@ -96,7 +96,20 @@ This method provides all the entries for the specified language in the response.
 
 @param language Language enum for all language available.
  */
-- (void)language:(Language)language;
+- (void)language:(Language)language __attribute((deprecated("Use the locale: instead.")));
+
+/**
+ This method provides all the entries for the specified language in the response.
+ 
+ //Obj-C
+ [blogQuery locale:@"en-us"];
+ 
+ //Swift
+ blogQuery.locale("en-us")
+ 
+ @param locale Language enum for all language available.
+ */
+- (void)locale:(NSString *)locale;
 
 //MARK: - Search -
 /**---------------------------------------------------------------------------------------
@@ -243,18 +256,6 @@ Provides only the number of entries with values matching the specified values fo
 - (void)objectsCount;
 
 /**
-This method also includes the schema of the contenttype for the entries returned in the response.
- 
-     //Obj-C
-     [blogQuery includeSchema];
-     
-     //Swift
-     blogQuery.includeSchema()
- 
- */
-- (void)includeSchema __attribute((deprecated("Use the includeContentType instead.")));;
-
-/**
  This method also includes the contenttype for the entries returned in the response.
  
      //Obj-C
@@ -265,6 +266,19 @@ This method also includes the schema of the contenttype for the entries returned
  
  */
 - (void)includeContentType;
+
+
+/**
+ This method also includes the contenttype uid for the reference entries returned in the response.
+ 
+ //Obj-C
+ [blogQuery includeReferenceContentTypeUid];
+ 
+ //Swift
+ includeReferenceContentTypeUid()
+ 
+ */
+- (void)includeReferenceContentTypeUid;
 
 /**
 This method also includes owner information for all the entries returned in the response.
