@@ -28,7 +28,6 @@
 @interface Stack ()
 @property (nonatomic, copy) NSString *hostURL;
 @property (nonatomic, copy) NSString *version;
-@property (nonatomic, assign) BOOL ssl DEPRECATED_ATTRIBUTE; 
 @property (nonatomic, strong) NSMutableDictionary *stackHeaders;
 @property (nonatomic, strong) NSObject<CSIOCoreNetworkingProtocol> *network;
 @property (nonatomic, strong) ISO8601DateFormatter *commonDateFormatter;
