@@ -171,8 +171,8 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 
 }
     
-- (NSString *)protocolStringForSSL:(BOOL)isSSL {
-    return isSSL ? @"https" : @"http";
+- (NSString *)protocolStringForSSL {
+    return @"https";
 }
 
 //MARK: - Cache
@@ -244,7 +244,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     
     NSString* urlString = urlPath;
     if (urlPath && !([urlPath hasPrefix:@"http"] || [urlPath hasPrefix:@"https"])) {
-        urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL:stack.ssl], stack.hostURL, urlPath];
+        urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL], stack.hostURL, urlPath];
     }
     NSString* requestMethod = [self reqestMethodStringForRequestType:requestType];
     
@@ -298,7 +298,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     
     NSString* urlString = urlPath;
     if (urlPath && !([urlPath hasPrefix:@"http"] || [urlPath hasPrefix:@"https"])) {
-        urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL:stack.ssl], stack.hostURL, urlPath];
+        urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL], stack.hostURL, urlPath];
     }
     // Cache handler
     ResponseType resType = NETWORK;

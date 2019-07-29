@@ -1,3 +1,28 @@
+### Version: 3.6.0
+#### Date: Jul-29-2019
+
+##### New Features:
+- Query
+   - added method 'includeReferenceContentTypeUid'
+   - added method 'locale'
+- Entry
+   - added method 'includeReferenceContentTypeUid'
+   - added method 'includeContentType'
+   - added method 'locale'
+   
+##### API deprecation:
+- Query
+   - deprecated method 'language'
+- Entry
+   - deprecated method 'language'
+   
+##### API removed:
+- Config
+   - removed property attribute 'ssl'
+   - removed method 'includeSchema'
+- Stack
+   - removed property attribute 'ssl'
+
 ### Version: 3.5.0
 #### Date: Apr-12-2019
 
