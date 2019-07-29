@@ -341,7 +341,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)includeContentType;
 
 /**
- This method also includes the contenttype uid for the reference entries returned in the response.
+ This method also includes the content type UIDs of the referenced entries returned in the response.
  
       //Obj-C
       [entryObj includeReferenceContentTypeUid];

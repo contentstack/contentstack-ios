@@ -269,7 +269,7 @@ Provides only the number of entries with values matching the specified values fo
 
 
 /**
- This method also includes the contenttype uid for the reference entries returned in the response.
+ This method also includes the content type UIDs of the referenced entries returned in the response.
  
  //Obj-C
  [blogQuery includeReferenceContentTypeUid];
