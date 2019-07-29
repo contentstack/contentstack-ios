@@ -52,7 +52,12 @@
 
 -(void)setLanguage:(Language)language {
     _language = language;
-    [self.postParamDictionary setValue:[self localeCode:language] forKey:kCSIO_Locale];
+    [self setLocale:[self localeCode:language]];
+}
+
+-(void)setLocale:(NSString *)locale {
+    _locale = locale;
+    [self.postParamDictionary setValue:locale forKey:kCSIO_Locale];
 }
 
 - (instancetype)initWithContentType:(ContentType*)contentType {
@@ -96,7 +101,7 @@
     }
     
     if (self.objectProperties[kCSIO_Locale]) {
-        self.language = [self indexOfLocaleCodeString:self.objectProperties[kCSIO_Locale]];
+        self.locale = self.objectProperties[kCSIO_Locale];
     }
     
     if (self.objectProperties[kCSIO_Tags]) {
@@ -224,6 +229,14 @@
 }
 
 //MARK: - Reference fields -
+
+- (void)includeContentType {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
+}
+
+- (void)includeReferenceContentTypeUid {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeRefContentTypeUID];
+}
 
 - (void)includeRefFieldWithKey:(NSArray *)key;{
     if ([self.postParamDictionary objectForKey:kCSIO_Include] != nil) {

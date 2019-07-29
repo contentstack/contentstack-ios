@@ -52,7 +52,11 @@ BUILT_ASSUME_NONNULL_BEGIN
 /**
  *  Readonly property to check Language of entry
  */
-@property (nonatomic, assign) Language language;
+@property (nonatomic, assign) Language language __attribute((deprecated("Use the locale instead.")));
+/**
+ *  Readonly property to check Language of entry
+ */
+@property (nonatomic, assign) NSString *locale;
 
 /**
  *  Readonly property to check createAt of entry
@@ -322,6 +326,31 @@ BUILT_ASSUME_NONNULL_BEGIN
  * @name Only and Except
  *  ---------------------------------------------------------------------------------------
  */
+
+
+/**
+ This method also includes the contenttype for the entries returned in the response.
+ 
+       //Obj-C
+       [entryObj includeContentType];
+ 
+       //Swift
+       entryObj.includeContentType()
+ 
+ */
+- (void)includeContentType;
+
+/**
+ This method also includes the content type UIDs of the referenced entries returned in the response.
+ 
+      //Obj-C
+      [entryObj includeReferenceContentTypeUid];
+ 
+      //Swift
+      entryObj.includeReferenceContentTypeUid(])
+ 
+ */
+- (void)includeReferenceContentTypeUid;
 
 /**
 Specifies an array of 'only' keys in BASE object that would be included in the response.

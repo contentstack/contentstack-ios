@@ -14,7 +14,6 @@
     self = [super init];
     if (self) {
         _host = kCSIO_DefaultHost;
-        _isSSL = kCSIO_DefaultHostSSL;
         _version = kCSIO_ApiVersion;        
     }
     return self;

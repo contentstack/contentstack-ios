@@ -63,6 +63,11 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.queryDictionary setObject:[self localeCode:(NSUInteger)language] forKey:kCSIO_Locale];
 }
 
+
+- (void)locale:(NSString *)locale {
+    [self.queryDictionary setObject:locale forKey:kCSIO_Locale];
+}
+
 //MARK: - Search -
 - (void)search:(NSString*)searchString {
     // [self prepareQuerywithOperation:nil subKey:kCSIO_Typeahead forKey:kCSIO_Queryable withObject:searchString];
@@ -112,12 +117,6 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.queryDictionary setObject:@"true" forKey:kCSIO_Count];
 }
 
-- (void)includeSchema {
-    if ([self.queryDictionary valueForKey:kCSIO_IncludeContentType] == nil){
-        [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeSchema];
-    }
-}
-
 - (void)includeContentType {
     if ([self.queryDictionary valueForKey:kCSIO_IncludeSchema] != nil){
         [self.queryDictionary  removeObjectForKey:kCSIO_IncludeSchema];
@@ -125,6 +124,9 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
 }
 
+- (void)includeReferenceContentTypeUid {
+    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeRefContentTypeUID];
+}
 
 - (void)includeOwner {
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeUser];
@@ -451,7 +453,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.contentType.headers];
 
     [headers addEntriesFromDictionary:self.localHeaders];
-    
+    paramDictionary[@"include_reference_content_type_uid"] = @"true";
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
     
     NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
