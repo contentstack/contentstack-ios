@@ -34,7 +34,7 @@
  
      //Obj-C
      Config *config = [[Config alloc] init];
-     region = ContentstackRegion.EU;
+     region = ContentstackRegion.Europe;
  
      //Swift
      var config:Config = Config()
