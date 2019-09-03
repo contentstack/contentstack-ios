@@ -1,4 +1,4 @@
-### Version: 3.6.1
+### Version: 3.6.2
 #### Date: Sept-03-2019
 
 ##### New Features:

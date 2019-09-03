@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
-//  sdk-version: 3.6.1
+//  sdk-version: 3.6.2
 
 #import <Foundation/Foundation.h>
 #import <Contentstack/Config.h>
