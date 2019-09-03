@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ContentstackDefinitions.h"
 @interface Config : NSObject
 
 /**----------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@
  Host name of Contentstack api server.
  
      //Obj-C
-    Config *config = [[Config alloc] init];
+     Config *config = [[Config alloc] init];
      config.host = @"api.contentstack.io";
      
      //Swift
@@ -29,7 +29,20 @@
  
  */
 @property (nonatomic, copy) NSString *host;
+/**
+ Region name of Contentstack Database server.
+ 
+     //Obj-C
+     Config *config = [[Config alloc] init];
+     region = ContentstackRegion.EU;
+ 
+     //Swift
+     var config:Config = Config()
+     region = ContentstackRegion.eu
+ 
+ */
 
+@property (nonatomic) ContentstackRegion region;
 /**
  API version of Contentstack api server.
  

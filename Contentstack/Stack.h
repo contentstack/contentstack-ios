@@ -322,25 +322,6 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)syncFrom:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 /**
- You can also initialize sync with entries of only specific locales. To do this, use sync Locale and specify the locale code as its value. However, if you do this, the subsequent syncs will only include the entries of the specified locales.
- 
- //Obj-C
- 
- [[stack syncLocale:ENGLISH_UNITED_STATES completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
- 
- }];
- 
- //Swift
- stack.syncLocale(ENGLISH_UNITED_STATES, completion: { ( syncStack:SyncStack, error: NSError) in
- 
- })
- 
- @param language for which sync is needed.
- @param completionBlock called synchronization is done.
- */
-- (void)syncLocale:(Language)language completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
-
-/**
 Perform a synchronization operation on specified classes and from date.
 
      //Obj-C
@@ -362,29 +343,6 @@ Perform a synchronization operation on specified classes and from date.
 @param completionBlock called synchronization is done.
 */
 - (void)syncOnly:(NSString*)contentType from:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
-
-/**
- Perform a synchronization operation on specified locale and from date.
-
- //Obj-C
- 
- NSDate *date = [NSDate date]; //date from where synchronization is called.
- [[stack syncLocale:ENGLISH_UNITED_STATES from:date completion:^(SyncStack * Nullable syncStack, NSError * Nullable error) {
- 
- }];
- 
- //Swift
- 
- let date = Date.date() //date from where synchronization is called.
- stack.syncLocale(ENGLISH_UNITED_STATES, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
- 
- })
-
- @param language for which sync is needed.
- @param date from where sync data is needed.
- @param completionBlock called synchronization is done.
- */
-- (void)syncLocale:(Language)language from:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 /**
  Use the type parameter to get a specific type of content. You can pass one of the following values: 'ASSET_PUBLISHED', 'ENTRY_PUBLISHED', 'ASSET_UNPUBLISHED', 'ENTRY_UNPUBLISHED', 'ASSET_DELETED', 'ENTRY_DELETED', 'CONTENT_TYPE_DELETED'.
@@ -412,10 +370,54 @@ Perform a synchronization operation on specified classes and from date.
 -(void)syncPublishType:(PublishType)publishType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 /**
+ You can also initialize sync with entries of only specific locales. To do this, use sync Locale and specify the locale code as its value. However, if you do this, the subsequent syncs will only include the entries of the specified locales.
+ 
+ //Obj-C
+ 
+ [[stack syncLocale:ENGLISH_UNITED_STATES completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ stack.syncLocale(ENGLISH_UNITED_STATES, completion: { ( syncStack:SyncStack, error: NSError) in
+ 
+ })
+ 
+ @param language for which sync is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncLocale:(NSString*)locale completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
+
+/**
+ Perform a synchronization operation on specified locale and from date.
+ 
+ //Obj-C
+ 
+ NSDate *date = [NSDate date]; //date from where synchronization is called.
+ [[stack syncLocale:ENGLISH_UNITED_STATES from:date completion:^(SyncStack * Nullable syncStack, NSError * Nullable error) {
+ 
+ }];
+ 
+ //Swift
+ 
+ let date = Date.date() //date from where synchronization is called.
+ stack.syncLocale(ENGLISH_UNITED_STATES, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
+ 
+ })
+ 
+ @param language for which sync is needed.
+ @param date from where sync data is needed.
+ @param completionBlock called synchronization is done.
+ */
+- (void)syncLocale:(NSString*)locale from:(NSDate*)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
+/**
+ 
  Perform a synchronization operation on specified classes, locale and from date.
  
-
+ 
  //Obj-C
  
  NSArray *contentTypeArray = @[@"product", @"multifield"]; //Content type uids that want to sync.
@@ -434,13 +436,13 @@ Perform a synchronization operation on specified classes and from date.
  stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
-
+ 
  @param contentType uid of classes to be expected.
  @param language for which sync is needed.
  @param date from where sync data is needed.
  @param completionBlock called synchronization is done.
  */
-- (void)syncOnly:(NSString*)contentType locale:(Language)language from:(NSDate* BUILT_NULLABLE_P)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+- (void)syncOnly:(NSString*)contentType locale:(NSString*)locale from:(NSDate* BUILT_NULLABLE_P)date completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 
 /**
@@ -465,14 +467,16 @@ Perform a synchronization operation on specified classes and from date.
  stack.syncOnly(contentTypeArray, locale:ENGLISH_UNITED_STATES, from: date, publishType:ENTRY_PUBLISHED, completion: { ( syncStack:SyncStack, error: NSError) in
  
  })
-
+ 
  @param contentType uid of classes to be expected.
  @param language for which sync is needed.
  @param date from where sync data is needed.
  @param publishType for which sync is needed.
  @param completionBlock called synchronization is done.
  */
-- (void)syncOnly:(NSString*)contentType locale:(Language)language from:(NSDate* BUILT_NULLABLE_P)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+- (void)syncOnly:(NSString*)contentType locale:(NSString*)locale from:(NSDate* BUILT_NULLABLE_P)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+
 
 @end
 
