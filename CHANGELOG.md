@@ -1,3 +1,13 @@
+### Version: 3.6.1
+#### Date: Sept-03-2019
+
+##### New Features:
+- Config
+  - added property attribute 'region'
+- Query
+  - added method 'whereKey:in:'
+  - added method 'whereKey:notIn:'
+
 ### Version: 3.6.0
 #### Date: Jul-29-2019
 

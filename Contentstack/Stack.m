@@ -31,6 +31,9 @@
         _config = sConfig;
 
         _hostURL = [sConfig.host copy];
+        if (_config.region != US) {
+            _hostURL = [NSString stringWithFormat:@"%@-%@", [self regionCode:_config.region], sConfig.host];
+        }
         _version = [sConfig.version copy];
         _environment = [environment copy];
 
@@ -193,15 +196,15 @@
     }];
 }
 
--(void)syncLocale:(Language)language completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
-    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : [self localeCode:language]}];
+-(void)syncLocale:(NSString*)locale completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : locale}];
     [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
         completionBlock(syncResult, error);
     }];
 }
 
--(void)syncLocale:(Language)language from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
-    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : [self localeCode:language], kCSIO_Start_From : [_commonDateFormatter stringFromDate:date]}];
+-(void)syncLocale:(NSString*)locale from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{kCSIO_Locale : locale, kCSIO_Start_From : [_commonDateFormatter stringFromDate:date]}];
     [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
         completionBlock(syncResult, error);
     }];
@@ -214,10 +217,10 @@
     }];
 }
 
--(void)syncOnly:(NSString *)contentType locale:(Language)language from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+-(void)syncOnly:(NSString *)contentType locale:(NSString*)locale from:(NSDate *)date completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
     NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
     [paramsDict setValue:contentType forKey:kCSIO_Content_Type];
-    [paramsDict setValue:[self localeCode:language] forKey:kCSIO_Locale];
+    [paramsDict setValue:locale forKey:kCSIO_Locale];
     if (date != nil) {
         [paramsDict setValue:[_commonDateFormatter stringFromDate:date] forKey:kCSIO_Start_From];
     }
@@ -229,10 +232,10 @@
    
 }
 
--(void)syncOnly:(NSString *)contentType locale:(Language)language from:(NSDate *)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
+-(void)syncOnly:(NSString *)contentType locale:(NSString*)locale from:(NSDate *)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
     NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
     [paramsDict setValue:contentType forKey:kCSIO_Content_Type];
-    [paramsDict setValue:[self localeCode:language] forKey:kCSIO_Locale];
+    [paramsDict setValue:locale forKey:kCSIO_Locale];
     [paramsDict setValue:[self publishType:publishType] forKey:kCSIO_Type];
     if (date != nil) {
         [paramsDict setValue:[_commonDateFormatter stringFromDate:date] forKey:kCSIO_Start_From];

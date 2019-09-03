@@ -244,6 +244,20 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self prepareQuerywithOperation:nil subKey:key forKey:kCSIO_Queryable withObject:subDict];
 }
 
+-(void)whereKey:(NSString *)key in:(Query *)query {
+    if ([query.queryDictionary valueForKey:kCSIO_Queryable] != nil) {
+        NSDictionary *queryDictionary = @{kCSIO_InQuery : [query.queryDictionary valueForKey:kCSIO_Queryable]};
+        [self prepareQuerywithOperation:nil subKey:key forKey:kCSIO_Queryable withObject:queryDictionary];
+    }
+}
+
+- (void)whereKey:(NSString *)key notIn:(Query *)query {
+    if ([query.queryDictionary valueForKey:kCSIO_Queryable] != nil) {
+        NSDictionary *queryDictionary = @{kCSIO_NotInQuery : [query.queryDictionary valueForKey:kCSIO_Queryable]};
+        [self prepareQuerywithOperation:nil subKey:key forKey:kCSIO_Queryable withObject:queryDictionary];
+    }
+}
+
 - (void)includeReferenceFieldWithKey:(NSArray *)key {
     if ([self.queryDictionary objectForKey:kCSIO_Include] != nil) {
         for (NSString *incKey in key)
@@ -453,7 +467,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.contentType.headers];
 
     [headers addEntriesFromDictionary:self.localHeaders];
-    paramDictionary[@"include_reference_content_type_uid"] = @"true";
+
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
     
     NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {

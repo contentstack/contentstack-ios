@@ -8,15 +8,21 @@
 
 #import "Config.h"
 #import "CSIOConstants.h"
-
+#import "NSObject+Extensions.h"
 @implementation Config
 -(instancetype)init {
     self = [super init];
     if (self) {
-        _host = kCSIO_DefaultHost;
+        _region = US;
+        _host = [self hostURL:_region];
         _version = kCSIO_ApiVersion;        
     }
     return self;
 }
-
+- (void)setRegion:(ContentstackRegion)region {
+    _region = region;
+    if ([[self hostURLS] containsObject:_host]) {
+        _host = [self hostURL:_region];
+    }
+}
 @end

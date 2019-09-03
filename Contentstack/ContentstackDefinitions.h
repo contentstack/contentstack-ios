@@ -75,6 +75,11 @@
         NETWORK
     };
 
+    typedef NS_ENUM(NSUInteger, ContentstackRegion){
+        US = 0,
+        EU
+    };
+
     typedef NS_ENUM(NSUInteger, Language) {
         AFRIKAANS_SOUTH_AFRICA = 0,
         ALBANIAN_ALBANIA,

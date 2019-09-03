@@ -271,11 +271,11 @@ Provides only the number of entries with values matching the specified values fo
 /**
  This method also includes the content type UIDs of the referenced entries returned in the response.
  
- //Obj-C
- [blogQuery includeReferenceContentTypeUid];
+     //Obj-C
+     [blogQuery includeReferenceContentTypeUid];
  
- //Swift
- includeReferenceContentTypeUid()
+     //Swift
+     blogQuery.includeReferenceContentTypeUid()
  
  */
 - (void)includeReferenceContentTypeUid;
@@ -552,6 +552,45 @@ This method provides only the entries matching the regular expression for the sp
  @param modifier Modifiers for regex options. Specify 'i' as the option to ignore the case.
  */
 - (void)whereKey:(NSString *)key matchesRegex:(NSString *)regex modifiers:(NSString *)modifier;
+
+
+/**
+ This method provides only the entries matching the Query.
+    //Obj-C
+    Query *reference = [contentTypeObj query];
+    [reference whereKey:@"name" equalTo:@"Author"];
+
+    [blogQuery whereKey:@"author" in:reference];
+
+    //Swift
+    var reference:Query = contentTypeObj.query()
+    reference.whereKey("name", equalTo:@"Author")
+
+    blogQuery.whereKey("author", in:reference)
+ 
+ @param key Reference Uid of the field that is to be taken into consideration
+ @param query Querie to be taken into consideration
+ */
+- (void)whereKey:(NSString *)key in:(Query *)query;
+
+/**
+ This method provides only the entries matching the Query.
+     //Obj-C
+     Query *reference = [contentTypeObj query];
+     [reference whereKey:@"name" equalTo:@"Author"];
+ 
+     [blogQuery whereKey:@"author" notIn:reference];
+ 
+     //Swift
+     var reference:Query = contentTypeObj.query()
+     reference.whereKey("name", equalTo:@"Author")
+ 
+     blogQuery.whereKey("author", notIn:reference)
+ 
+ @param key Reference Uid of the field that is to be taken into consideration
+ @param query Querie to be taken into consideration
+ */
+- (void)whereKey:(NSString *)key notIn:(Query *)query;
 
 //MARK: Selective fields using only/except -
 /**---------------------------------------------------------------------------------------
