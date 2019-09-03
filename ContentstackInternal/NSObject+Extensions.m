@@ -38,6 +38,34 @@
     return codesArray;
 }
 
+-(NSArray*)hostURLS {
+    static NSArray* hostURLS;
+    static dispatch_once_t hostURLSOnceToken;
+    dispatch_once(&hostURLSOnceToken, ^{
+        hostURLS = @[@"cdn.contentstack.io",
+                     @"cnd.contentstack.com"];
+    });
+    return hostURLS;
+}
+
+-(NSString*)hostURL:(NSUInteger)region {
+    return [self hostURLS][region];
+}
+
+-(NSArray*)regionCodes {
+    static NSArray* regionCodes;
+    static dispatch_once_t regionCodesOnceToken;
+     dispatch_once(&regionCodesOnceToken, ^{
+         regionCodes = @[@"us",
+                         @"eu"];
+     });
+    return regionCodes;
+}
+
+-(NSString*)regionCode:(NSUInteger)region {
+    return [self regionCodes][region];
+}
+
 -(NSArray*)localeCodes{
     static NSArray* localeCodes;
     static dispatch_once_t onceToken;

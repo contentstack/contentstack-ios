@@ -15,7 +15,7 @@
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
 
-NSString *const sdkVersion = @"3.6.0";
+NSString *const sdkVersion = @"3.6.1";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
@@ -152,7 +152,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 - (void)updateUserAgent {
     NSString *userAgent = [_httpSessionManager.requestSerializer valueForHTTPHeaderField:@"User-Agent"];
     NSString *version = sdkVersion;
-    [_httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"User-Agent"];
+    [_httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"X-User-Agent"];
 }
     
 - (void)sessionManagerQueryStringSerialization {
