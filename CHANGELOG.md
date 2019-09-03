@@ -2,6 +2,12 @@
 #### Date: Sept-03-2019
 
 ##### New Features:
+- added enum ContentstackRegion
+
+### Version: 3.6.1
+#### Date: Sept-03-2019
+
+##### New Features:
 - Config
   - added property attribute 'region'
 - Query
