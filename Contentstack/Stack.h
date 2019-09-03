@@ -383,7 +383,7 @@ Perform a synchronization operation on specified classes and from date.
  
  })
  
- @param language for which sync is needed.
+ @param locale for which sync is needed.
  @param completionBlock called synchronization is done.
  */
 - (void)syncLocale:(NSString*)locale completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
@@ -406,7 +406,7 @@ Perform a synchronization operation on specified classes and from date.
  
  })
  
- @param language for which sync is needed.
+ @param locale for which sync is needed.
  @param date from where sync data is needed.
  @param completionBlock called synchronization is done.
  */
@@ -438,7 +438,7 @@ Perform a synchronization operation on specified classes and from date.
  })
  
  @param contentType uid of classes to be expected.
- @param language for which sync is needed.
+ @param locale for which sync is needed.
  @param date from where sync data is needed.
  @param completionBlock called synchronization is done.
  */
@@ -469,7 +469,7 @@ Perform a synchronization operation on specified classes and from date.
  })
  
  @param contentType uid of classes to be expected.
- @param language for which sync is needed.
+ @param locale for which sync is needed.
  @param date from where sync data is needed.
  @param publishType for which sync is needed.
  @param completionBlock called synchronization is done.
