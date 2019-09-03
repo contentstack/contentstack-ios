@@ -20,6 +20,10 @@
 - (NSArray *)arrayFromJSONData:(NSData *)data;
 - (NSString *)jsonStringFromArray:(NSArray*)array;
 
+- (NSString*)hostURL:(NSUInteger)region;
+- (NSArray*)hostURLS;
+- (NSString*)regionCode:(NSUInteger)region;
+
 - (NSString*)localeCode:(NSUInteger)locale;
 - (NSUInteger)indexOfLocaleCodeString:(NSString*)locale;
 
