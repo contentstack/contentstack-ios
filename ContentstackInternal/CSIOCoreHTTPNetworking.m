@@ -15,7 +15,7 @@
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
 
-NSString *const sdkVersion = @"3.6.2";
+NSString *const sdkVersion = @"3.6.3";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
