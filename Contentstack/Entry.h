@@ -327,6 +327,17 @@ BUILT_ASSUME_NONNULL_BEGIN
  *  ---------------------------------------------------------------------------------------
  */
 
+/**
+ This method also includes the schema for the entries returned in the response.
+ 
+      //Obj-C
+      [entryObj includeContentType];
+ 
+      //Swift
+      entryObj.includeContentType()
+ 
+ */
+- (void)includeSchema;
 
 /**
  This method also includes the contenttype for the entries returned in the response.

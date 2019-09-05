@@ -59,6 +59,7 @@ NSString *const kCSIO_Owner = @"_owner";
 //include
 NSString *const kCSIO_IncludeSchema = @"include_schema";
 NSString *const kCSIO_IncludeContentType = @"include_content_type";
+NSString *const kCSIO_IncludeSnippetSchema = @"include_snippet_schema";
 NSString *const kCSIO_IncludeRefContentTypeUID = @"include_reference_content_type_uid";
 NSString *const kCSIO_IncludeCount = @"include_count";
 NSString *const kCSIO_IncludeUnpublished = @"include_unpublished";

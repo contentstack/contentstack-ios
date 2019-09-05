@@ -230,8 +230,15 @@
 
 //MARK: - Reference fields -
 
+
+- (void)includeSchema {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSchema];
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSnippetSchema];
+}
+
 - (void)includeContentType {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSnippetSchema];
 }
 
 - (void)includeReferenceContentTypeUid {

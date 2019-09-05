@@ -57,9 +57,9 @@
 }
 
 //MARK: - Get ContentTypes
--(void)getContentTypes:(void (^)(NSArray<NSString *> * _Nullable contentTypes, NSError * _Nullable error))completionBlock {
+-(void)getContentTypes:(NSDictionary<NSString *,id> *)params completion:(void (^)(NSArray<NSString *> * _Nullable, NSError * _Nullable))completionBlock {
     NSString *path = [CSIOAPIURLs fetchSchemaWithVersion:self.version];
-    NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:nil additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    NSURLSessionDataTask *op = [self.network requestForStack:self withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:params additionalHeaders:self.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
             if (error) {
                 completionBlock(nil, error);

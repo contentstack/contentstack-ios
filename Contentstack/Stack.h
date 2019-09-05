@@ -189,17 +189,19 @@ BUILT_ASSUME_NONNULL_BEGIN
  Gets all the ContentTypes and its Schema defination.
  
      //Obj-C
-     [csStack getContentTypes:^(NSArray * _Nullable contentTypes, NSError * _Nullable error) {
+     [csStack getContentTypes:params completion:^(NSArray * _Nullable contentTypes, NSError * _Nullable error) {
  
      }];
  
      //Swift
-     csStack.getContentTypes({ (contentTypes, error) in
+     csStack.getContentTypes(params, { (contentTypes, error) in
  
      })
+
+ @param params params is dictionary of additional parameter
  @param completionBlock block to be called once operation is done.
  */
--(void)getContentTypes:(void (^)(NSArray<NSString *> * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
+-(void)getContentTypes:(NSDictionary<NSString *, id> * _Nullable)params completion:(void (^)(NSArray<NSString *> * BUILT_NULLABLE_P contentTypes, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 
 //MARK: - Sync

@@ -117,19 +117,19 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
      //Obj-C
  
      ContentType * contentType = [stack contentTypeWithName:@"<content_type_id>"]
-     [contentType fetch:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
+     [contentType fetch:params completion:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
  
      }];
  
      //Swift
  
      let contentType = stack.contentTypeWithName("<content_type_id>")
-     contentType.fetch({ (contentType, error) in
+     contentType.fetch(params, { (contentType, error) in
  
      })
  @param completionBlock block to be called once operation is done.
  */
--(void)fetch:(void (^)(NSDictionary<NSString *, NSString *> * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
+-(void)fetch:(NSDictionary<NSString *, id> * _Nullable)params completion:(void (^)(NSDictionary<NSString *, NSString *> * BUILT_NULLABLE_P contentType, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 @end
 
