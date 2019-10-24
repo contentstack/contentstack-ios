@@ -60,7 +60,7 @@ cp -R "${BUILD_DIR}" "${PROJECT_DIR}/Build"
 cp -R "${OBJROOT}" "${PROJECT_DIR}/Build"
 
 #...
-xcodebuild  -project "${PROJECT_FILE_PATH}" -scheme "Documentation"
+#xcodebuild  -project "${PROJECT_FILE_PATH}" -scheme "Documentation"
 
 #Convenience step to open the project's directory in Finder
 open "${PROJECT_DIR}/Build"

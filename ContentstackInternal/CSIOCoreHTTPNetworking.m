@@ -10,18 +10,19 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import <AFNetworking/AFNetworking.h>
 #import "Stack.h"
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
+#import "CSURLSessionManager.h"
 
-NSString *const sdkVersion = @"3.6.1";
+NSString *const sdkVersion = @"3.6.4";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
 }
 
-@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
+//@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
+@property (nonatomic, strong) CSURLSessionManager *urlSessionManager;
 
 @end
 
@@ -141,35 +142,62 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 
 -(instancetype)init {
     if (self=[super init]) {
-        _httpSessionManager = [AFHTTPSessionManager manager];
+//        _httpSessionManager = [AFHTTPSessionManager manager];
+        _urlSessionManager = [CSURLSessionManager manager:[self configuration]];
         [NSURLCache setSharedURLCache:[CSIOURLCache standardURLCache]];
-        [self updateUserAgent];
-        [self sessionManagerQueryStringSerialization];
+//        [self sessionManagerQueryStringSerialization];
     }
     return self;
 }
 
-- (void)updateUserAgent {
-    NSString *userAgent = [_httpSessionManager.requestSerializer valueForHTTPHeaderField:@"User-Agent"];
-    NSString *version = sdkVersion;
-    [_httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"X-User-Agent"];
+-(NSString*) userAgent {
+    NSString *userAgent = nil;
+    #if TARGET_OS_IOS
+        // User-Agent Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43
+        userAgent = [NSString stringWithFormat:@"%@/%@ (%@; iOS %@; Scale/%0.2f)", [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleExecutableKey] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey], [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey], [[UIDevice currentDevice] model], [[UIDevice currentDevice] systemVersion], [[UIScreen mainScreen] scale]];
+    #elif TARGET_OS_WATCH
+        // User-Agent Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43
+        userAgent = [NSString stringWithFormat:@"%@/%@ (%@; watchOS %@; Scale/%0.2f)", [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleExecutableKey] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey], [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey], [[WKInterfaceDevice currentDevice] model], [[WKInterfaceDevice currentDevice] systemVersion], [[WKInterfaceDevice currentDevice] screenScale]];
+    #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+        userAgent = [NSString stringWithFormat:@"%@/%@ (Mac OS X %@)", [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleExecutableKey] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey], [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+    #endif
+    return userAgent;
+}
+- (NSURLSessionConfiguration* )configuration {
+    NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+     NSString *userAgent = [self userAgent];
+        if (userAgent) {
+            if (![userAgent canBeConvertedToEncoding:NSASCIIStringEncoding]) {
+                NSMutableString *mutableUserAgent = [userAgent mutableCopy];
+                if (CFStringTransform((__bridge CFMutableStringRef)(mutableUserAgent), NULL, (__bridge CFStringRef)@"Any-Latin; Latin-ASCII; [:^ASCII:] Remove", false)) {
+                    userAgent = mutableUserAgent;
+                }
+            }
+            NSString *version = sdkVersion;
+            configuration.HTTPAdditionalHeaders = @{
+                @"User-Agent": userAgent,
+                @"X-User-Agent": [NSString stringWithFormat:@"%@/%@",userAgent,version]
+            };
+
+        }
+    return configuration;
 }
     
-- (void)sessionManagerQueryStringSerialization {
-    __weak typeof(self) weakSelf = self;
-    [self.httpSessionManager.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
-        NSMutableDictionary *requestParameters = [NSMutableDictionary dictionaryWithDictionary:[parameters copy]];
-        [requestParameters removeObjectForKey:@"query"];
-        NSString * query = CSIOQueryStringFromParameters(requestParameters);
-        NSDictionary *queryJson = [parameters objectForKey:@"query"];
-        if (queryJson) {
-            NSString *queryValue = [[weakSelf jsonStringFromDictonary:queryJson] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            query = [NSString stringWithFormat:@"%@&query=%@",query,queryValue];
-        }
-        return query;
-    }];
-
-}
+//- (void)sessionManagerQueryStringSerialization {
+//    __weak typeof(self) weakSelf = self;
+//    [self.httpSessionManager.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
+//        NSMutableDictionary *requestParameters = [NSMutableDictionary dictionaryWithDictionary:[parameters copy]];
+//        [requestParameters removeObjectForKey:@"query"];
+//        NSString * query = CSIOQueryStringFromParameters(requestParameters);
+//        NSDictionary *queryJson = [parameters objectForKey:@"query"];
+//        if (queryJson) {
+//            NSString *queryValue = [[weakSelf jsonStringFromDictonary:queryJson] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//            query = [NSString stringWithFormat:@"%@&query=%@",query,queryValue];
+//        }
+//        return query;
+//    }];
+//
+//}
     
 - (NSString *)protocolStringForSSL {
     return @"https";
@@ -246,20 +274,25 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     if (urlPath && !([urlPath hasPrefix:@"http"] || [urlPath hasPrefix:@"https"])) {
         urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL], stack.hostURL, urlPath];
     }
-    NSString* requestMethod = [self reqestMethodStringForRequestType:requestType];
+    NSString* method = [self reqestMethodStringForRequestType:requestType];
     
     NSMutableDictionary *requestParameters = [NSMutableDictionary dictionaryWithDictionary:[paramDict copy]];
     [requestParameters removeObjectForKey:@"query"];
-    
-    NSError *err;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:requestMethod URLString:urlString parameters:requestParameters error:&err];
-    
+    NSString * query = CSIOQueryStringFromParameters(requestParameters);
     NSDictionary *queryJson = [paramDict objectForKey:@"query"];
     if (queryJson) {
         NSString *queryValue = [[self jsonStringFromDictonary:queryJson] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        request.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@&query=%@",request.URL.absoluteString,queryValue]];
+        query = [NSString stringWithFormat:@"%@&query=%@",query,queryValue];
     }
-    
+    NSURL *url = [NSURL URLWithString:urlPath];
+    if (query && query.length > 0) {
+       url = [NSURL URLWithString:[[url absoluteString] stringByAppendingFormat:url.query ? @"&%@" : @"?%@", query]];
+    }
+     NSParameterAssert(url);
+
+     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+     request.HTTPMethod = method;
+
     [stack.stackHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
@@ -267,9 +300,10 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
     
-    NSString *userAgent = request.allHTTPHeaderFields[@"User-Agent"];
+    NSString *userAgent = [self userAgent];
     NSString *version = sdkVersion;
-    [request setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"User-Agent"];
+    [request setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"X-User-Agent"];
+    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
 
     return request;
 }
@@ -302,67 +336,82 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     }
     // Cache handler
     ResponseType resType = NETWORK;
-    switch (cachePolicy) {
-        case NETWORK_ONLY:
-            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-            break;
-        case CACHE_ONLY:
-            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
-            resType = CACHE;
-            break;
-        case CACHE_ELSE_NETWORK:
-            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
-            break;
-        case NETWORK_ELSE_CACHE:
-//            [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
-            break;
-        case CACHE_THEN_NETWORK:
-            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-            break;
-        default:
-            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-            break;
-    }
+//    switch (cachePolicy) {
+//        case NETWORK_ONLY:
+//            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+//            break;
+//        case CACHE_ONLY:
+//            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataDontLoad];
+//            resType = CACHE;
+//            break;
+//        case CACHE_ELSE_NETWORK:
+//            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
+//            break;
+//        case NETWORK_ELSE_CACHE:
+////            [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
+//            break;
+//        case CACHE_THEN_NETWORK:
+//            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+//            break;
+//        default:
+//            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+//            break;
+//    }
    
-    [stack.stackHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
-    }];
-    [additionalHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
-    }];
-    
+//    [stack.stackHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+//        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
+//    }];
+//    [additionalHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+//        [self.httpSessionManager.requestSerializer setValue:obj forHTTPHeaderField:key];
+//    }];
+//
     // Initiate request
-    NSURLSessionDataTask *task = [self.httpSessionManager GET:urlString parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSMutableURLRequest *mutableRequest = [self urlRequestForStack:stack withURLPath:urlString requestType:requestType params:paramDict additionalHeaders:additionalHeaders];
+    mutableRequest.HTTPMethod = @"GET";
+    
+    NSURLSessionDataTask *task = [self.urlSessionManager dataTaskWithRequest:mutableRequest success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
         if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
-            [self saveToCacheDataTask:task responseObject:responseObject];
+           [self saveToCacheDataTask:task responseObject:responseObject];
         }
         completionBlock(resType, responseObject, nil);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
         if (cachePolicy == NETWORK_ELSE_CACHE) {
-            [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+           [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
         } else {
-            completionBlock(resType, task.response, error);
+           completionBlock(resType, task.response, error);
         }
     }];
-    if (cachePolicy == CACHE_THEN_NETWORK) {
-        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
-    }else if (cachePolicy == CACHE_ELSE_NETWORK) {
-        NSError *error;
-        if ([self fullfillRequestWithCache:task.originalRequest error:&error]) {
-            [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
-            [task suspend];
-        }
-    }else if (cachePolicy == CACHE_ONLY) {
-        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
-        [task suspend];
-    }
+//    NSURLSessionDataTask *task = [self.httpSessionManager GET:urlString parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
+//            [self saveToCacheDataTask:task responseObject:responseObject];
+//        }
+//        completionBlock(resType, responseObject, nil);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//       if (cachePolicy == NETWORK_ELSE_CACHE) {
+//          [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+//       } else {
+//          completionBlock(resType, task.response, error);
+//       }
+//    }];
+//    if (cachePolicy == CACHE_THEN_NETWORK) {
+//        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+//    }else if (cachePolicy == CACHE_ELSE_NETWORK) {
+//        NSError *error;
+//        if ([self fullfillRequestWithCache:task.originalRequest error:&error]) {
+//            [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+//            [task suspend];
+//        }
+//    }else if (cachePolicy == CACHE_ONLY) {
+//        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+//        [task suspend];
+//    }
     return task;
 }
 
 //MARK: - cancel
 
 - (void)cancelAllOperations {
-    [self.httpSessionManager.operationQueue cancelAllOperations];
+    [self.urlSessionManager.operationQueue cancelAllOperations];
 }
 
 - (void)dealloc {

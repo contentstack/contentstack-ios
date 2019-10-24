@@ -25,7 +25,7 @@ target="iphoneos";
 /usr/local/bin/appledoc \
 --project-name "Contentstack" \
 --project-company "Contentstack.com" \
---project-version "3.6.1" \
+--project-version "3.6.4" \
 --company-id "${companyID}" \
 --docset-bundle-id "${companyID}.${companyForFeed}" \
 --docset-bundle-name "${companyForFeed}" \
