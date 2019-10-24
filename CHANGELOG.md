@@ -1,8 +1,11 @@
-### Version: 3.6.2
+### Version: 3.7.0
 #### Date: Sept-03-2019
 
-##### New Features:
-- added enum ContentstackRegion
+##### Update API:
+- Stack
+  - update function 'getContentType:'
+- ContentType
+  - update function 'fetch:'
 
 ### Version: 3.6.1
 #### Date: Sept-03-2019
