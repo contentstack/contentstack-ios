@@ -1,4 +1,14 @@
-### Version: 3.6.3
+
+### Version: 3.6.4
+#### Date: Oct-25-2019
+
+##### New Features:
+- CSError
+  - added new class
+- CSNetworking
+  - Implemented Contentstack Networking library
+
+### Version: 3.6.1
 #### Date: Sept-03-2019
 
 ##### New Features:

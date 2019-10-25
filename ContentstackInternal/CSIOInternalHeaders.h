@@ -21,6 +21,7 @@
 #import "Config.h"
 #import "AssetLibrary.h"
 #import "Group.h"
+#import "CSError.h"
 
 
 //MARK: Extensions -
@@ -105,5 +106,10 @@
 @property (nonatomic, assign) unsigned int totalCount;
 @property (nonatomic, strong) NSDictionary *params;
 
+
+@end
+
+@interface CSError ()
++(instancetype)error:(NSDictionary*) errorDictionary statusCode:(NSInteger) statusCode;
 
 @end

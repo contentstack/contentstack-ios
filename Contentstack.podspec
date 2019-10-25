@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'Contentstack'
-s.version          = '3.6.3'
+s.version          = '3.6.4'
 s.summary          = 'Contentstack is a headless CMS with an API-first approach that puts content at the centre.'
 
 s.description      = <<-DESC
@@ -11,7 +11,8 @@ DESC
 s.homepage         = 'https://www.contentstack.com/'
 s.license          = { :type => 'Commercial',:text => 'See https://www.contentstack.com/'}
 s.author           = { 'Contentstack' => 'support@contentstack.io' }
-s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.6.3' }
+
+s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.6.4' }
 s.social_media_url = 'https://twitter.com/Contentstack'
 
 s.ios.deployment_target = '8.0'
@@ -19,7 +20,6 @@ s.ios.deployment_target = '8.0'
 
 s.source_files = 'ThirdPartyExtension/ISO8601DateFormatter/*.{h,m}','ThirdPartyExtension/MMarkDown/*.{h,m}', 'Contentstack/*.{h,m}', 'Contentstack/ThirdPartyNamespaceHeader/*.h', 'ContentstackInternal/*.{h,m}'
 s.public_header_files = 'Contentstack/*.h','Contentstack/ThirdPartyNamespaceHeader/*.h'
-s.dependency 'AFNetworking', '~> 3.0'
 
 s.frameworks =  'CoreGraphics', 'MobileCoreServices', 'Security', 'SystemConfiguration'
 s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
