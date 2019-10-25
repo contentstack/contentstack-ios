@@ -7,7 +7,6 @@
 //
 
 #import "Query.h"
-#import <AFNetworking/AFNetworking.h>
 #import "ISO8601DateFormatter.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
