@@ -46,6 +46,13 @@
 		0F9C0FC6221ADAC90091205A /* SyncStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAD221ADAC90091205A /* SyncStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC7221ADAC90091205A /* Entry.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAE221ADAC90091205A /* Entry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC8221ADAC90091205A /* NamespacedDependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */; };
+		0FEAEF282361A18600985FF9 /* CSNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF232361A18600985FF9 /* CSNetworking.h */; };
+		0FEAEF292361A18600985FF9 /* CSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF242361A18600985FF9 /* CSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */; };
+		0FEAEF2B2361A18600985FF9 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */; };
+		0FEAEF2C2361A18600985FF9 /* CSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF262361A18600985FF9 /* CSError.m */; };
+		0FEAEF2D2361A18600985FF9 /* CSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF262361A18600985FF9 /* CSError.m */; };
+		0FEAEF2E2361A18600985FF9 /* CSURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF272361A18600985FF9 /* CSURLSessionManager.h */; };
 		230B38E41C16EB4400444A14 /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
 		230B38E51C16EB4400444A14 /* MMElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AD1BD76654005AD47F /* MMElement.m */; };
 		230B38E61C16EB4400444A14 /* MMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AF1BD76654005AD47F /* MMGenerator.m */; };
@@ -156,6 +163,11 @@
 		0F9C0FAD221ADAC90091205A /* SyncStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncStack.h; sourceTree = "<group>"; };
 		0F9C0FAE221ADAC90091205A /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NamespacedDependencies.h; sourceTree = "<group>"; };
+		0FEAEF232361A18600985FF9 /* CSNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNetworking.h; sourceTree = "<group>"; };
+		0FEAEF242361A18600985FF9 /* CSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSError.h; sourceTree = "<group>"; };
+		0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSURLSessionManager.m; sourceTree = "<group>"; };
+		0FEAEF262361A18600985FF9 /* CSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSError.m; sourceTree = "<group>"; };
+		0FEAEF272361A18600985FF9 /* CSURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionManager.h; sourceTree = "<group>"; };
 		0FFF87B0226F1A59005243EA /* FallbackTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FallbackTest.m; sourceTree = "<group>"; };
 		230B38C01C16E98B00444A14 /* Contentstack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Contentstack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		230B38C41C16E98B00444A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,6 +268,18 @@
 			path = ThirdPartyNamespaceHeader;
 			sourceTree = "<group>";
 		};
+		0FEAEF222361A18600985FF9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				0FEAEF232361A18600985FF9 /* CSNetworking.h */,
+				0FEAEF242361A18600985FF9 /* CSError.h */,
+				0FEAEF262361A18600985FF9 /* CSError.m */,
+				0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */,
+				0FEAEF272361A18600985FF9 /* CSURLSessionManager.h */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		230B38C11C16E98B00444A14 /* Contentstack */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +315,7 @@
 		238E841C1B4FE29A00BFDB32 /* ThirdPartyExtension */ = {
 			isa = PBXGroup;
 			children = (
+				0FEAEF222361A18600985FF9 /* Networking */,
 				565E11A81BD76654005AD47F /* MMarkDown */,
 				23B6F1261B5662B600A9E983 /* ISO8601DateFormatter */,
 				238E849F1B50ED8C00BFDB32 /* Framework */,
@@ -466,11 +491,13 @@
 				23A53F3F1E276C83001DBE35 /* CSIOCoreNetworkingProtocol.h in Headers */,
 				0F9C0FC6221ADAC90091205A /* SyncStack.h in Headers */,
 				23A53F411E276C83001DBE35 /* CSIOURLCache.h in Headers */,
+				0FEAEF282361A18600985FF9 /* CSNetworking.h in Headers */,
 				0F9C0FBF221ADAC90091205A /* QueryResult.h in Headers */,
 				0F9C0FC1221ADAC90091205A /* Contentstack.h in Headers */,
 				23A53F3B1E276C77001DBE35 /* Common.h in Headers */,
 				23A53F421E276C83001DBE35 /* NSObject+Extensions.h in Headers */,
 				0F9C0FBB221ADAC90091205A /* Stack.h in Headers */,
+				0FEAEF2E2361A18600985FF9 /* CSURLSessionManager.h in Headers */,
 				0F9C0FBD221ADAC90091205A /* Asset.h in Headers */,
 				0F9C0FC5221ADAC90091205A /* ContentstackDefinitions.h in Headers */,
 				0F9C0FB7221ADAC90091205A /* Group.h in Headers */,
@@ -481,6 +508,7 @@
 				0F9C0FB1221ADAC90091205A /* AssetLibrary.h in Headers */,
 				0F9C0FB6221ADAC90091205A /* Config.h in Headers */,
 				0F9C0FC2221ADAC90091205A /* Query.h in Headers */,
+				0FEAEF292361A18600985FF9 /* CSError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +603,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 23A0F84C1B3801D1003334E9;
@@ -711,7 +740,9 @@
 				230B38F81C16EB8000444A14 /* MMDocument_Private.h in Sources */,
 				230B38F91C16EB8000444A14 /* MMElement.h in Sources */,
 				23A53F4C1E277BBE001DBE35 /* CSIOAPIURLs.m in Sources */,
+				0FEAEF2D2361A18600985FF9 /* CSError.m in Sources */,
 				230B38FA1C16EB8000444A14 /* MMGenerator.h in Sources */,
+				0FEAEF2B2361A18600985FF9 /* CSURLSessionManager.m in Sources */,
 				230B38FB1C16EB8000444A14 /* MMHTMLParser.h in Sources */,
 				230B38FC1C16EB8000444A14 /* MMMarkdown-Prefix.pch in Sources */,
 				0F9C0FC4221ADAC90091205A /* Config.m in Sources */,
@@ -750,6 +781,8 @@
 				565E11BB1BD76654005AD47F /* MMDocument.m in Sources */,
 				565E11C01BD76654005AD47F /* MMParser.m in Sources */,
 				565E11C21BD76654005AD47F /* MMSpanParser.m in Sources */,
+				0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */,
+				0FEAEF2C2361A18600985FF9 /* CSError.m in Sources */,
 				23B6F12A1B5662EE00A9E983 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -993,18 +1026,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"AFNetworking-iOS10.2\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.contentstack.comtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1026,18 +1048,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"AFNetworking-iOS10.2\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.contentstack.comtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
