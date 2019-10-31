@@ -233,12 +233,12 @@
 
 - (void)includeSchema {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSchema];
-    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSnippetSchema];
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeGlobalFields];
 }
 
 - (void)includeContentType {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
-    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeSnippetSchema];
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeGlobalFields];
 }
 
 - (void)includeReferenceContentTypeUid {
