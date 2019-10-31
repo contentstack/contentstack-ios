@@ -77,7 +77,7 @@
 
     typedef NS_ENUM(NSUInteger, ContentstackRegion){
         US = 0,
-        EUROPE
+        EU
     };
 
     typedef NS_ENUM(NSUInteger, Language) {

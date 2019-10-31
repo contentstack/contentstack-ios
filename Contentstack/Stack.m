@@ -7,7 +7,6 @@
 //
 
 #import "Stack.h"
-#import <AFNetworking/AFNetworking.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOCoreHTTPNetworking.h"
