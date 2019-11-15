@@ -1,3 +1,11 @@
+### Version: 3.7.0
+#### Date: Nov-15-2019
+
+##### Update API:
+- Stack
+  - update function 'getContentType:'
+- ContentType
+  - update function 'fetch:'
 
 ### Version: 3.6.4
 #### Date: Oct-25-2019

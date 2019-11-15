@@ -121,6 +121,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
         [self.queryDictionary  removeObjectForKey:kCSIO_IncludeSchema];
     }
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeContentType];
+    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeGlobalFields];
 }
 
 - (void)includeReferenceContentTypeUid {
