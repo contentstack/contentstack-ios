@@ -43,7 +43,7 @@
     static dispatch_once_t hostURLSOnceToken;
     dispatch_once(&hostURLSOnceToken, ^{
         hostURLS = @[@"cdn.contentstack.io",
-                     @"cnd.contentstack.com"];
+                     @"cdn.contentstack.com"];
     });
     return hostURLS;
 }
