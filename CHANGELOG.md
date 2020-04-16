@@ -1,3 +1,7 @@
+### Version: 3.7.1
+#### Date: Nov-15-2019
+- EU
+ - URL issue resolved
 ### Version: 3.7.0
 #### Date: Nov-15-2019
 
