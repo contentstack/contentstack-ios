@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0F15C2E72456C97D00CFF096 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F15C2E62456C97D00CFF096 /* config.json */; };
 		0F1F2145225B844F00358EB0 /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1F2144225B844F00358EB0 /* libPods-Contentstack.a */; };
 		0F9C0FB1221ADAC90091205A /* AssetLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0F98221ADAC70091205A /* AssetLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FB2221ADAC90091205A /* AssetLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9C0F99221ADAC70091205A /* AssetLibrary.m */; };
@@ -136,9 +137,11 @@
 
 /* Begin PBXFileReference section */
 		0F0A70AD225DEDDF00E0284F /* Contentstack.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contentstack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0F15C2E62456C97D00CFF096 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		0F1F2142225B6F7800358EB0 /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1F2144225B844F00358EB0 /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F6C89AC225CCE9F004C342A /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		0F8745C5248FCE9700FAD159 /* run-test-case.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-test-case.sh"; sourceTree = "<group>"; };
 		0F9C0F98221ADAC70091205A /* AssetLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLibrary.h; sourceTree = "<group>"; };
 		0F9C0F99221ADAC70091205A /* AssetLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetLibrary.m; sourceTree = "<group>"; };
 		0F9C0F9A221ADAC70091205A /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
@@ -168,7 +171,6 @@
 		0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSURLSessionManager.m; sourceTree = "<group>"; };
 		0FEAEF262361A18600985FF9 /* CSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSError.m; sourceTree = "<group>"; };
 		0FEAEF272361A18600985FF9 /* CSURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionManager.h; sourceTree = "<group>"; };
-		0FFF87B0226F1A59005243EA /* FallbackTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FallbackTest.m; sourceTree = "<group>"; };
 		230B38C01C16E98B00444A14 /* Contentstack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Contentstack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		230B38C41C16E98B00444A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThirdPartyExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,7 +408,7 @@
 				23A53F571E277CD3001DBE35 /* ContentstackTest.m */,
 				23A53F591E277CD3001DBE35 /* Info.plist */,
 				FA36C00720ECABDF000FF701 /* SyncTest.m */,
-				0FFF87B0226F1A59005243EA /* FallbackTest.m */,
+				0F15C2E62456C97D00CFF096 /* config.json */,
 			);
 			path = ContentstackTest;
 			sourceTree = "<group>";
@@ -425,6 +427,7 @@
 			children = (
 				23A53F4B1E277A48001DBE35 /* generate_namespace_header.sh */,
 				23C545FB1C1976FE007BBD27 /* ios-build-framework-script.sh */,
+				0F8745C5248FCE9700FAD159 /* run-test-case.sh */,
 			);
 			path = Script;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F15C2E72456C97D00CFF096 /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
