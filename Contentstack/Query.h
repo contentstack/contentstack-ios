@@ -267,6 +267,17 @@ Provides only the number of entries with values matching the specified values fo
  */
 - (void)includeContentType;
 
+/**
+ Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
+ 
+       //Obj-C
+       [blogQuery includeContentType];
+ 
+       //Swift
+       blogQuery.includeContentType()
+
+ */
+-(void)includeFallback;
 
 /**
  This method also includes the content type UIDs of the referenced entries returned in the response.

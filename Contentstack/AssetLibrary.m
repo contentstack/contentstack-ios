@@ -65,6 +65,11 @@
     }
 }
 
+//MARK - Localization -
+- (void)locale:(NSString *)locale {
+    [self.postParamDictionary setObject:locale forKey:kCSIO_Locale];
+}
+
 //MARK: - Include -
 - (void)objectsCount {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_Count];
@@ -76,6 +81,10 @@
 
 -(void)includeRelativeUrls {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_RelativeUrls];
+}
+
+-(void)includeFallback {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
 }
 
 //MARK: Result of the Query -

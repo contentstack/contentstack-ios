@@ -352,6 +352,18 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)includeContentType;
 
 /**
+ Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
+ 
+       //Obj-C
+       [entryObj includeContentType];
+ 
+       //Swift
+       entryObj.includeContentType()
+
+ */
+-(void)includeFallback;
+
+/**
  This method also includes the content type UIDs of the referenced entries returned in the response.
  
       //Obj-C
