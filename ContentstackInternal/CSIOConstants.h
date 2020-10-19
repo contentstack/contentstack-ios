@@ -59,6 +59,7 @@ FOUNDATION_EXPORT NSString *const kCSIO_IncludeContentType;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeRefContentTypeUID;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeCount;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeUnpublished;
+FOUNDATION_EXPORT NSString *const kCSIO_IncludeFallback;
 FOUNDATION_EXPORT NSString *const kCSIO_BeforeUID;
 FOUNDATION_EXPORT NSString *const kCSIO_AfterUID;
 FOUNDATION_EXPORT NSString *const kCSIO_Limit;
