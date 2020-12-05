@@ -1,3 +1,17 @@
+
+### Version: 3.8.0
+#### Date: Dec-05-2020
+
+##### Update API:
+- Asset
+  - 'includeFallback' function added
+- AssetLibrary
+  - 'includeFallback' function added
+- Entry
+  - 'includeFallback' function added
+- Query
+  - 'includeFallback' function added
+
 ### Version: 3.7.1
 #### Date: Nov-15-2019
 - EU
