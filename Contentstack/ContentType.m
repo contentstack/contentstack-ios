@@ -28,6 +28,7 @@
     if (self= [super init]) {
         _csStack = stack;
         _name = contentTypeName;
+        _postParamDictionary = [NSMutableDictionary dictionary];
         _headers = [NSMutableDictionary dictionary];
     }
     return self;
@@ -70,7 +71,13 @@
 
 - (void)fetch:(NSDictionary<NSString *,id> * _Nullable)params completion:(void (^)(NSDictionary<NSString *,NSString *> * _Nullable, NSError * _Nullable))completionBlock {
     NSString *path = [CSIOAPIURLs fetchContenTypeSchema:self.name withVersion:self.stack.version];
-    NSURLSessionDataTask *op = [self.stack.network requestForStack:self.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:params additionalHeaders:self.stack.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+    [self.postParamDictionary setObject:_csStack.environment forKey:kCSIO_Environment];
+    
+    NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.postParamDictionary];
+    for (NSString* key in params) {
+        [paramDictionary setValue:[params valueForKey:key] forKey:key];
+    }
+    NSURLSessionDataTask *op = [self.stack.network requestForStack:self.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:self.stack.stackHeaders completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
             if (error) {
                 completionBlock(nil, error);
