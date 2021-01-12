@@ -240,6 +240,10 @@
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeGlobalFields];
 }
 
+-(void)includeFallback {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
+}
+
 - (void)includeReferenceContentTypeUid {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeRefContentTypeUID];
 }

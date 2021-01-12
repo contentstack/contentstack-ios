@@ -15,7 +15,22 @@
     static CSIOURLCache *_standardURLCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _standardURLCache = [[CSIOURLCache alloc] initWithMemoryCapacity:0 diskCapacity:(20 * 1024 * 1024) diskPath:@"csio_cache"];
+        #if TARGET_OS_MACCATALYST
+            _standardURLCache = [[CSIOURLCache alloc] initWithMemoryCapacity:0
+                                                         diskCapacity:(20 * 1024 * 1024)
+                                                         directoryURL:[NSURL URLWithString:@"csio_cache"]];
+        #else
+            if (@available(iOS 13.0, *))
+            {
+                _standardURLCache = [[CSIOURLCache alloc] initWithMemoryCapacity:0
+                                                     diskCapacity:(20 * 1024 * 1024)
+                                                     directoryURL:[NSURL URLWithString:@"csio_cache"]];
+            } else {
+                _standardURLCache=  [[CSIOURLCache alloc] initWithMemoryCapacity:0
+                                                     diskCapacity:(20 * 1024 * 1024)
+                                                         diskPath:@"csio_cache"];
+            }
+        #endif
     });
     return _standardURLCache;
 }

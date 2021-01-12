@@ -124,6 +124,10 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeGlobalFields];
 }
 
+-(void)includeFallback {
+    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
+}
+
 - (void)includeReferenceContentTypeUid {
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeRefContentTypeUID];
 }

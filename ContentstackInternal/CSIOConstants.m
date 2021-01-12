@@ -63,6 +63,7 @@ NSString *const kCSIO_IncludeGlobalFields = @"include_global_field_schema";
 NSString *const kCSIO_IncludeRefContentTypeUID = @"include_reference_content_type_uid";
 NSString *const kCSIO_IncludeCount = @"include_count";
 NSString *const kCSIO_IncludeUnpublished = @"include_unpublished";
+NSString *const kCSIO_IncludeFallback = @"include_fallback";
 //
 NSString *const kCSIO_BeforeUID = @"before_uid";
 NSString *const kCSIO_AfterUID = @"after_uid";

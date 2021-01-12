@@ -123,6 +123,14 @@
     }
 }
 
+-(void)setLocale:(NSString *)locale {
+    [self.postParamDictionary setValue:locale forKey:kCSIO_Locale];
+}
+
+-(void)includeFallback {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
+}
+
 //MARK: - Headers -
 
 - (void)setHeader:(NSString *)headerValue forKey:(NSString *)headerKey {

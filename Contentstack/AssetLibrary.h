@@ -93,6 +93,31 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
  */
 - (void)includeRelativeUrls;
 
+/**
+ Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
+ 
+      //Obj-C
+      [assetLib includeRelativeUrls];
+ 
+      //Swift
+      assetLib.includeRelativeUrls()
+ 
+ */
+-(void)includeFallback;
+
+/**
+ This method provides all the assets for the specified language in the response.
+ 
+      //Obj-C
+      [assetLib includeRelativeUrls];
+ 
+      //Swift
+      assetLib.includeRelativeUrls()
+
+ @param locale Language enum for all language available.
+ */
+- (void)locale:(NSString *)locale;
+
 //MARK: Manually set headers -
 /**---------------------------------------------------------------------------------------
  * @name Manually set headers

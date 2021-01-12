@@ -200,6 +200,22 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 - (void)removeHeaderForKey:(NSString *)headerKey;
 
+/**
+ Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
+ 
+      //Obj-C
+      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"dummy"];
+      Asset *asset = [stack asset];
+      [asset removeHeaderForKey:@"My-Custom-Header"];
+
+      //Swift
+      var stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"dummy")
+      var asset:Asset = stack.asset()
+      asset.removeHeaderForKey("My-Custom-Header")
+
+ */
+-(void)includeFallback;
+
 //MARK: - Fetch -
 /**---------------------------------------------------------------------------------------
  * @name Fetch
