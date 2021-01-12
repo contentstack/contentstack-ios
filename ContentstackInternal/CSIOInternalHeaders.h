@@ -58,6 +58,7 @@
 @interface ContentType ()
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableDictionary *headers;
+@property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
 
 -(instancetype)initWithStack:(Stack *)stack withName:(NSString*)contentTypeName;
 -(Entry *)entry;
