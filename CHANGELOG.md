@@ -1,3 +1,8 @@
+### Version: 3.8.1
+#### Date: Jan-22-2021
+
+#####  Bug Fix:
+- Content Type fetch Url issue reolved
 
 ### Version: 3.8.0
 #### Date: Dec-05-2020
