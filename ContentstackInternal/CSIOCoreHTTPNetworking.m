@@ -176,7 +176,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             NSString *version = sdkVersion;
             configuration.HTTPAdditionalHeaders = @{
                 @"User-Agent": userAgent,
-                @"X-User-Agent": [NSString stringWithFormat:@"%@/%@",userAgent,version]
+                @"X-User-Agent": [NSString stringWithFormat:@"contentstack-ios/%@",version]
             };
 
         }
@@ -302,7 +302,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     
     NSString *userAgent = [self userAgent];
     NSString *version = sdkVersion;
-    [request setValue:[NSString stringWithFormat:@"%@/%@",userAgent,version] forHTTPHeaderField:@"X-User-Agent"];
+    [request setValue:[NSString stringWithFormat:@"contentstack-ios/%@",version] forHTTPHeaderField:@"X-User-Agent"];
     [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
 
     return request;
