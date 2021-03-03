@@ -40,7 +40,7 @@ Create a new Stack instance with stack's apikey, token, environment name and con
      Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"prod" config:config];
  
      //Swift
-     let config:Config = Config() 
+     let config:Config = Config()
      config.host = "customcontentstack.io"
      let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b",accessToken:"blt3esampletokeneb02", environmentName:@"prod", config:config)
 
