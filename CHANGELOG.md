@@ -1,3 +1,9 @@
+### Version: 3.8.2
+#### Date: Mar-05-2021
+
+#####  Bug Fix:
+- X User agent update for API calls
+
 ### Version: 3.8.1
 #### Date: Jan-22-2021
 
