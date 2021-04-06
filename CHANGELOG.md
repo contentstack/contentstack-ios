@@ -1,3 +1,12 @@
+### Version: 3.9.0
+#### Date: Apr-05-2021
+
+#####  New Feature:
+- Entry
+  - 'includeEmbeddedItems' function added
+- Query
+  - 'includeEmbeddedItems' function added
+
 ### Version: 3.8.2
 #### Date: Mar-05-2021
 
