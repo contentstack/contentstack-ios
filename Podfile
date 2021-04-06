@@ -4,12 +4,10 @@
 target 'Contentstack' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
-
   # Pods for Contentstack
 end
 target 'ContentstackTest' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
-  
   # Pods for Contentstack
 end

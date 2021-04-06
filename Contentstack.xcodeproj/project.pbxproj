@@ -102,7 +102,8 @@
 		565E11C01BD76654005AD47F /* MMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B61BD76654005AD47F /* MMParser.m */; };
 		565E11C11BD76654005AD47F /* MMScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B81BD76654005AD47F /* MMScanner.m */; };
 		565E11C21BD76654005AD47F /* MMSpanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11BA1BD76654005AD47F /* MMSpanParser.m */; };
-		CBB348418CAB6166E8BFA905 /* libPods-ContentstackTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C23F0FF586499A39EC071B /* libPods-ContentstackTest.a */; };
+		A8578B5A5FC7CFB43A6A0974 /* Pods_ContentstackTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FF6AF1D92A316A651828C0 /* Pods_ContentstackTest.framework */; };
+		B8D2E054C6CADDD2B3DC2461 /* Pods_Contentstack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666E9A1F9679B18D11D49C76 /* Pods_Contentstack.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,7 +202,6 @@
 		23B6F1281B5662EE00A9E983 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		23C545FB1C1976FE007BBD27 /* ios-build-framework-script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "ios-build-framework-script.sh"; sourceTree = "<group>"; };
 		3CF581B9F7526EDA48ED5C6F /* Pods-ContentstackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.debug.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.debug.xcconfig"; sourceTree = "<group>"; };
-		41C23F0FF586499A39EC071B /* libPods-ContentstackTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContentstackTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		565E11A91BD76654005AD47F /* MMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument.h; sourceTree = "<group>"; };
 		565E11AA1BD76654005AD47F /* MMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDocument.m; sourceTree = "<group>"; };
 		565E11AB1BD76654005AD47F /* MMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument_Private.h; sourceTree = "<group>"; };
@@ -220,8 +220,10 @@
 		565E11B81BD76654005AD47F /* MMScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMScanner.m; sourceTree = "<group>"; };
 		565E11B91BD76654005AD47F /* MMSpanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpanParser.h; sourceTree = "<group>"; };
 		565E11BA1BD76654005AD47F /* MMSpanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpanParser.m; sourceTree = "<group>"; };
+		666E9A1F9679B18D11D49C76 /* Pods_Contentstack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contentstack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		852617AD67506289EC376E26 /* Pods-ContentstackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.release.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.release.xcconfig"; sourceTree = "<group>"; };
 		8A0C6846766D60DA3F50E989 /* Pods-Contentstack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contentstack.release.xcconfig"; path = "Target Support Files/Pods-Contentstack/Pods-Contentstack.release.xcconfig"; sourceTree = "<group>"; };
+		98FF6AF1D92A316A651828C0 /* Pods_ContentstackTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContentstackTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9980728A1E1BDC5000524FD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D36158266EF475AC2496807A /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32D688A33248F4030DC4D01 /* libPods-ThirdPartyExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ThirdPartyExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8D2E054C6CADDD2B3DC2461 /* Pods_Contentstack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23A53F5A1E277CD3001DBE35 /* Contentstack.framework in Frameworks */,
-				CBB348418CAB6166E8BFA905 /* libPods-ContentstackTest.a in Frameworks */,
+				A8578B5A5FC7CFB43A6A0974 /* Pods_ContentstackTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +474,8 @@
 				0FDC02D1254A9CFA005EDDE3 /* libContentstackUtils.a */,
 				D36158266EF475AC2496807A /* libPods-Contentstack.a */,
 				F32D688A33248F4030DC4D01 /* libPods-ThirdPartyExtension.a */,
-				41C23F0FF586499A39EC071B /* libPods-ContentstackTest.a */,
+				666E9A1F9679B18D11D49C76 /* Pods_Contentstack.framework */,
+				98FF6AF1D92A316A651828C0 /* Pods_ContentstackTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,6 +565,7 @@
 				23A53F511E277CD3001DBE35 /* Sources */,
 				23A53F521E277CD3001DBE35 /* Frameworks */,
 				23A53F531E277CD3001DBE35 /* Resources */,
+				72912E670CB1905672FFCC91 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -700,6 +705,24 @@
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/Script/ios-build-framework-script.sh\n";
 		};
+		72912E670CB1905672FFCC91 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ContentstackUtils/ContentstackUtils.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ContentstackUtils.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F8017163DC4800D53D3ACF35 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -832,7 +855,7 @@
 				GCC_PREFIX_HEADER = ./Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = YES;
@@ -861,7 +884,7 @@
 				GCC_PREFIX_HEADER = ./Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = "";
@@ -942,7 +965,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fembed-bitcode-marker";
@@ -991,7 +1014,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fembed-bitcode";
