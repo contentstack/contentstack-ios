@@ -291,6 +291,19 @@ Provides only the number of entries with values matching the specified values fo
  */
 - (void)includeReferenceContentTypeUid;
 
+
+/**
+ Include Embedded Objects (Entries and Assets) along with entry/entries details.
+ 
+      //Obj-C
+      [blogQuery includeEmbeddedItems];
+ 
+      //Swift
+      blogQuery.includeEmbeddedItems()
+ 
+ */
+- (void)includeEmbeddedItems;
+
 /**
 This method also includes owner information for all the entries returned in the response.
  

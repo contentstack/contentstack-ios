@@ -248,6 +248,10 @@
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeRefContentTypeUID];
 }
 
+-(void)includeEmbeddedItems {
+    [self.postParamDictionary setObject:@[kCSIO_BASE] forKey:kCSIO_IncludeEmbeddedItems];
+}
+
 - (void)includeRefFieldWithKey:(NSArray *)key;{
     if ([self.postParamDictionary objectForKey:kCSIO_Include] != nil) {
         for (NSString *incKey in key)

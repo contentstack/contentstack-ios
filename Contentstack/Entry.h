@@ -370,10 +370,23 @@ BUILT_ASSUME_NONNULL_BEGIN
       [entryObj includeReferenceContentTypeUid];
  
       //Swift
-      entryObj.includeReferenceContentTypeUid(])
+      entryObj.includeReferenceContentTypeUid()
  
  */
 - (void)includeReferenceContentTypeUid;
+
+
+/**
+ Include Embedded Objects (Entries and Assets) along with entry/entries details.
+ 
+      //Obj-C
+      [entryObj includeEmbeddedItems];
+ 
+      //Swift
+      entryObj.includeEmbeddedItems()
+ 
+ */
+- (void)includeEmbeddedItems;
 
 /**
 Specifies an array of 'only' keys in BASE object that would be included in the response.
