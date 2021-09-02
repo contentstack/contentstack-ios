@@ -15,7 +15,7 @@
 #import "NSObject+Extensions.h"
 #import "CSURLSessionManager.h"
 
-NSString *const sdkVersion = @"3.9.0";
+NSString *const sdkVersion = @"3.9.1";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;
@@ -370,7 +370,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     mutableRequest.HTTPMethod = @"GET";
     
     NSURLSessionDataTask *task = [self.urlSessionManager dataTaskWithRequest:mutableRequest success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-        if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
+        if ((cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) && responseObject != nil) {
            [self saveToCacheDataTask:task responseObject:responseObject];
         }
         completionBlock(resType, responseObject, nil);

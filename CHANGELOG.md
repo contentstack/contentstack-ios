@@ -1,3 +1,9 @@
+### Version: 3.9.1
+#### Date: Sept-02-2021
+
+#####  Hot fix:
+- Fix crash on NSInvalidArgumentException
+  
 ### Version: 3.9.0
 #### Date: Apr-05-2021
 
