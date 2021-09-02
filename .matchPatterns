@@ -1,0 +1,4 @@
+Contentstack/Contentstack.h:40:     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"prod" config:config];
+Contentstack/Contentstack.h:45:     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b",accessToken:"blt3esampletokeneb02", environmentName:@"prod", config:config)
+Contentstack/Contentstack.h:61:     Stack *stack = [Contentstack stackWithAPIKey:@"blt5d4sample2633b" accessToken:@"blt3esampletokeneb02" environmentName:@"prod"];
+Contentstack/Contentstack.h:64:     let stack:Stack = Contentstack.stackWithAPIKey("blt5d4sample2633b", accessToken:"blt3esampletokeneb02", environmentName:@"prod")
