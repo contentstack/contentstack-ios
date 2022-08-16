@@ -1,3 +1,9 @@
+### Version: 3.4.0
+#### Date: Aug-19-2022
+
+#####  New Feature:
+ - AZURE-NA region configuration added
+
 ### Version: 3.9.1
 #### Date: Sept-02-2021
 
