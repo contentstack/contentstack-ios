@@ -304,7 +304,9 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     NSString *version = sdkVersion;
     [request setValue:[NSString stringWithFormat:@"contentstack-ios/%@",version] forHTTPHeaderField:@"X-User-Agent"];
     [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
-
+    if (stack.config.branch != nil) {
+        [request setValue:stack.config.branch forHTTPHeaderField:kCSIO_Branch];
+    }
     return request;
 }
 
@@ -370,7 +372,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     mutableRequest.HTTPMethod = @"GET";
     
     NSURLSessionDataTask *task = [self.urlSessionManager dataTaskWithRequest:mutableRequest success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-        if ((cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) && responseObject != nil) {
+        if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
            [self saveToCacheDataTask:task responseObject:responseObject];
         }
         completionBlock(resType, responseObject, nil);

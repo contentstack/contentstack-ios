@@ -64,6 +64,7 @@ NSString *const kCSIO_IncludeRefContentTypeUID = @"include_reference_content_typ
 NSString *const kCSIO_IncludeCount = @"include_count";
 NSString *const kCSIO_IncludeUnpublished = @"include_unpublished";
 NSString *const kCSIO_IncludeFallback = @"include_fallback";
+NSString *const kCSIO_IncludeBranch = @"include_branch";
 NSString *const kCSIO_IncludeEmbeddedItems = @"include_embedded_items";
 
 //
@@ -77,6 +78,7 @@ NSString *const kCSIO_Count = @"count";
 NSString *const kCSIO_SiteApiKey = @"api_key";
 NSString *const kCSIO_Environment = @"environment";
 NSString *const kCSIO_EnvironmentUID = @"environment_uid";
+NSString *const kCSIO_Branch = @"branch";
 
 //Form
 NSString *const kCSIO_ContentTypeUID = @"form_uid";

@@ -60,6 +60,7 @@ FOUNDATION_EXPORT NSString *const kCSIO_IncludeRefContentTypeUID;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeCount;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeUnpublished;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeFallback;
+FOUNDATION_EXPORT NSString *const kCSIO_IncludeBranch;
 FOUNDATION_EXPORT NSString *const kCSIO_IncludeEmbeddedItems;
 FOUNDATION_EXPORT NSString *const kCSIO_BeforeUID;
 FOUNDATION_EXPORT NSString *const kCSIO_AfterUID;
@@ -73,7 +74,7 @@ FOUNDATION_EXPORT NSString *const kCSIO_SiteApiKey;
 FOUNDATION_EXPORT NSString *const kCSIO_Environment;
 FOUNDATION_EXPORT NSString *const kCSIO_EnvironmentUID;
 FOUNDATION_EXPORT NSString *const kCSIO_ContentTypeUID;
-
+FOUNDATION_EXPORT NSString *const kCSIO_Branch;
 // Entry
 FOUNDATION_EXPORT NSString *const kCSIO_EntryUID;
 FOUNDATION_EXPORT NSString *const kCSIO_Metadata;
