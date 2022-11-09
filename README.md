@@ -17,21 +17,6 @@ Latest Xcode and Mac OS X
 
 
 To use this SDK on iOS platform, you will have to install the SDK according to the steps given below.
-
-
-##### Manual
-
-
-1. Download the [Latest iOS SDK release](https://www.contentstack.com/docs/platforms/ios/ios_sdk_latest) and extract the zip file to your local disk.
-2. Drag and drop Contentstack.framework into your project folder in Xcode. A window will appear, prompting you to choose one of the options for adding files. Click the ‘Destination’ checkbox to copy items into the destination group’s folder. This will add the SDK to your project.
-3. In the project editor, select your app under TARGETS. Under the General tab, open Linked Frameworks and Libraries and add the following libraries:
-- CoreGraphics.framework
-- MobileCoreServices.framework
-- Security.framework
-- SystemConfiguration.framework
-
-4. In your target app, click on the Build Settings tab and add the -ObjC flag to Other Linker Flags.
-
 ##### CocoaPods
 
 1. Add the following line to your Podfile:
@@ -315,7 +300,7 @@ You can use advanced sync queries to fetch custom results while performing initi
 
 ### The MIT License (MIT)
 
-Copyright © 2012-2020 [Contentstack](https://www.contentstack.com/). All Rights Reserved
+Copyright © 2012-2022 [Contentstack](https://www.contentstack.com/). All Rights Reserved
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

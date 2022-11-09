@@ -690,7 +690,7 @@
 		};
 		23C545FD1C197722007BBD27 /* Framework Generation Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
