@@ -1,5 +1,5 @@
-### Version: 3.10.0
-#### Date: Aug-19-2022
+### Version: 3.10.1
+#### Date: Nov-11-2022
 
 #####  Hot fix:
 - Fix crash on NSInvalidArgumentException
