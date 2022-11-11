@@ -11,23 +11,6 @@ Add the following line to your Podfile:
 
 Run `pod install`, and you should now have the latest Contentstack release.
 
-
-##### Manual
-
-1. Download the [Latest iOS SDK release](https://www.contentstack.com/docs/platforms/ios/ios_sdk_latest) and extract the zip file to your local disk.
-
-2. Drag and drop Contentstack.framework into your project folder in Xcode. 
-    A window will appear, prompting you to choose one of the options for adding files. Click the ‘Destination’ checkbox to copy items into the destination group’s folder. This will add  the SDK to your project.
-
-3. In the project editor, select your app under `TARGETS`. Under the `General` tab, open `Linked Frameworks and Libraries` and add the following libraries:
-     - CoreGraphics.framework
-     - MobileCoreServices.framework
-     - Security.framework
-     - SystemConfiguration.framework
-
-4. In your target app, click on the `Build Settings` tab and add the `-ObjC` flag to `Other Linker Flags`.
-
-
 #### Import Header/Module
 You can import header file in Objective-C project as:
 
@@ -41,3 +24,42 @@ You can also import as a Module:
      //Swift
      import Contentstack
 
+
+#### Initializing your SDK
+
+To start using the SDK in your application, you will need to initialize the stack by providing the required keys and values associated with them:
+    
+     //Objc
+     Stack *stack = [Contentstack stackWithAPIKey: API_KEY accessToken: ACCESS_TOKEN environmentName: ENVIRONMENT];
+     
+     //Swift
+     let stack:Stack = Contentstack.stackWithAPIKey(API_KEY, accessToken: ACCESS_TOKEN, environmentName: ENVIRONMENT)
+     
+To get the api credentials mentioned above, you need to log into your Contentstack account and then in your top panel navigation, go to Settings -&gt; Stack to view both your API Key and your Access Token
+
+The stack object that is returned is a Contentstack client object, which can be used to initialize different modules and make queries against our [Content Delivery API](https://contentstack.com/docs/apis/content-delivery-api/). The initialization process for each module is explained in the following section.
+
+
+#### Querying content from your stack
+
+To fetch all entries of of a content type, use the query given below:
+    
+     //Objc
+     ContentType *contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
+     Query *queryObject = [contentTypeObj query];
+     
+     //Swift
+     var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
+     var queryObject:Query = contentTypeObj.query()
+     
+
+To fetch a specific entry from a content type, use the following query:
+
+     //Objc
+     ContentType * contentTypeObject = [stack contentTypeWithName:@"my_content_type"];
+     Entry *entryObject  = [contentTypeObject entryWithUID:@"ENTRY_UID"];
+     
+     //Swift
+     var contentTypeObject:ContentType = stack.contentTypeWithName("my_content_type")
+     var entryObject:Entry = contentTypeObject.entryWithUID("ENTRY_UID")
+     

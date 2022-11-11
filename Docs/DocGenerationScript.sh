@@ -24,8 +24,9 @@ target="iphoneos";
 # End constants
 /usr/local/bin/appledoc \
 --project-name "Contentstack" \
+--templates "${PROJECT_DIR}/../appledoc/Templates" \
 --project-company "Contentstack.com" \
---project-version "3.10.0" \
+--project-version "3.10.1" \
 --company-id "${companyID}" \
 --docset-bundle-id "${companyID}.${companyForFeed}" \
 --docset-bundle-name "${companyForFeed}" \
@@ -46,3 +47,4 @@ target="iphoneos";
 --index-desc "${PROJECT_DIR}/Docs/overview.md" \
 --exit-threshold 2 \
 ./Build/Products/Release-universal/Contentstack.framework/Headers
+
