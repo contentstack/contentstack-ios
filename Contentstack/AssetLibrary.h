@@ -106,6 +106,18 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
 -(void)includeFallback;
 
 /**
+ Include the metadata for getting metadata content for the asset.
+ 
+      //Obj-C
+      [assetLib includeMetadata];
+ 
+      //Swift
+      assetLib.includeMetadata()
+ 
+ */
+-(void)includeMetadata;
+
+/**
  Retrieve the branch for the  published content.
 
       //Obj-C

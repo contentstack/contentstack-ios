@@ -280,6 +280,17 @@ Provides only the number of entries with values matching the specified values fo
 -(void)includeFallback;
 
 /**
+ Include the metadata for getting metadata content for the entry.
+ 
+       //Obj-C
+       [blogQuery includeMetadata];
+ 
+       //Swift
+       blogQuery.includeMetadata()
+
+ */
+-(void)includeMetadata;
+/**
  Retrieve the branch for the  published content.
 
        //Obj-C

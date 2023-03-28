@@ -244,6 +244,10 @@
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
 }
 
+-(void)includeMetadata {
+    [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeMetadata];
+}
+
 -(void)includeBranch {
     [self.postParamDictionary setObject:@"true" forKey:kCSIO_IncludeBranch];
 }

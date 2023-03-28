@@ -355,13 +355,25 @@ BUILT_ASSUME_NONNULL_BEGIN
  Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
  
        //Obj-C
-       [entryObj includeContentType];
+       [entryObj includeFallback];
  
        //Swift
-       entryObj.includeContentType()
+       entryObj.includeFallback()
 
  */
 -(void)includeFallback;
+
+/**
+ Include the metadata for getting metadata content for the entry.
+ 
+       //Obj-C
+       [entryObj includeMetadata];
+ 
+       //Swift
+       entryObj.includeMetadata()
+
+ */
+-(void)includeMetadata;
 
 /**
  Retrieve the branch for the  published content.
