@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Contentstack/CSURLSessionDelegate.h>
 #import "CSIOCoreNetworkingProtocol.h"
 
-@interface CSIOCoreHTTPNetworking : NSObject <CSIOCoreNetworkingProtocol>
 
+@interface CSIOCoreHTTPNetworking : NSObject <CSIOCoreNetworkingProtocol>
+-(instancetype)initWithDelegate: (id<CSURLSessionDelegate>) delegate;
 @end

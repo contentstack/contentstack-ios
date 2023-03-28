@@ -48,6 +48,7 @@
 		0F9C0FC6221ADAC90091205A /* SyncStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAD221ADAC90091205A /* SyncStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC7221ADAC90091205A /* Entry.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FAE221ADAC90091205A /* Entry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F9C0FC8221ADAC90091205A /* NamespacedDependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */; };
+		0FD6BAEF29CD6E73001A0930 /* CSURLSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FD6BAEE29CD6E73001A0930 /* CSURLSessionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0FEAEF282361A18600985FF9 /* CSNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF232361A18600985FF9 /* CSNetworking.h */; };
 		0FEAEF292361A18600985FF9 /* CSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF242361A18600985FF9 /* CSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */; };
@@ -166,6 +167,7 @@
 		0F9C0FAD221ADAC90091205A /* SyncStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncStack.h; sourceTree = "<group>"; };
 		0F9C0FAE221ADAC90091205A /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NamespacedDependencies.h; sourceTree = "<group>"; };
+		0FD6BAEE29CD6E73001A0930 /* CSURLSessionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSURLSessionDelegate.h; sourceTree = "<group>"; };
 		0FDC02D1254A9CFA005EDDE3 /* libContentstackUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libContentstackUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FEAEF232361A18600985FF9 /* CSNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNetworking.h; sourceTree = "<group>"; };
 		0FEAEF242361A18600985FF9 /* CSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSError.h; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				0F9C0FA7221ADAC80091205A /* Stack.m */,
 				0F9C0FAD221ADAC90091205A /* SyncStack.h */,
 				0F9C0FA0221ADAC80091205A /* SyncStack.m */,
+				0FD6BAEE29CD6E73001A0930 /* CSURLSessionDelegate.h */,
 				0F9C0FAF221ADAC90091205A /* ThirdPartyNamespaceHeader */,
 				230B38C41C16E98B00444A14 /* Info.plist */,
 			);
@@ -507,6 +510,7 @@
 				230B39011C16EB8D00444A14 /* ISO8601DateFormatter.h in Headers */,
 				23A53F401E276C83001DBE35 /* CSIOInternalHeaders.h in Headers */,
 				0F9C0FB1221ADAC90091205A /* AssetLibrary.h in Headers */,
+				0FD6BAEF29CD6E73001A0930 /* CSURLSessionDelegate.h in Headers */,
 				0F9C0FB6221ADAC90091205A /* Config.h in Headers */,
 				0F9C0FC2221ADAC90091205A /* Query.h in Headers */,
 				0FEAEF292361A18600985FF9 /* CSError.h in Headers */,

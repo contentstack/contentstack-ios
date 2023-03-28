@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ContentstackDefinitions.h"
+#import "CSURLSessionDelegate.h"
 @interface Config : NSObject
 
 /**----------------------------------------------------------------------------------------
@@ -71,5 +72,20 @@
  
  */
 @property (nonatomic, copy) NSString *branch;
+
+
+/**
+ Branch id for the
+ 
+     //Obj-C
+     Config *config = [[Config alloc] init];
+     config.delegate = [[CSDelegate alloc] init];
+     
+     //Swift
+     var config:Config = Config()
+     config.delegate = CSDelegate()
+ 
+ */
+@property (nullable, retain) id<CSURLSessionDelegate> delegate;
 
 @end

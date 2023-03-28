@@ -9,7 +9,47 @@
 #import <XCTest/XCTest.h>
 #import <Contentstack/Contentstack.h>
 
+@interface CSPinnig:  NSObject <CSURLSessionDelegate>{
+    
+}
+@end
 
+@implementation CSPinnig
+
+- (void)URLSession:(NSURLSession * _Nonnull)session didReceiveChallenge:(NSURLAuthenticationChallenge * _Nonnull)challenge completionHandler:(void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        disposition = NSURLSessionAuthChallengeUseCredential;
+        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    } else {
+        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    }
+
+    if (completionHandler) {
+        completionHandler(disposition, credential);
+    }
+}
+
+- (void)URLSession:(NSURLSession * _Nonnull)session task:(NSURLSessionTask * _Nonnull)task didReceiveChallenge:(NSURLAuthenticationChallenge * _Nonnull)challenge completionHandler:(void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        disposition = NSURLSessionAuthChallengeUseCredential;
+        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    } else {
+        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    }
+
+    if (completionHandler) {
+        completionHandler(disposition, credential);
+    }
+}
+
+@end
 static NSInteger kRequestTimeOutInSeconds = 400;
 static NSString *_productUid = @"";
 static NSString *_assetUid = @"";
@@ -53,6 +93,7 @@ static NSString *_userUid = @"";
 - (void)setUp {
     [super setUp];
     config = [[Config alloc] init];
+//    config.delegate = [[CSPinnig alloc] init];
     NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"config" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSDictionary *dict =  [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
