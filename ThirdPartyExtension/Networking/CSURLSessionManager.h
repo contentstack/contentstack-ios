@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <Contentstack/CSURLSessionDelegate.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CSURLSessionManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
-+ (instancetype)manager: (NSURLSessionConfiguration*) configuration;
++ (instancetype)manager: (NSURLSessionConfiguration*) configuration delegate:(id<CSURLSessionDelegate>) delegate;
 /**
  The managed session.
  */
 @property (readonly, nonatomic, strong) NSURLSession *session;
+
+@property (nullable, readonly, retain) id<CSURLSessionDelegate> delegate;
 
 /**
  The operation queue on which delegate callbacks are run.

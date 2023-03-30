@@ -201,6 +201,22 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)removeHeaderForKey:(NSString *)headerKey;
 
 /**
+ Include the metadata for getting metadata content for the asset.
+ 
+      //Obj-C
+      Stack *stack = [Contentstack stackWithAPIKey:@"API_KEY" accessToken:@"DELIVERY_TOKEN" environmentName:@"ENVIRONMENT"];
+      Asset *asset = [stack asset];
+      [asset includeMetadata];
+
+      //Swift
+      var stack:Stack = Contentstack.stackWithAPIKey("API_KEY", accessToken:"DELIVERY_TOKEN", environmentName:@"ENVIRONMENT")
+      var asset:Asset = stack.asset()
+      asset.includeMetadata()
+
+ */
+-(void)includeMetadata;
+
+/**
  Retrieve the published content of the fallback locale entry if the entry is not localized in specified locale.
  
       //Obj-C

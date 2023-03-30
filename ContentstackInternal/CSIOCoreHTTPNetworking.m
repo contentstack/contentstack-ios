@@ -140,10 +140,10 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 }
 @implementation CSIOCoreHTTPNetworking
 
--(instancetype)init {
+-(instancetype)initWithDelegate: (id<CSURLSessionDelegate>) delegate {
     if (self=[super init]) {
 //        _httpSessionManager = [AFHTTPSessionManager manager];
-        _urlSessionManager = [CSURLSessionManager manager:[self configuration]];
+        _urlSessionManager = [CSURLSessionManager manager:[self configuration] delegate:delegate];
         [NSURLCache setSharedURLCache:[CSIOURLCache standardURLCache]];
 //        [self sessionManagerQueryStringSerialization];
     }

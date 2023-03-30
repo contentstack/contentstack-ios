@@ -44,6 +44,7 @@
     dispatch_once(&hostURLSOnceToken, ^{
         hostURLS = @[@"cdn.contentstack.io",
                      @"cdn.contentstack.com",
+                     @"cdn.contentstack.com",
                      @"cdn.contentstack.com"];
     });
     return hostURLS;
@@ -59,7 +60,8 @@
      dispatch_once(&regionCodesOnceToken, ^{
          regionCodes = @[@"us",
                          @"eu",
-                         @"azure-na"];
+                         @"azure-na",
+                         @"azure-eu"];
      });
     return regionCodes;
 }

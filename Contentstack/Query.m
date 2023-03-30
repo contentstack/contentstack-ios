@@ -128,6 +128,10 @@ static NSString *kNOT_HAVING = @"$nin_query";
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeFallback];
 }
 
+-(void)includeMetadata {
+    [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeMetadata];
+}
+
 -(void)includeBranch {
     [self.queryDictionary setObject:@"true" forKey:kCSIO_IncludeBranch];
 }

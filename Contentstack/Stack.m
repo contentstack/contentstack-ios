@@ -39,7 +39,7 @@
         _apiKey = apiKey;
         _accessToken = accessToken;
         
-        _network = [[CSIOCoreHTTPNetworking alloc] init];
+        _network = [[CSIOCoreHTTPNetworking alloc] initWithDelegate:_config.delegate];
         _stackHeaders = [NSMutableDictionary dictionary];
         ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc]init];
         _commonDateFormatter = formatter;

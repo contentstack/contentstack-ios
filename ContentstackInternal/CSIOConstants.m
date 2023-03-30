@@ -64,6 +64,7 @@ NSString *const kCSIO_IncludeRefContentTypeUID = @"include_reference_content_typ
 NSString *const kCSIO_IncludeCount = @"include_count";
 NSString *const kCSIO_IncludeUnpublished = @"include_unpublished";
 NSString *const kCSIO_IncludeFallback = @"include_fallback";
+NSString *const kCSIO_IncludeMetadata = @"include_metadata";
 NSString *const kCSIO_IncludeBranch = @"include_branch";
 NSString *const kCSIO_IncludeEmbeddedItems = @"include_embedded_items";
 

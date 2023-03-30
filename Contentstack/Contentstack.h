@@ -19,6 +19,7 @@
 #import <Contentstack/QueryResult.h>
 #import <Contentstack/Group.h>
 #import <Contentstack/SyncStack.h>
+#import <Contentstack/CSURLSessionDelegate.h>
 
 @class Stack;
 

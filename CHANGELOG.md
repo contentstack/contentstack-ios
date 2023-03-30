@@ -1,3 +1,9 @@
+### Version: 3.11.0
+#### Date: Apr-04-2023
+
+#####  Enahancement:
+- SSL pinning for CSURLSession using CSURLSessionDelegate 
+
 ### Version: 3.10.1
 #### Date: Nov-11-2022
 
