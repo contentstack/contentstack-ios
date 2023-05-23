@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'Contentstack'
-s.version          = '3.11.0'
+s.version          = '3.12.0'
 s.summary          = 'Contentstack is a headless CMS with an API-first approach that puts content at the centre.'
 
 s.description      = <<-DESC
@@ -12,10 +12,10 @@ s.homepage         = 'https://www.contentstack.com/'
 s.license          = { :type => 'Commercial',:text => 'See https://www.contentstack.com/'}
 s.author           = { 'Contentstack' => 'support@contentstack.io' }
 
-s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.11.0' }
+s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.12.0' }
 s.social_media_url = 'https://twitter.com/Contentstack'
 
-s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '11.0'
 
 
 s.source_files = 'ThirdPartyExtension/ISO8601DateFormatter/*.{h,m}','ThirdPartyExtension/Networking/*.{h,m}','ThirdPartyExtension/MMarkDown/*.{h,m}', 'Contentstack/*.{h,m}', 'Contentstack/ThirdPartyNamespaceHeader/*.h', 'ContentstackInternal/*.{h,m}'

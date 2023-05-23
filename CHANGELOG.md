@@ -1,3 +1,9 @@
+### Version: 3.12.0
+#### Date: May-26-2023
+
+##### Hot Fix:
+ - iOS deployment target updated to 11.0 as per XCode 14.3 minimum target.
+
 ### Version: 3.11.0
 #### Date: Apr-04-2023
 
