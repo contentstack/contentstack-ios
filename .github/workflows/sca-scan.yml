@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: snyk/actions/setup@master
       - name: Run Snyk to check for vulnerabilities
-        run: snyk test --fail-on=all
+        uses: snyk/actions/cocoapods@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --fail-on=all
