@@ -299,7 +299,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     [additionalHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [request setValue:obj forHTTPHeaderField:key];
     }];
-    
+
     NSString *userAgent = [self userAgent];
     NSString *version = sdkVersion;
     [request setValue:[NSString stringWithFormat:@"contentstack-ios/%@",version] forHTTPHeaderField:@"X-User-Agent"];
@@ -337,7 +337,6 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         urlString = [NSString stringWithFormat:@"%@://%@%@", [self protocolStringForSSL], stack.hostURL, urlPath];
     }
     // Cache handler
-    ResponseType resType = NETWORK;
 //    switch (cachePolicy) {
 //        case NETWORK_ONLY:
 //            [self.httpSessionManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
@@ -370,19 +369,7 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     // Initiate request
     NSMutableURLRequest *mutableRequest = [self urlRequestForStack:stack withURLPath:urlString requestType:requestType params:paramDict additionalHeaders:additionalHeaders];
     mutableRequest.HTTPMethod = @"GET";
-    
-    NSURLSessionDataTask *task = [self.urlSessionManager dataTaskWithRequest:mutableRequest success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
-        if ((cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) && responseObject != nil) {
-           [self saveToCacheDataTask:task responseObject:responseObject];
-        }
-        completionBlock(resType, responseObject, nil);
-    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        if (cachePolicy == NETWORK_ELSE_CACHE) {
-           [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
-        } else {
-           completionBlock(resType, task.response, error);
-        }
-    }];
+   
 //    NSURLSessionDataTask *task = [self.httpSessionManager GET:urlString parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        if (cachePolicy != NETWORK_ONLY || cachePolicy != CACHE_THEN_NETWORK) {
 //            [self saveToCacheDataTask:task responseObject:responseObject];
@@ -407,6 +394,45 @@ NSArray * CSIOQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 //        [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
 //        [task suspend];
 //    }
+    return [self performRequest: mutableRequest cachePolicy:cachePolicy completion:completionBlock];
+}
+
+- (NSURLSessionDataTask*) performRequest:(NSMutableURLRequest*) mutableRequest
+      cachePolicy:(CachePolicy)cachePolicy
+       completion:(CSIONetworkCompletionHandler)completionBlock{
+    ResponseType resType = NETWORK;
+    NSString *retryCount = mutableRequest.allHTTPHeaderFields[@"x-cs-retry-count"];
+    if (retryCount) {
+        int retryInt = [retryCount intValue];// I assume you need it as an integer.
+        [mutableRequest setValue:[NSString stringWithFormat:@"%d",(++retryInt)] forHTTPHeaderField:@"x-cs-retry-count"];
+    }else {
+        [mutableRequest setValue:@"0" forHTTPHeaderField:@"x-cs-retry-count"];
+    }
+    
+    __weak typeof (self) weakSelf = self;
+
+    NSURLSessionDataTask *task = [self.urlSessionManager dataTaskWithRequest:mutableRequest success:^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
+        if (cachePolicy != NETWORK_ONLY && responseObject != nil) {
+           [self saveToCacheDataTask:task responseObject:responseObject];
+        }
+        
+        completionBlock(resType, responseObject, nil);
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        if (cachePolicy == NETWORK_ELSE_CACHE) {
+           [self fullfillRequestWithCache:task.originalRequest completion:completionBlock];
+        } else {
+            NSString *retryCount = task.originalRequest.allHTTPHeaderFields[@"x-cs-retry-count"];
+            int currentRetryCount = [retryCount intValue];
+            
+            if ((error.code == 408 || error.code == 429 )&& currentRetryCount < 5) {
+                NSTimeInterval timeInterval = pow(2, ++currentRetryCount) * 100 / 1000;
+                [NSThread sleepForTimeInterval:timeInterval];
+                [weakSelf performRequest:task.originalRequest.mutableCopy cachePolicy:cachePolicy completion:completionBlock];
+            }else {
+                completionBlock(resType, task.response, error);
+            }
+        }
+    }];
     return task;
 }
 
