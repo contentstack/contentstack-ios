@@ -100,6 +100,7 @@
 @property (nonatomic, copy) NSArray *items;
 @property (nonatomic, copy) NSString *paginationToken;
 @property (nonatomic, copy) NSString *syncToken;
+@property (nonatomic, copy) NSString *seqId;
 
 @property (nonatomic, assign) BOOL hasMorePages;
 @property (nonatomic, assign) unsigned int skip;

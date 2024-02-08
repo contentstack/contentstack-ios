@@ -160,6 +160,13 @@
     }];
 }
 
+-(void)syncSeqId:(NSString *)seqId completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+    SyncStack *syncStack = [self getCurrentSyncStack:@{@"seq_id": seqId}];
+    [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
+        completionBlock(syncResult, error);
+    }];
+}
+
 -(void)syncToken:(NSString *)token completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
     SyncStack *syncStack = [self getCurrentSyncStack:@{@"sync_token": token}];
     [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
@@ -247,7 +254,7 @@
 
 - (void)sync:(SyncStack *)syncResult completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[syncResult getParameters]];
-    if (syncResult.paginationToken == nil && syncResult.syncToken == nil) {
+    if (syncResult.seqId == nil && syncResult.syncToken == nil) {
         [params setValue:self.environment forKey:@"environment"];
     }
     [self syncCallWithParams:params withCompletion:^(NSDictionary *responseDictionary, NSError *error) {
