@@ -8,6 +8,8 @@
 
 #import "SyncStack.h"
 #import "CSIOInternalHeaders.h"
+#import "BSONObjectIdGenerator.h"
+
 @implementation SyncStack
 
 -(instancetype)initWithParmas:(NSDictionary*) parmas {
@@ -16,6 +18,11 @@
         self.params = parmas;
         if ([[self.params objectForKey:@"sync_token"] isKindOfClass:[NSString class]]) {
             self.syncToken = [self.params objectForKey:@"sync_token"];
+        }
+        if ([[self.params objectForKey:@"seq_id"]
+             isKindOfClass:[NSString
+                            class]]) {
+            self.seqId = [self.params objectForKey:@"seq_id"];
         }
         self.items = [NSArray array];
     }
@@ -29,20 +36,9 @@
         self.hasMorePages = false;
         
         if ([dictionary objectForKey:@"sync_token"]) {
-            /* For existing persisted data sync token will be deleted. Seq Id will be generated for sync with the help of event_at field.
+            /* For existing persisted data sync token should be set to nil. Seq Id will be generated for sync with the help of event_at field.
             */
-            if ([dictionary objectForKey:@"items"] && [[dictionary objectForKey:@"items"] isKindOfClass:[NSArray class]]) {
-                NSMutableArray * items = [NSMutableArray array];
-                items = [dictionary objectForKey:@"items"];
-                if (items.count > 0) {
-                    self.syncToken = nil;
-                    self.seqId = [self generateSeqId:[dictionary objectForKey:@"event_at"]];
-                } else {
-                    self.syncToken = [dictionary objectForKey:@"sync_token"];
-                }
-            } else {
-                self.syncToken = [dictionary objectForKey:@"sync_token"];
-            }
+            [self setExistingTokensNilAndGenerateSeqId:@"sync_token" dict:dictionary];
         }
         
         if ([dictionary objectForKey:@"last_seq_id"]) {
@@ -87,6 +83,44 @@
 }
 
 -(NSString*)generateSeqId:(NSString*) eventAt {
-    return @"65c217c4c1ac8a3f43218d2f";
+    // Create a date formatter to parse the date string
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    NSDate *date = [dateFormatter dateFromString:eventAt];
+    if (date) {
+        // Convert the NSDate object to an NSTimeInterval
+        NSTimeInterval timeInterval = [date timeIntervalSince1970];
+        NSInteger timeIntervalInSeconds = (NSInteger)timeInterval;
+
+        return [BSONObjectIdGenerator generate:timeIntervalInSeconds];
+    } else {
+        // Handle case where date conversion failed.
+        [NSException raise:@"Unable to parse date string" format:@"Invalid date format %@", eventAt];
+        return nil;
+    }
 }
+
+-(void)setExistingTokensNilAndGenerateSeqId:(NSString *) key dict:(NSDictionary *)dictionary {
+    NSMutableArray * items = [NSMutableArray array];
+    items = [dictionary objectForKey: @"items"];
+    if ([items isKindOfClass:[NSArray class]] && items.count > 0) {
+        // Get the last object's event_at
+        NSDictionary *lastObject = nil;
+        for (NSInteger i = items.count - 1; i >= 0; i--) {
+            id object = items[i];
+            if ([object isKindOfClass:[NSDictionary class]]) {
+                lastObject = object;
+                break;
+            }
+        }
+        self.seqId = [self generateSeqId:[lastObject objectForKey:@"event_at"]];
+    } else {
+        if ([key isEqual: @"sync_token"]) {
+            self.syncToken = [dictionary objectForKey:@"sync_token"];
+        } else {
+            self.paginationToken = [dictionary objectForKey:@"pagination_token"];
+        }
+    }
+}
+
 @end

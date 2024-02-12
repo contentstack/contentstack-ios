@@ -234,8 +234,6 @@
     [self sync:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
         completionBlock(syncResult, error);
     }];
-    
-   
 }
 
 -(void)syncOnly:(NSString *)contentType locale:(NSString*)locale from:(NSDate *)date publishType:(PublishType)publishType completion:(void (^)(SyncStack * _Nullable, NSError * _Nullable))completionBlock {
