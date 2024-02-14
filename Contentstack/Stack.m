@@ -160,7 +160,7 @@
     }];
 }
 
--(void)syncSeqIdInit:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
+-(void)initSeqSync:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock {
     SyncStack *syncStack = [self getCurrentSyncStack:nil];
     [self syncWithSeqId:syncStack completion:^(SyncStack * _Nullable syncResult, NSError * _Nullable error) {
         completionBlock(syncResult, error);

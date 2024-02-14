@@ -247,7 +247,7 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 @param completionBlock called synchronization is done.
 */
-- (void)syncSeqIdInit:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+- (void)initSeqSync:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 /**
  You can use the seq_id (that you receive after every sync call) to get the updated content next time.
