@@ -95,7 +95,6 @@
 		23A53F501E277BBE001DBE35 /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A53F331E276BA5001DBE35 /* NSObject+Extensions.m */; };
 		23A53F5A1E277CD3001DBE35 /* Contentstack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230B38C01C16E98B00444A14 /* Contentstack.framework */; };
 		23B6F12A1B5662EE00A9E983 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6F1281B5662EE00A9E983 /* ISO8601DateFormatter.m */; };
-		47CD50872B7625B90032747B /* BSONObjectIdGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CD50862B7625B90032747B /* BSONObjectIdGenerator.m */; };
 		565E11BB1BD76654005AD47F /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
 		565E11BC1BD76654005AD47F /* MMElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AD1BD76654005AD47F /* MMElement.m */; };
 		565E11BD1BD76654005AD47F /* MMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AF1BD76654005AD47F /* MMGenerator.m */; };
@@ -206,8 +205,6 @@
 		23B6F1281B5662EE00A9E983 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		23C545FB1C1976FE007BBD27 /* ios-build-framework-script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "ios-build-framework-script.sh"; sourceTree = "<group>"; };
 		3CF581B9F7526EDA48ED5C6F /* Pods-ContentstackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.debug.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.debug.xcconfig"; sourceTree = "<group>"; };
-		47CD50852B76243E0032747B /* BSONObjectIdGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSONObjectIdGenerator.h; sourceTree = "<group>"; };
-		47CD50862B7625B90032747B /* BSONObjectIdGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSONObjectIdGenerator.m; sourceTree = "<group>"; };
 		565E11A91BD76654005AD47F /* MMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument.h; sourceTree = "<group>"; };
 		565E11AA1BD76654005AD47F /* MMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDocument.m; sourceTree = "<group>"; };
 		565E11AB1BD76654005AD47F /* MMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument_Private.h; sourceTree = "<group>"; };
@@ -386,8 +383,6 @@
 				23A53F311E276BA5001DBE35 /* CSIOURLCache.m */,
 				23A53F321E276BA5001DBE35 /* NSObject+Extensions.h */,
 				23A53F331E276BA5001DBE35 /* NSObject+Extensions.m */,
-				47CD50852B76243E0032747B /* BSONObjectIdGenerator.h */,
-				47CD50862B7625B90032747B /* BSONObjectIdGenerator.m */,
 			);
 			path = ContentstackInternal;
 			sourceTree = "<group>";
@@ -795,7 +790,6 @@
 				0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */,
 				0FEAEF2C2361A18600985FF9 /* CSError.m in Sources */,
 				23B6F12A1B5662EE00A9E983 /* ISO8601DateFormatter.m in Sources */,
-				47CD50872B7625B90032747B /* BSONObjectIdGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
