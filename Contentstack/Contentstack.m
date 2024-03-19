@@ -8,7 +8,7 @@
 
 #import "Contentstack.h"
 #import "CSIOInternalHeaders.h"
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 
 @interface Contentstack ()
 @end
