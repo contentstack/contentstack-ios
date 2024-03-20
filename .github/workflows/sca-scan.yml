@@ -6,12 +6,12 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       - name: Install Cocoapods Dependencies
         run: |
           gem install cocoapods
           pod install
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/cocoapods@v1
+        uses: snyk/actions/cocoapods@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
