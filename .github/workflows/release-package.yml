@@ -1,9 +1,9 @@
 name: Contentstack iOS Delivery SDK Release
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - created
 
 jobs:
   release:
