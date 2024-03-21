@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOCoreHTTPNetworking.h"

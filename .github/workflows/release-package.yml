@@ -1,0 +1,44 @@
+name: Contentstack iOS Delivery SDK Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release Contentstack iOS Delivery SDK Release
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app && /usr/bin/xcodebuild -version
+
+      - name: Install dependencies
+        run: |
+          pod install --repo-update
+
+      - name: Build
+        run: |
+          # Add commands to build and test your package
+          xcodebuild -workspace Contentstack.xcworkspace -scheme 'Contentstack' -destination 'platform=iOS Simulator,name=iPhone 13 Pro'
+
+      - name: Tag release
+        id: tag
+        run: |
+          git tag v3.12.2 # Replace with your desired version number
+          echo "::set-output name=tag::v3.12.2" # Replace with the same version number as above
+
+      - name: Push tag
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.tag.outputs.tag }}
+
+      - name: CocoaPods trunk push
+        run: pod trunk push
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}

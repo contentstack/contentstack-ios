@@ -9,7 +9,7 @@
 #import "CSIOCoreNetworkingProtocol.h"
 #import "Contentstack.h"
 #import "SyncStack.h"
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "Query.h"
 #import "ContentType.h"
 #import "Entry.h"
@@ -18,7 +18,7 @@
 #import "ISO8601DateFormatter.h"
 #import "Common.h"
 #import "CSIOConstants.h"
-#import "Config.h"
+#import <Contentstack/Config.h>
 #import "AssetLibrary.h"
 #import "Group.h"
 #import "CSError.h"
