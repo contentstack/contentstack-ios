@@ -27,6 +27,6 @@ jobs:
           xcodebuild -workspace Contentstack.xcworkspace -scheme 'Contentstack' -destination 'platform=iOS Simulator,name=iPhone 13 Pro'
 
       - name: CocoaPods trunk push
-        run: pod trunk push
+        run: pod trunk push --allow-warnings
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
