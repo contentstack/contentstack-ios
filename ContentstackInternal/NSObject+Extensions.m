@@ -45,6 +45,7 @@
         hostURLS = @[@"cdn.contentstack.io",
                      @"cdn.contentstack.com",
                      @"cdn.contentstack.com",
+                     @"cdn.contentstack.com",
                      @"cdn.contentstack.com"];
     });
     return hostURLS;
@@ -61,7 +62,8 @@
          regionCodes = @[@"us",
                          @"eu",
                          @"azure-na",
-                         @"azure-eu"];
+                         @"azure-eu",
+                         @"gcp-na"];
      });
     return regionCodes;
 }
