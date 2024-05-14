@@ -119,7 +119,7 @@ static NSString *_userUid = @"";
 #pragma mark Test Case - Header
 
 
-- (void)test01FetchProductEntries {
+- (void)test01FetchSourceEntries {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch All Entries"];
     
     ContentType* csForm = [csStack contentTypeWithName:@"product"];
