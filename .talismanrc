@@ -1,1 +1,6 @@
-threshold: medium
+fileignoreconfig:
+- filename: Contentstack.xcodeproj/project.pbxproj
+  checksum: b0aefacbd6d0de17381f114d10907a14dcf871abf090b73ff436076dd7cf6c0b
+- filename: Contentstack.xcodeproj/xcshareddata/xcschemes/Contentstack.xcscheme
+  checksum: aae81782423ca868aa41c7f8db06d3c060836785d7ea4737ede5e4c4cd2e7a1b
+version: ""

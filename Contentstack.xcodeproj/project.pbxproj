@@ -103,6 +103,7 @@
 		565E11C01BD76654005AD47F /* MMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B61BD76654005AD47F /* MMParser.m */; };
 		565E11C11BD76654005AD47F /* MMScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B81BD76654005AD47F /* MMScanner.m */; };
 		565E11C21BD76654005AD47F /* MMSpanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11BA1BD76654005AD47F /* MMSpanParser.m */; };
+		64F522142BF7C31900AE6E0F /* libThirdPartyExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */; };
 		AC8EFB00BB10FD9E9347B36E /* libPods-ContentstackTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF5BF157E2FBD4654225A01 /* libPods-ContentstackTest.a */; };
 		F08A4E439D49C3F08DD8B39C /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36158266EF475AC2496807A /* libPods-Contentstack.a */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 230B38BF1C16E98B00444A14;
 			remoteInfo = Contentstack;
+		};
+		64F522152BF7C31900AE6E0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23A0F84D1B3801D1003334E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 238E841A1B4FE29A00BFDB32;
+			remoteInfo = ThirdPartyExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -236,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F522142BF7C31900AE6E0F /* libThirdPartyExtension.a in Frameworks */,
 				F08A4E439D49C3F08DD8B39C /* libPods-Contentstack.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +544,7 @@
 			);
 			dependencies = (
 				230B39171C1709F800444A14 /* PBXTargetDependency */,
+				64F522162BF7C31900AE6E0F /* PBXTargetDependency */,
 			);
 			name = Contentstack;
 			productName = Contentstack;
@@ -815,6 +825,11 @@
 			target = 230B38BF1C16E98B00444A14 /* Contentstack */;
 			targetProxy = 23A53F5B1E277CD3001DBE35 /* PBXContainerItemProxy */;
 		};
+		64F522162BF7C31900AE6E0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 238E841A1B4FE29A00BFDB32 /* ThirdPartyExtension */;
+			targetProxy = 64F522152BF7C31900AE6E0F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -838,7 +853,7 @@
 				GCC_PREFIX_HEADER = ./Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = YES;
@@ -867,7 +882,7 @@
 				GCC_PREFIX_HEADER = ./Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = "";
