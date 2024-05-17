@@ -1,1 +1,4 @@
-threshold: medium
+fileignoreconfig:
+- filename: Contentstack.xcodeproj/project.pbxproj
+  checksum: 331c4ff2e540e9495ff2a0d030ddd7f7c2eda077cb0b1a58c67fc2312b53658e
+version: ""
