@@ -1,3 +1,21 @@
+### Version: 3.12.3
+#### Date: May-16-2023
+
+##### Enhancement:
+ - Added support for GCP_NA region
+
+### Version: 3.12.2
+#### Date: Mar-22-2024
+
+##### Bug Fix:
+ - fixed issue while importing headers
+
+### Version: 3.12.1
+#### Date: Feb-01-2024
+
+##### Enhancement:
+ - Retry URL request on 408, 429 errors
+
 ### Version: 3.12.0
 #### Date: May-26-2023
 

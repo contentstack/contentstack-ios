@@ -1,6 +1,8 @@
 fileignoreconfig:
 - filename: Contentstack.xcodeproj/project.pbxproj
-  checksum: b0aefacbd6d0de17381f114d10907a14dcf871abf090b73ff436076dd7cf6c0b
-- filename: Contentstack.xcodeproj/xcshareddata/xcschemes/Contentstack.xcscheme
-  checksum: aae81782423ca868aa41c7f8db06d3c060836785d7ea4737ede5e4c4cd2e7a1b
+  checksum: 10cb4bc5ca755f7392309a88cd6df510a45f8c527ea2f8edc71e1ae1fda60941
+- filename: .github/workflows/sast-scan.yml
+  checksum: 5554abc81d130557f52d64d253c3a23b41fcf0642a9c599131b2c185665ce581
+- filename: PrivacyInfo.xcprivacy
+  checksum: 7697fa6a0a5e0600d35d4678ffff9ef14c5dff5dc1613d37968de7ded3ff1fd0
 version: ""
