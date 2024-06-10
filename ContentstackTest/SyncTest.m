@@ -115,10 +115,10 @@ static NSString *syncToken = @"";
 
 - (void)testSyncOnlyClass {
     XCTestExpectation *expectation = [self expectationWithDescription:@"SyncOnlyClass"];
-    [csStack syncOnly:@"product" completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+    [csStack syncOnly:@"source" completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
         for (NSDictionary *item in syncStack.items) {
             if ([[item objectForKey:@"content_type_uid"] isKindOfClass:[NSString class]]) {
-                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"product"]);
+                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"source"]);
             }
         }
         if (syncStack.syncToken != nil) {
@@ -129,10 +129,10 @@ static NSString *syncToken = @"";
 
 -(void)testSyncOnlyWithLocale {
     XCTestExpectation *expectation = [self expectationWithDescription:@"SyncOnlyWithLocale"];
-    [csStack syncOnly:@"product" locale:@"en-us" from:nil completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+    [csStack syncOnly:@"source" locale:@"en-us" from:nil completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
         for (NSDictionary *item in syncStack.items) {
             if ([[item objectForKey:@"content_type_uid"] isKindOfClass:[NSString class]]) {
-                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"product"]);
+                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"source"]);
             }
             if ([[item objectForKey:@"data"] isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *data = [item objectForKey:@"data"];
@@ -152,10 +152,10 @@ static NSString *syncToken = @"";
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:1534617000];
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"SyncOnlyClassAndDate"];
-    [csStack syncOnly:@"product" from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+    [csStack syncOnly:@"source" from:date completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
         for (NSDictionary *item in syncStack.items) {
             if ([[item objectForKey:@"content_type_uid"] isKindOfClass:[NSString class]]) {
-                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"product"]);
+                XCTAssertTrue([[item objectForKey:@"content_type_uid"] isEqualToString:@"source"]);
             }
             if ([[item objectForKey:@"event_at"] isKindOfClass:[NSString class]]) {
                 NSDate *daatee = [formatter dateFromString:[[item objectForKey:@"event_at"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
