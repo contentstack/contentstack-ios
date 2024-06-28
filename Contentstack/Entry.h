@@ -125,6 +125,36 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)setHeader:(NSString *)headerValue forKey:(NSString *)headerKey;
 
 /**
+ Set a single variant uid as header
+ 
+     //'API_KEY' is a ENVIRONMENT Stack API key
+     
+     //Obj-C
+     [entryObj variantUid:@"variantUid"];
+     
+     //Swift
+     entryObj.variantUid("variantUid")
+ 
+ @param variantUid  The variant uid
+ */
+- (void)variantUid:(NSString *)variantUid;
+
+/**
+ Set multiple variant uids as header
+ 
+     //'API_KEY' is a ENVIRONMENT Stack API key
+     
+     //Obj-C
+     [entryObj variantUids:@["variant1", "variant2"]];
+     
+     //Swift
+     entryObj.setHeader(["variant1", "variant2"])
+ 
+ @param variantUids The variant uids
+ */
+- (void)variantUids:(NSArray *)variantUids;
+
+/**
  Set a header for Entry
  
      //'API_KEY' is a ENVIRONMENT Stack API key
