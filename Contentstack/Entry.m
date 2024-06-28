@@ -69,6 +69,17 @@
     [self.localHeaders setObject:headerValue forKey:headerKey];
 }
 
+- (void)variantUid:(NSString *)variantUid {
+    NSString *key = @"x-cs-variant-uid";
+    [self.localHeaders setObject:variantUid forKey: key];
+}
+
+- (void)variantUids:(NSArray *)variantUids {
+    NSString *key = @"x-cs-variant-uid";
+    NSString *joinedString = [variantUids componentsJoinedByString:@","];
+    [self.localHeaders setObject:joinedString forKey: key];
+}
+
 - (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self.localHeaders setObject:obj forKey:key];
