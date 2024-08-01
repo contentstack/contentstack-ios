@@ -12,6 +12,7 @@
 #import "CSIOAPIURLs.h"
 #import "QueryResult.h"
 #import "ContentType.h"
+#import "Taxonomy.h"
 #import "CSIOInternalHeaders.h"
 #import "NSObject+Extensions.h"
 
@@ -35,6 +36,15 @@ static NSString *kNOT_HAVING = @"$nin_query";
         _queryDictionary = [NSMutableDictionary dictionary];
         _requestOperationSet = [NSMutableSet set];
         
+    }
+    return self;
+}
+
+- (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy {
+    if (self = [super init]) {
+        _localHeaders = [NSMutableDictionary dictionary];
+        _queryDictionary = [NSMutableDictionary dictionary];
+        _requestOperationSet = [NSMutableSet set];
     }
     return self;
 }

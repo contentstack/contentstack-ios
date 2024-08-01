@@ -29,6 +29,8 @@ static NSString *fetchSchema = @"/%@/content_types";
 static NSString *fetchContentTypeSchema = @"/%@/content_types/%@";
 // sync
 static NSString *syncData = @"/%@/stacks/sync";
+// Taxonomy
+static NSString *fetchTaxonomyWithVersion = @"/%@/taxonomies/%@/entries";
 
 //MARK: Methods -
 
@@ -40,6 +42,11 @@ static NSString *syncData = @"/%@/stacks/sync";
 //stack
 +(NSString *)fetchContenTypeSchema:(NSString*)contentTypeUID withVersion:(NSString*)version {
     return [NSString stringWithFormat:fetchContentTypeSchema, version, contentTypeUID];
+}
+
+//stack
++(NSString *)fetchTaxonomyWithVersion:(NSString*)version {
+    return [NSString stringWithFormat:fetchTaxonomyWithVersion, version];
 }
 
 //Query

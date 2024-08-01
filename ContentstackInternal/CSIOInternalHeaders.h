@@ -12,6 +12,7 @@
 #import "Stack.h"
 #import "Query.h"
 #import "ContentType.h"
+#import "Taxonomy.h"
 #import "Entry.h"
 #import "Asset.h"
 #import "QueryResult.h"
@@ -46,6 +47,7 @@
 @property (nonatomic, assign) BOOL shouldFetchFromNetwork;
 @property (nonatomic, strong) ContentType *contentType;
 - (instancetype)initWithContentType:(ContentType *)contentType;
+- (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
 @property (nonatomic, strong) NSMutableDictionary *queryDictionary;
 
 @end
@@ -62,6 +64,14 @@
 
 -(instancetype)initWithStack:(Stack *)stack withName:(NSString*)contentTypeName;
 -(Entry *)entry;
+-(Stack *)stack;
+@end
+
+@interface Taxonomy ()
+@property (nonatomic, strong) NSMutableDictionary *headers;
+@property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
+
+-(instancetype)initWithStack:(Stack *)stack;
 -(Stack *)stack;
 @end
 
