@@ -20,6 +20,9 @@
 //Content Type
 +(NSString *)fetchContenTypeSchema:(NSString*)contentTypeUID withVersion:(NSString*)version;
 
+//Taxonomy
++(NSString *)fetchTaxonomyWithVersion:(NSString*)version;
+
 //Entry
 + (NSString *)fetchEntryURLWithContentTypeUID:(NSString *)contentTypeUID entryUID:(NSString*)entryUID withVersion:(NSString*)version;
 
