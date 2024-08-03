@@ -12,6 +12,7 @@
 #import <Contentstack/Stack.h>
 #import "Query.h"
 #import "ContentType.h"
+#import "Taxonomy.h"
 #import "Entry.h"
 #import "Asset.h"
 #import "QueryResult.h"
@@ -47,7 +48,7 @@
 @property (nonatomic, strong) ContentType *contentType;
 - (instancetype)initWithContentType:(ContentType *)contentType;
 @property (nonatomic, strong) NSMutableDictionary *queryDictionary;
-
+- (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
 @end
 
 @interface QueryResult ()
@@ -73,6 +74,15 @@
 - (instancetype)initWithContentType:(ContentType *)contentType withEntryUID:(NSString*)uid;
 
 @end
+
+@interface Taxonomy ()
+@property (nonatomic, strong) NSMutableDictionary *headers;
+@property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
+
+-(instancetype)initWithStack:(Stack *)stack;
+-(Stack *)stack;
+@end
+
 @interface Asset ()
 - (instancetype)initWithStack:(Stack *)stack;
 - (instancetype)initWithStack:(Stack *)stack withAssetUID:(NSString*)assetUID;

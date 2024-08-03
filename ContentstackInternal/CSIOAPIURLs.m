@@ -30,6 +30,9 @@ static NSString *fetchContentTypeSchema = @"/%@/content_types/%@";
 // sync
 static NSString *syncData = @"/%@/stacks/sync";
 
+// Taxonomy
+static NSString *fetchTaxonomyWithVersion = @"/%@/taxonomies/%@/entries";
+
 //MARK: Methods -
 
 //stack
