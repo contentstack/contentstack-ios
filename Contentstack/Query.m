@@ -42,6 +42,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
 
 - (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy {
     if (self = [super init]) {
+        _taxonomy = taxonomy;
         _localHeaders = [NSMutableDictionary dictionary];
         _queryDictionary = [NSMutableDictionary dictionary];
         _requestOperationSet = [NSMutableSet set];
@@ -92,6 +93,11 @@ static NSString *kNOT_HAVING = @"$nin_query";
         }
     }
     [self.queryDictionary setObject:[tagsArray componentsJoinedByString:@","] forKey:kCSIO_Tags];
+}
+
+//MARK: - Query -
+- (void)query:(NSDictionary *)query {
+    [self.queryDictionary setObject:query forKey:kCSIO_Queryable];
 }
 
 ////MARK: - Before/After UID -
@@ -502,6 +508,35 @@ static NSString *kNOT_HAVING = @"$nin_query";
             completionBlock(responseType, nil, error);
         }else {
             QueryResult *queryResult = [[QueryResult alloc] initWithContentType:self.contentType objectDictionary:responseJSON];
+
+            completionBlock(responseType, queryResult, nil);
+        }
+    }];
+    if (op && ![op isKindOfClass:[NSNull class]]) {
+        [self.requestOperationSet addObject:op];
+    }
+}
+
+//MARK: Execute Query -
+
+- (void)findTaxonomy:(void (^) (ResponseType type,QueryResult * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock {
+    
+    [self.queryDictionary setObject:self.taxonomy.stack.environment forKey:kCSIO_Environment];
+    
+    NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.queryDictionary];
+    
+    NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.taxonomy.headers];
+
+    [headers addEntriesFromDictionary:self.localHeaders];
+
+    NSString *path = [CSIOAPIURLs fetchTaxonomyWithVersion:self.taxonomy.stack.version];
+    
+    NSURLSessionDataTask *op = [self.taxonomy.stack.network requestForStack:self.taxonomy.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+
+        if (error) {
+            completionBlock(responseType, nil, error);
+        }else {
+            QueryResult *queryResult = [[QueryResult alloc] initWithTaxonomy:self.taxonomy objectDictionary:responseJSON];
 
             completionBlock(responseType, queryResult, nil);
         }

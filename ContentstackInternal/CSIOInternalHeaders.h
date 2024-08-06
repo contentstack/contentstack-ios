@@ -46,6 +46,7 @@
 @interface Query ()
 @property (nonatomic, assign) BOOL shouldFetchFromNetwork;
 @property (nonatomic, strong) ContentType *contentType;
+@property (nonatomic, strong) Taxonomy *taxonomy;
 - (instancetype)initWithContentType:(ContentType *)contentType;
 @property (nonatomic, strong) NSMutableDictionary *queryDictionary;
 - (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
@@ -54,6 +55,7 @@
 @interface QueryResult ()
 - (instancetype)initWithContentType:(ContentType *)contentType objectDictionary:(NSDictionary*)dictionary;
 @property (nonatomic, strong) ContentType *contentType;
+@property (nonatomic, strong) Taxonomy *taxonomy;
 @end
 
 @interface ContentType ()
@@ -69,9 +71,11 @@
 @interface Entry ()
 @property (nonatomic, assign, getter=isDeleted) BOOL deleted;
 @property (nonatomic, strong) ContentType *contentType;
+@property (nonatomic, strong) Taxonomy *taxonomy;
 @property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
 - (instancetype)initWithContentType:(ContentType *)contentType;
 - (instancetype)initWithContentType:(ContentType *)contentType withEntryUID:(NSString*)uid;
+- (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
 
 @end
 
@@ -81,6 +85,7 @@
 
 -(instancetype)initWithStack:(Stack *)stack;
 -(Stack *)stack;
+-(Entry *)entry;
 @end
 
 @interface Asset ()

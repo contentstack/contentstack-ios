@@ -30,6 +30,11 @@
     return self;
 }
 
+-(Entry*)entry {
+    Entry *entry = [[Entry alloc] initWithTaxonomy:self];
+    return entry;
+}
+
 -(Query*)query {
     Query *query = [[Query alloc] initWithTaxonomy:self];
     return query;

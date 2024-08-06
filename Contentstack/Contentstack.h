@@ -12,6 +12,7 @@
 #import <Contentstack/Config.h>
 #import <Contentstack/Stack.h>
 #import <Contentstack/ContentType.h>
+#import <Contentstack/Taxonomy.h>
 #import <Contentstack/Entry.h>
 #import <Contentstack/Query.h>
 #import <Contentstack/Asset.h>
