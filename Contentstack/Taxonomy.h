@@ -77,7 +77,7 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
  */
 - (Query*)query;
 
-//MARK: - Content-Type Schema
+//MARK: - Schema
 /**---------------------------------------------------------------------------------------
  * @name ContentType Schema
  *  ---------------------------------------------------------------------------------------
@@ -87,15 +87,15 @@ Represents a Query on 'ContentType' which can be executed to retrieve entries th
  
      //Obj-C
  
-     ContentType * contentType = [stack contentTypeWithName:@"<content_type_id>"]
-     [contentType fetch:params completion:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
+     Taxonomy * taxonomy = [stack]
+     [contentType fetch:params completion:^(NSDictionary * _Nullable entries, NSError * _Nullable error) {
  
      }];
  
      //Swift
  
-     let contentType = stack.contentTypeWithName("<content_type_id>")
-     contentType.fetch(params, { (contentType, error) in
+     let taxonomy = stack.taxonomy("")
+     taxonomy.fetch(params, { (entries, error) in
  
      })
  @param completionBlock block to be called once operation is done.

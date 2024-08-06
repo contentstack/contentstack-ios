@@ -2267,4 +2267,90 @@ static NSString *_numbersContentTypeUid = @"";
     [self waitForRequest];
 }
 
+- (void)testFetchTaxonomyEntries {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch all taxonomy entries"];
+    Taxonomy *csForm = [csStack taxonomy];
+    Query *csQuery = [csForm query];
+    NSDictionary *queryDictionary = @{@"taxonomies.one": @"term_one"};
+    [csQuery query:queryDictionary];
+    [csQuery findTaxonomy:^(ResponseType type, QueryResult *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        if (error) {
+            XCTFail(@"~ ERR: %@", error.userInfo);
+        } else {
+            [self testProductCount:[result getResult]];
+            if ([result getResult].count == 2) {
+                XCTAssert(YES, @"Pass");
+            } else {
+                XCTFail(@"wrong taxonomy object");
+            }
+        }
+        [expectation fulfill];
+    }];
+    
+    [self waitForRequest];
+}
+
+- (void)testFetchTaxonomyEntriesWithOr {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch all taxonomy entries with or query"];
+    Taxonomy *csForm = [csStack taxonomy];
+    
+    Query *query1 = [csForm query];
+    [query1 whereKey:@"taxonomies.one" equalTo:@"term_one"];
+    
+    Query *query2 = [csForm query];
+    [query1 whereKey:@"taxonomies.two" equalTo:@"term_two"];
+    
+    Query* csQuery = [csForm query];
+    [csQuery orWithSubqueries:@[query1, query2]];
+    
+    [csQuery findTaxonomy:^(ResponseType type, QueryResult *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        if (error) {
+            XCTFail(@"~ ERR: %@", error.userInfo);
+        } else {
+            [self testProductCount:[result getResult]];
+            if ([result getResult].count == 2) {
+                XCTAssert(YES, @"Pass");
+            } else {
+                XCTFail(@"wrong taxonomy object");
+            }
+        }
+        [expectation fulfill];
+    }];
+    
+    [self waitForRequest];
+}
+
+- (void)testFetchTaxonomyEntriesWithAnd {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch all taxonomy entries with and query"];
+    Taxonomy *csForm = [csStack taxonomy];
+    
+    Query *query1 = [csForm query];
+    [query1 whereKey:@"taxonomies.one" equalTo:@"term_one"];
+    
+    Query *query2 = [csForm query];
+    [query1 whereKey:@"taxonomies.two" equalTo:@"term_two"];
+    
+    Query* csQuery = [csForm query];
+    [csQuery andWithSubqueries:@[query1, query2]];
+    
+    [csQuery findTaxonomy:^(ResponseType type, QueryResult *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        if (error) {
+            XCTFail(@"~ ERR: %@", error.userInfo);
+        } else {
+            [self testProductCount:[result getResult]];
+            if ([result getResult].count == 2) {
+                XCTAssert(YES, @"Pass");
+            } else {
+                XCTFail(@"wrong taxonomy object");
+            }
+        }
+        [expectation fulfill];
+    }];
+    
+    [self waitForRequest];
+}
+
 @end
