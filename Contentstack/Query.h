@@ -130,6 +130,8 @@ This method provides all the entries for the specified language in the response.
  */
 - (void)search:(NSString *)searchString;
 
+- (void)query:(NSDictionary *)queryString;
+
 //MARK: - Tags -
 /**---------------------------------------------------------------------------------------
  * @name Tags
@@ -758,6 +760,9 @@ This method provides all the entries from a specified contenttype.
 @param completionBlock block to be called once operation is done. The result data contains all entries of the specified contenttype.
  */
 - (void)find:(void (^) (ResponseType type,QueryResult * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock;
+
+
+- (void)findTaxonomy:(void (^) (ResponseType type,QueryResult * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock;
 
 /**
 This method provides the first entry from a specified contenttype.
