@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
+#import <Contentstack/ContentstackDefinitions.h>
 
 BUILT_ASSUME_NONNULL_BEGIN
 
