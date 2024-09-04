@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
+#import <Contentstack/ContentstackDefinitions.h>
 
 @class Config;
 @class ContentType;
+@class Taxonomy;
 @class AssetLibrary;
 @class Asset;
 @class SyncStack;
@@ -64,6 +65,8 @@ BUILT_ASSUME_NONNULL_BEGIN
  @return instance of ContentType.
  */
 - (ContentType *)contentTypeWithName:(NSString *)contentTypeName;
+
+- (Taxonomy *)taxonomy;
 
 //MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------
