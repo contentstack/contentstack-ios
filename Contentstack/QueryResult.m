@@ -69,7 +69,10 @@
         // if condition is fix for value of "entries" key ie.array inside array in response JSON
         if (objectsArray.firstObject && [objectsArray.firstObject isKindOfClass:[NSDictionary class]]) {
             [objectsArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                Entry *formEntry = [self.taxonomy entry];
+                Entry *formEntry = [self.contentType entry];
+                if (formEntry == NULL) {
+                   formEntry = [self.taxonomy entry];
+                }
                 [formEntry configureWithDictionary:obj];
                 [entryObjects addObject:formEntry];
             }];
