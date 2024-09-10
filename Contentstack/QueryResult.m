@@ -71,7 +71,7 @@
             [objectsArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 Entry *formEntry = [self.contentType entry];
                 if (formEntry == NULL) {
-                   formEntry = [self.taxonomy entry];
+                    formEntry = [self.taxonomy entry];
                 }
                 [formEntry configureWithDictionary:obj];
                 [entryObjects addObject:formEntry];
