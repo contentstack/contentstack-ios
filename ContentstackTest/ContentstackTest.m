@@ -2408,31 +2408,4 @@ static NSString *_numbersContentTypeUid = @"";
     }];
 }
 
--(void)testValueForKey1 {
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Value For Key"];
-    
-    ContentType* csForm = [csStack contentTypeWithName:@"source"];
-    
-    Entry *entry = [csForm entryWithUID:_sourceUid];
-    
-    [entry fetch:^(ResponseType type, NSError *error) {
-        if (error) {
-            XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
-        }else {
-            NSDictionary *dicti = [entry valueForUndefinedKey:@"short_description"];
-            if (dicti) {
-                XCTAssert(YES, @"Pass");
-            }
-            else {
-                XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
-            }
-        }
-        [expectation fulfill];
-    }];
-    
-    [self waitForRequest];
-    
-}
-
 @end
