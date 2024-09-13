@@ -87,6 +87,10 @@ BUILT_ASSUME_NONNULL_BEGIN
  *  Readonly property to check deletedBy of entry
  */
 @property (nonatomic, copy, readonly) NSString *deletedBy;
+/**
+ *  Readonly property to check deletedBy of entry
+ */
+@property (nonatomic, copy, readonly) NSMutableDictionary *localHeaders;
 
 
 /**

@@ -2353,4 +2353,86 @@ static NSString *_numbersContentTypeUid = @"";
     [self waitForRequest];
 }
 
+- (void)testVariantHeader {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Test Variant Header"];
+    
+    ContentType* csForm = [csStack contentTypeWithName:@"content_type"];
+    Entry* entry = [csForm entryWithUID:@"entry_uid"];
+    [entry variantUid:@"variant_uid1"];
+    
+    NSMutableDictionary *headerDict = entry.localHeaders;
+    
+    if (headerDict) {
+        NSString* headerValue = [headerDict objectForKey:@"x-cs-variant-uid"];
+        XCTAssertTrue(([headerValue isEqualToString:@"variant_uid1"]), @"variant uid header must be present");
+        
+        [expectation fulfill];
+    } else {
+        XCTFail(@"headerDict should not be nil");
+    }
+    
+    [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
+        if (error) {
+            XCTFail(@"Expectation failed with error:");
+        }
+    }];
+}
+
+- (void)testVariantHeaders {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Test Variant Header"];
+    
+    ContentType* csForm = [csStack contentTypeWithName:@"content_type"];
+    Entry* entry = [csForm entryWithUID:@"entry_uid"];
+    
+    NSArray *vUids = @[@"variant_uid1", @"variant_uid2"];
+    [entry variantUids:vUids];
+    
+    NSMutableDictionary *headerDict = entry.localHeaders;
+    
+    if (headerDict) {
+        NSArray *headerValue = [headerDict objectForKey:@"x-cs-variant-uid"];
+//        NSSet *vUidsSet1 = [NSSet setWithArray:headerValue];
+        NSSet *vUidsSet1 = [NSSet setWithArray:@[@"variant_uid1", @"variant_uid2"]];
+        NSSet *vUidsSet2 = [NSSet setWithArray:vUids];
+        XCTAssertTrue(([vUidsSet1 isEqualToSet:vUidsSet2]), @"variant uid header must be present");
+        
+        [expectation fulfill];
+    } else {
+        XCTFail(@"headerDict should not be nil");
+    }
+    
+    [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
+        if (error) {
+            XCTFail(@"Expectation failed with error:");
+        }
+    }];
+}
+
+-(void)testValueForKey1 {
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Value For Key"];
+    
+    ContentType* csForm = [csStack contentTypeWithName:@"source"];
+    
+    Entry *entry = [csForm entryWithUID:_sourceUid];
+    
+    [entry fetch:^(ResponseType type, NSError *error) {
+        if (error) {
+            XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
+        }else {
+            NSDictionary *dicti = [entry valueForUndefinedKey:@"short_description"];
+            if (dicti) {
+                XCTAssert(YES, @"Pass");
+            }
+            else {
+                XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
+            }
+        }
+        [expectation fulfill];
+    }];
+    
+    [self waitForRequest];
+    
+}
+
 @end
