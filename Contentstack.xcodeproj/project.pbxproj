@@ -105,7 +105,7 @@
 		565E11C01BD76654005AD47F /* MMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B61BD76654005AD47F /* MMParser.m */; };
 		565E11C11BD76654005AD47F /* MMScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11B81BD76654005AD47F /* MMScanner.m */; };
 		565E11C21BD76654005AD47F /* MMSpanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11BA1BD76654005AD47F /* MMSpanParser.m */; };
-		6465B6A32C86F15300127F43 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 6465B6A22C86F15300127F43 /* config.json */; };
+		64B3EA282BF7C4AF009E0F38 /* libThirdPartyExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */; };
 		64F5220E2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
 		64F5220F2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
 		B07BDA5339BFDDC051785A8F /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514C6AB47DF26BA926C681A /* libPods-Contentstack.a */; };
@@ -125,6 +125,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 230B38BF1C16E98B00444A14;
 			remoteInfo = Contentstack;
+		};
+		64B3EA292BF7C4AF009E0F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23A0F84D1B3801D1003334E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 238E841A1B4FE29A00BFDB32;
+			remoteInfo = ThirdPartyExtension;
+		};
+		64F522152BF7C31900AE6E0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23A0F84D1B3801D1003334E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 238E841A1B4FE29A00BFDB32;
+			remoteInfo = ThirdPartyExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -242,7 +256,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B07BDA5339BFDDC051785A8F /* libPods-Contentstack.a in Frameworks */,
+				64B3EA282BF7C4AF009E0F38 /* libThirdPartyExtension.a in Frameworks */,
+				F08A4E439D49C3F08DD8B39C /* libPods-Contentstack.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +559,8 @@
 			);
 			dependencies = (
 				230B39171C1709F800444A14 /* PBXTargetDependency */,
+				64F522162BF7C31900AE6E0F /* PBXTargetDependency */,
+				64B3EA2A2BF7C4AF009E0F38 /* PBXTargetDependency */,
 			);
 			name = Contentstack;
 			productName = Contentstack;
@@ -826,6 +843,16 @@
 			isa = PBXTargetDependency;
 			target = 230B38BF1C16E98B00444A14 /* Contentstack */;
 			targetProxy = 23A53F5B1E277CD3001DBE35 /* PBXContainerItemProxy */;
+		};
+		64B3EA2A2BF7C4AF009E0F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 238E841A1B4FE29A00BFDB32 /* ThirdPartyExtension */;
+			targetProxy = 64B3EA292BF7C4AF009E0F38 /* PBXContainerItemProxy */;
+		};
+		64F522162BF7C31900AE6E0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 238E841A1B4FE29A00BFDB32 /* ThirdPartyExtension */;
+			targetProxy = 64F522152BF7C31900AE6E0F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
