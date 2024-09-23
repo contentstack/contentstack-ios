@@ -49,10 +49,8 @@
 		0F9C0FC8221ADAC90091205A /* NamespacedDependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9C0FB0221ADAC90091205A /* NamespacedDependencies.h */; };
 		0FD6BAEF29CD6E73001A0930 /* CSURLSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FD6BAEE29CD6E73001A0930 /* CSURLSessionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0FEAEF282361A18600985FF9 /* CSNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF232361A18600985FF9 /* CSNetworking.h */; };
-		0FEAEF292361A18600985FF9 /* CSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF242361A18600985FF9 /* CSError.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */; };
+		0FEAEF292361A18600985FF9 /* CSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF242361A18600985FF9 /* CSError.h */; };
 		0FEAEF2B2361A18600985FF9 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF252361A18600985FF9 /* CSURLSessionManager.m */; };
-		0FEAEF2C2361A18600985FF9 /* CSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF262361A18600985FF9 /* CSError.m */; };
 		0FEAEF2D2361A18600985FF9 /* CSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEAEF262361A18600985FF9 /* CSError.m */; };
 		0FEAEF2E2361A18600985FF9 /* CSURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEAEF272361A18600985FF9 /* CSURLSessionManager.h */; };
 		230B38E41C16EB4400444A14 /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
@@ -95,6 +93,7 @@
 		23A53F5A1E277CD3001DBE35 /* Contentstack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230B38C01C16E98B00444A14 /* Contentstack.framework */; };
 		23B6F12A1B5662EE00A9E983 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B6F1281B5662EE00A9E983 /* ISO8601DateFormatter.m */; };
 		4714B7D42C5EAFCC004E941E /* Taxonomy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4714B7D32C5EAFCC004E941E /* Taxonomy.m */; };
+		473AFDB02CA22233002D331D /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 473AFDAF2CA22233002D331D /* config.json */; };
 		479EC6642C5FCBDC00C5630B /* Taxonomy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4714B7D52C5EAFF5004E941E /* Taxonomy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52B4D90D9C31A30E438C5AF8 /* libPods-ContentstackTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB1C6B5FF6A451CEB50B3A4 /* libPods-ContentstackTest.a */; };
 		565E11BB1BD76654005AD47F /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 565E11AA1BD76654005AD47F /* MMDocument.m */; };
@@ -108,7 +107,7 @@
 		64B3EA282BF7C4AF009E0F38 /* libThirdPartyExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */; };
 		64F5220E2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
 		64F5220F2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
-		B07BDA5339BFDDC051785A8F /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514C6AB47DF26BA926C681A /* libPods-Contentstack.a */; };
+		E653FF942F28495541E9B22B /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514C6AB47DF26BA926C681A /* libPods-Contentstack.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +222,7 @@
 		4514C6AB47DF26BA926C681A /* libPods-Contentstack.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Contentstack.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4714B7D32C5EAFCC004E941E /* Taxonomy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Taxonomy.m; sourceTree = "<group>"; };
 		4714B7D52C5EAFF5004E941E /* Taxonomy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Taxonomy.h; sourceTree = "<group>"; };
+		473AFDAF2CA22233002D331D /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		565E11A91BD76654005AD47F /* MMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument.h; sourceTree = "<group>"; };
 		565E11AA1BD76654005AD47F /* MMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDocument.m; sourceTree = "<group>"; };
 		565E11AB1BD76654005AD47F /* MMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument_Private.h; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 		565E11BA1BD76654005AD47F /* MMSpanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpanParser.m; sourceTree = "<group>"; };
 		606DDA20A6F0593F40494FED /* Pods-ContentstackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.release.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.release.xcconfig"; sourceTree = "<group>"; };
 		609D1D72B25D2FBE4E26FA70 /* Pods-ContentstackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.debug.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.debug.xcconfig"; sourceTree = "<group>"; };
-		6465B6A22C86F15300127F43 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7EB1C6B5FF6A451CEB50B3A4 /* libPods-ContentstackTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContentstackTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7BE798B2EEFA3CC2763E3F /* Pods-Contentstack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contentstack.release.xcconfig"; path = "Target Support Files/Pods-Contentstack/Pods-Contentstack.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B3EA282BF7C4AF009E0F38 /* libThirdPartyExtension.a in Frameworks */,
-				F08A4E439D49C3F08DD8B39C /* libPods-Contentstack.a in Frameworks */,
+				E653FF942F28495541E9B22B /* libPods-Contentstack.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,10 +430,10 @@
 		23A53F561E277CD3001DBE35 /* ContentstackTest */ = {
 			isa = PBXGroup;
 			children = (
-				6465B6A22C86F15300127F43 /* config.json */,
 				0F41A91025C7CC9C007EF2DA /* ContentstackTest.m */,
 				0F41A91125C7CC9C007EF2DA /* SyncTest.m */,
 				23A53F591E277CD3001DBE35 /* Info.plist */,
+				473AFDAF2CA22233002D331D /* config.json */,
 			);
 			path = ContentstackTest;
 			sourceTree = "<group>";
@@ -664,7 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F5220F2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */,
-				6465B6A32C86F15300127F43 /* config.json in Resources */,
+				473AFDB02CA22233002D331D /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,8 +815,6 @@
 				565E11BB1BD76654005AD47F /* MMDocument.m in Sources */,
 				565E11C01BD76654005AD47F /* MMParser.m in Sources */,
 				565E11C21BD76654005AD47F /* MMSpanParser.m in Sources */,
-				0FEAEF2A2361A18600985FF9 /* CSURLSessionManager.m in Sources */,
-				0FEAEF2C2361A18600985FF9 /* CSError.m in Sources */,
 				23B6F12A1B5662EE00A9E983 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -882,7 +879,11 @@
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				ONLY_ACTIVE_ARCH = YES;
@@ -908,7 +909,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				GCC_PREFIX_HEADER = ./Contentstack/ThirdPartyNamespaceHeader/NamespacedDependencies.h;
 				INFOPLIST_FILE = Contentstack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
