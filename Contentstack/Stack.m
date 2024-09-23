@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 Contentstack. All rights reserved.
 //
 
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOCoreHTTPNetworking.h"
 #import "ContentType.h"
+#import "Taxonomy.h"
 #import "CSIOAPIURLs.h"
 #import "NSObject+Extensions.h"
 
@@ -84,6 +85,12 @@
 -(ContentType*)contentTypeWithName:(NSString*)contentTypeName; {
     ContentType *contentType = [[ContentType alloc] initWithStack:self withName:contentTypeName];
     return contentType;
+}
+
+//MARK: - Taxonomy
+-(Taxonomy*)taxonomy {
+    Taxonomy *taxonomy = [[Taxonomy alloc] initWithStack:self];
+    return taxonomy;
 }
 
 //MARK: - Asset

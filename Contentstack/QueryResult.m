@@ -10,6 +10,7 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "ContentType.h"
+#import "Taxonomy.h"
 #import "Entry.h"
 
 @interface QueryResult ()
@@ -22,6 +23,17 @@
 - (instancetype)initWithContentType:(ContentType*)contentType objectDictionary:(NSDictionary*)dictionary{
     if (self = [super init]) {
         self.contentType = contentType;
+        self.resultsDictionary = [NSMutableDictionary dictionary];
+        if (dictionary) {
+            [self.resultsDictionary addEntriesFromDictionary:dictionary];
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy objectDictionary:(NSDictionary*)dictionary{
+    if (self = [super init]) {
+        self.taxonomy = taxonomy;
         self.resultsDictionary = [NSMutableDictionary dictionary];
         if (dictionary) {
             [self.resultsDictionary addEntriesFromDictionary:dictionary];
@@ -55,7 +67,13 @@
         NSArray *objectsArray = (NSArray*)[self.resultsDictionary objectForKey:kCSIO_Entries];
         NSMutableArray *entryObjects = [NSMutableArray array];
         // if condition is fix for value of "entries" key ie.array inside array in response JSON
-        if (objectsArray.firstObject && [objectsArray.firstObject isKindOfClass:[NSArray class]]) {
+        if (objectsArray.firstObject && [objectsArray.firstObject isKindOfClass:[NSDictionary class]]) {
+            [objectsArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                Entry *formEntry = [self.taxonomy entry];
+                [formEntry configureWithDictionary:obj];
+                [entryObjects addObject:formEntry];
+            }];
+        } else if (objectsArray.firstObject && [objectsArray.firstObject isKindOfClass:[NSArray class]]) {
             [objectsArray enumerateObjectsUsingBlock:^(NSArray *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [obj enumerateObjectsUsingBlock:^(NSDictionary *objDict, NSUInteger idx, BOOL * _Nonnull stop) {
                     Entry *formEntry = [self.contentType entry];

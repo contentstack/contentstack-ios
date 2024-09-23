@@ -12,11 +12,15 @@
 BUILT_ASSUME_NONNULL_BEGIN
 
 @class ContentType;
+@class Taxonomy;
 @class Entry;
 @interface QueryResult : NSObject
 
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
+
+//- (BUILT_NULLABLE NSArray<Entry *> *)getResult;
+- (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy objectDictionary:(NSDictionary*)dictionary;
 
 //MARK: Result -
 /**---------------------------------------------------------------------------------------
