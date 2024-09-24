@@ -49,6 +49,16 @@
     return self;
 }
 
+- (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy {
+    if (self = [super init]) {
+        _taxonomy = taxonomy;
+        _localHeaders = [NSMutableDictionary dictionary];
+        _objectProperties = [NSMutableDictionary dictionary];
+        _postParamDictionary = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 -(void)setLanguage:(Language)language {
     _language = language;
     [self setLocale:[self localeCode:language]];
@@ -63,10 +73,24 @@
     return [self initWithContentType:contentType withEntryUID:nil];
 }
 
+//- (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy {
+//    return [self initWithTaxonomy:taxonomy];
+//}
 //MARK: - Headers -
 
 - (void)setHeader:(NSString *)headerValue forKey:(NSString *)headerKey {
     [self.localHeaders setObject:headerValue forKey:headerKey];
+}
+
+- (void)variantUid:(NSString *)variantUid {
+    NSString *key = @"x-cs-variant-uid";
+    [self.localHeaders setObject:variantUid forKey: key];
+}
+
+- (void)variantUids:(NSArray *)variantUids {
+    NSString *key = @"x-cs-variant-uid";
+    NSString *joinedString = [variantUids componentsJoinedByString:@","];
+    [self.localHeaders setObject:joinedString forKey: key];
 }
 
 - (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers {

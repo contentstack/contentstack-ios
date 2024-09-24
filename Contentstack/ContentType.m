@@ -12,7 +12,7 @@
 #import "CSIOCoreHTTPNetworking.h"
 #import "CSIOAPIURLs.h"
 #import "NSObject+Extensions.h"
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "Query.h"
 #import "Entry.h"
 #import "Asset.h"
