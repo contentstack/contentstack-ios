@@ -6,7 +6,7 @@
 //  Copyright © 2016 Contentstack. All rights reserved.
 //
 
-#import "Config.h"
+#import <Contentstack/Config.h>
 #import "CSIOConstants.h"
 #import "NSObject+Extensions.h"
 @implementation Config

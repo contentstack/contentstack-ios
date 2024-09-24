@@ -10,7 +10,7 @@
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "CSIOURLCache.h"
 #import "NSObject+Extensions.h"
 #import "CSURLSessionManager.h"

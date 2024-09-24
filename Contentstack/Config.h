@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
-#import "CSURLSessionDelegate.h"
+#import <Contentstack/ContentstackDefinitions.h>
+#import <Contentstack/CSURLSessionDelegate.h>
 @interface Config : NSObject
 
 /**----------------------------------------------------------------------------------------

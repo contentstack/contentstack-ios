@@ -35,13 +35,14 @@ static NSString *kNOT_HAVING = @"$nin_query";
         _localHeaders = [NSMutableDictionary dictionary];
         _queryDictionary = [NSMutableDictionary dictionary];
         _requestOperationSet = [NSMutableSet set];
-        
+
     }
     return self;
 }
 
 - (instancetype)initWithTaxonomy:(Taxonomy*)taxonomy {
     if (self = [super init]) {
+        _taxonomy = taxonomy;
         _localHeaders = [NSMutableDictionary dictionary];
         _queryDictionary = [NSMutableDictionary dictionary];
         _requestOperationSet = [NSMutableSet set];
@@ -92,6 +93,11 @@ static NSString *kNOT_HAVING = @"$nin_query";
         }
     }
     [self.queryDictionary setObject:[tagsArray componentsJoinedByString:@","] forKey:kCSIO_Tags];
+}
+
+//MARK: - Query -
+- (void)query:(NSDictionary *)query {
+    [self.queryDictionary setObject:query forKey:kCSIO_Queryable];
 }
 
 ////MARK: - Before/After UID -
@@ -306,7 +312,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
     } else {
         NSMutableDictionary *keySubDict = [NSMutableDictionary dictionary];
         [keySubDict setObject:keyset forKey:key];
-        
+
         [self.queryDictionary setObject:keySubDict forKey:kCSIO_Only];
     }
 }
@@ -360,7 +366,7 @@ static NSString *kNOT_HAVING = @"$nin_query";
 // This method prepares nested query response body.
 - (void)prepareQuerywithOperation:(NSString *)operation subKey:(NSString *)subKey forKey:(NSString *)key withObject:(id)object {
     if (key==nil) { return; }
-    
+
     if ([key isEqualToString:kCSIO_Queryable]) {
         if ([self.queryDictionary objectForKey:kCSIO_Queryable] != nil) {
             if (subKey != nil) {
@@ -380,13 +386,13 @@ static NSString *kNOT_HAVING = @"$nin_query";
                         } else {
                             NSMutableArray *incArray = [NSMutableArray arrayWithArray:object];
                             [incArray addObject:object];
-                            
+
                             NSMutableDictionary *includeDict = [NSMutableDictionary dictionary];
                             [includeDict setObject:incArray forKey:operation];
-                            
+
                             [[[self.queryDictionary objectForKey:kCSIO_Queryable] objectForKey:subKey] setObject:incArray forKey:operation];
                         }
-                        
+
                     } else {
                         if (operation != nil) {
                             NSMutableDictionary *includeDict = [NSMutableDictionary dictionary];
@@ -408,15 +414,15 @@ static NSString *kNOT_HAVING = @"$nin_query";
                         } else {
                             [incArray addObject:object];
                         }
-                        
+
                         NSMutableDictionary *includeDict = [NSMutableDictionary dictionary];
                         [includeDict setObject:incArray forKey:operation];
-                        
+
                         NSMutableDictionary *queryableDict = [NSMutableDictionary dictionary];
                         [queryableDict setObject:includeDict forKey:subKey];
-                        
+
                         [[self.queryDictionary objectForKey:key] setObject:includeDict forKey:subKey];
-                        
+
                     } else {
                         if (operation != nil) {
                             NSMutableDictionary *includeDict = [NSMutableDictionary dictionary];
@@ -430,10 +436,10 @@ static NSString *kNOT_HAVING = @"$nin_query";
             } else {
                 [[self.queryDictionary objectForKey:kCSIO_Queryable]setObject:object forKey:operation];
             }
-            
+
         } else {
             //if kCSIO_Queryable is not present
-            
+
             if ([operation isEqualToString:kCSIO_ContainedIn] || [operation isEqualToString:kCSIO_NotContainedIn]) {
                 NSMutableArray *incArray = [NSMutableArray array];
                 NSArray *objectArray = [object isKindOfClass:[NSArray class]] == true ? (NSArray *)object : nil;
@@ -444,12 +450,12 @@ static NSString *kNOT_HAVING = @"$nin_query";
                 } else {
                     [incArray addObject:object];
                 }
-                
+
                 NSMutableDictionary *includeDict = [NSMutableDictionary dictionary];
                 [includeDict setObject:incArray forKey:operation];
                 NSMutableDictionary *queryableDict = [NSMutableDictionary dictionary];
                 [queryableDict setObject:includeDict forKey:subKey];
-                
+
                 [self.queryDictionary setObject:queryableDict forKey:kCSIO_Queryable];
             } else {
                 if (subKey == nil) {
@@ -485,17 +491,17 @@ static NSString *kNOT_HAVING = @"$nin_query";
 //MARK: Execute Query -
 
 - (void)find:(void (^) (ResponseType type,QueryResult * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock {
-    
+
     [self.queryDictionary setObject:self.contentType.stack.environment forKey:kCSIO_Environment];
-    
+
     NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.queryDictionary];
-    
+
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.contentType.headers];
 
     [headers addEntriesFromDictionary:self.localHeaders];
 
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
-    
+
     NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
 
         if (error) {
@@ -511,20 +517,49 @@ static NSString *kNOT_HAVING = @"$nin_query";
     }
 }
 
+//MARK: Execute Query -
+
+- (void)findTaxonomy:(void (^) (ResponseType type,QueryResult * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock {
+
+    [self.queryDictionary setObject:self.taxonomy.stack.environment forKey:kCSIO_Environment];
+
+    NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.queryDictionary];
+
+    NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.taxonomy.headers];
+
+    [headers addEntriesFromDictionary:self.localHeaders];
+
+    NSString *path = [CSIOAPIURLs fetchTaxonomyWithVersion:self.taxonomy.stack.version];
+
+    NSURLSessionDataTask *op = [self.taxonomy.stack.network requestForStack:self.taxonomy.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
+
+        if (error) {
+            completionBlock(responseType, nil, error);
+        }else {
+            QueryResult *queryResult = [[QueryResult alloc] initWithTaxonomy:self.taxonomy objectDictionary:responseJSON];
+
+            completionBlock(responseType, queryResult, nil);
+        }
+    }];
+    if (op && ![op isKindOfClass:[NSNull class]]) {
+        [self.requestOperationSet addObject:op];
+    }
+}
+
 - (void)findOne:(void (^) (ResponseType type,Entry * BUILT_NULLABLE_P entry,NSError * BUILT_NULLABLE_P error))completionBlock {
     [self.queryDictionary setObject:@(1) forKey:kCSIO_Limit];
-    
+
     [self.queryDictionary setObject:self.contentType.stack.environment forKey:kCSIO_Environment];
 
     NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.queryDictionary];
 
     [self.queryDictionary removeObjectForKey:kCSIO_Limit];
-    
+
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:self.contentType.headers];
     [headers addEntriesFromDictionary:self.localHeaders];
-    
+
     NSString *path = [CSIOAPIURLs fetchContentTypeEntriesQueryURLWithUID:[self.contentType name] withVersion:self.contentType.stack.version];
-    
+
     NSURLSessionDataTask *op = [self.contentType.stack.network requestForStack:self.contentType.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:headers cachePolicy:self.cachePolicy completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (error) {
             completionBlock(responseType, nil, error);

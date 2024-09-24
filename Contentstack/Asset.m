@@ -7,7 +7,7 @@
 //
 
 #import "Asset.h"
-#import "Stack.h"
+#import <Contentstack/Stack.h>
 #import "CSIOInternalHeaders.h"
 #import "CSIOConstants.h"
 #import "CSIOAPIURLs.h"

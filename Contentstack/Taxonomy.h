@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
+#import <Contentstack/ContentstackDefinitions.h>
 
 @class Query;
 
@@ -25,39 +25,37 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 /**
 Set a header for ContentType
- 
+
      //Obj-C
      [contentTypeObj setHeader:@"MyValue" forKey:@"My-Custom-Header"];
-
      //Swift
      contentTypeObj.setHeader("MyValue", forKey: "My-Custom-Header")
-
 @param headerValue  The header key
 @param headerKey    The header value
 */
 - (void)setHeader:(NSString *)headerValue forKey:(NSString *)headerKey;
 /**
 Set a header for ContentType
- 
+
      //Obj-C
      [contentTypeObj addHeadersWithDictionary:@{@"My-Custom-Header": @"MyValue"}];
-     
+
      //Swift
      contentTypeObj.addHeadersWithDictionary(["My-Custom-Header":"MyValue"])
- 
- 
+
+
  @param headers The headers as dictionary which needs to be added to the application
  */
 - (void)addHeadersWithDictionary:(NSDictionary<NSString *, NSString *> *)headers;
 /**
 Removes a header from this ContentType.
- 
+
      //Obj-C
      [contentTypeObj removeHeaderForKey:@"My-Custom-Header"];
-     
+
      //Swift
      contentTypeObj.removeHeaderForKey("My-Custom-Header")
- 
+
  @param headerKey The header key that needs to be removed
  */
 - (void)removeHeaderForKey:(NSString *)headerKey;
@@ -69,37 +67,36 @@ Removes a header from this ContentType.
 
 /**
 Represents a Query on 'ContentType' which can be executed to retrieve entries that pass the query condition
-
      //Obj-C
      Query *queryObj = [contentTypeObj query];
-     
+
      //Swift
      var queryObj:Query = contentTypeObj.query()
- 
+
  @return Returns new Query instance
  */
 - (Query*)query;
 
-//MARK: - Content-Type Schema
+//MARK: - Schema
 /**---------------------------------------------------------------------------------------
  * @name ContentType Schema
  *  ---------------------------------------------------------------------------------------
  */
 /**
  Gets ContentType Schema defination.
- 
+
      //Obj-C
- 
-     ContentType * contentType = [stack contentTypeWithName:@"<content_type_id>"]
-     [contentType fetch:params completion:^(NSDictionary * _Nullable contentType, NSError * _Nullable error) {
- 
+
+     Taxonomy * taxonomy = [stack]
+     [contentType fetch:params completion:^(NSDictionary * _Nullable entries, NSError * _Nullable error) {
+
      }];
- 
+
      //Swift
- 
-     let contentType = stack.contentTypeWithName("<content_type_id>")
-     contentType.fetch(params, { (contentType, error) in
- 
+
+     let taxonomy = stack.taxonomy("")
+     taxonomy.fetch(params, { (entries, error) in
+
      })
  @param completionBlock block to be called once operation is done.
  */

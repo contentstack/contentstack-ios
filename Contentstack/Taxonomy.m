@@ -30,6 +30,11 @@
     return self;
 }
 
+-(Entry*)entry {
+    Entry *entry = [[Entry alloc] initWithTaxonomy:self];
+    return entry;
+}
+
 -(Query*)query {
     Query *query = [[Query alloc] initWithTaxonomy:self];
     return query;
@@ -56,12 +61,10 @@
                                                                                     NSError * _Nullable))completionBlock {
     NSString *path = [CSIOAPIURLs fetchTaxonomyWithVersion:self.stack.version];
     [self.postParamDictionary setObject:_csStack.environment forKey:kCSIO_Environment];
-    
     NSMutableDictionary *paramDictionary = [NSMutableDictionary dictionaryWithDictionary:self.postParamDictionary];
     for (NSString* key in params) {
         [paramDictionary setValue:[params valueForKey:key] forKey:key];
     }
-    
     NSURLSessionDataTask *op = [self.stack.network requestForStack:self.stack withURLPath:path requestType:CSIOCoreNetworkingRequestTypeGET params:paramDictionary additionalHeaders:self.stack.stackHeaders  completion:^(ResponseType responseType, id responseJSON, NSError *error) {
         if (completionBlock) {
             if (error) {

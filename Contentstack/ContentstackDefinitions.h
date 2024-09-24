@@ -79,7 +79,8 @@
         US = 0,
         EU,
         AZURE_NA,
-        AZURE_EU
+        AZURE_EU,
+        GCP_NA
     };
 
     typedef NS_ENUM(NSUInteger, Language) {
