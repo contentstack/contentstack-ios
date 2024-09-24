@@ -50,7 +50,6 @@
 - (instancetype)initWithContentType:(ContentType *)contentType;
 - (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
 @property (nonatomic, strong) NSMutableDictionary *queryDictionary;
-- (instancetype)initWithTaxonomy:(Taxonomy *)taxonomy;
 @end
 
 @interface QueryResult ()
@@ -69,13 +68,13 @@
 -(Stack *)stack;
 @end
 
-@interface Taxonomy ()
-@property (nonatomic, strong) NSMutableDictionary *headers;
-@property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
+// @interface Taxonomy ()
+// @property (nonatomic, strong) NSMutableDictionary *headers;
+// @property (nonatomic, strong) NSMutableDictionary *postParamDictionary;
 
--(instancetype)initWithStack:(Stack *)stack;
--(Stack *)stack;
-@end
+// -(instancetype)initWithStack:(Stack *)stack;
+// -(Stack *)stack;
+// @end
 
 @interface Entry ()
 @property (nonatomic, assign, getter=isDeleted) BOOL deleted;
