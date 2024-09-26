@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
+#import <Contentstack/ContentstackDefinitions.h>
 
 
 @class Asset;
