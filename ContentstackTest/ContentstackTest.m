@@ -119,6 +119,61 @@ static NSString *_numbersContentTypeUid = @"";
 #pragma mark Test Case - Header
 
 
+- (void)testStackHeadersEarlyAccess {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"EarlyAccessHeadersPassed"];
+    config = [[Config alloc] init];
+    config.setEarlyAccess = @[@"Taxonomy", @"Teams", @"Terms", @"LivePreview"];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    // Check the headers in the stack
+    NSDictionary *headers = [csStack getHeaders];
+    // Check if the early access headers are set correctly
+    NSString *expectedHeaderValue = @"Taxonomy,Teams,Terms,LivePreview";
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    
+    XCTAssertNotNil(earlyAccessHeader, @"Early access header should be present");
+    XCTAssertEqualObjects(earlyAccessHeader, expectedHeaderValue, @"Early access header should match the expected value");
+    
+    // Fulfill the expectation to mark the test as completed
+    [expectation fulfill];
+
+    // Wait for the request to complete
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:^(NSError *error) {
+        if (error) {
+            XCTFail(@"Test timed out: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)testNoEarlyAccessHeaders {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"NoEarlyAccessHeaders"];
+    config = [[Config alloc] init];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    NSDictionary *headers = [csStack getHeaders];
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    XCTAssertNil(earlyAccessHeader, @"Early access header should not be present when no early access features are set");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testSingleEarlyAccessHeader {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"SingleEarlyAccessHeader"];
+    config = [[Config alloc] init];
+    config.setEarlyAccess = @[@"LivePreview"];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    NSDictionary *headers = [csStack getHeaders];
+    NSString *expectedHeaderValue = @"LivePreview";
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    XCTAssertNotNil(earlyAccessHeader, @"Early access header should be present");
+    XCTAssertEqualObjects(earlyAccessHeader, expectedHeaderValue, @"Single early access header should match the expected value");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+
 - (void)test01FetchSourceEntries {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch All Entries"];
     

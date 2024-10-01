@@ -47,6 +47,11 @@
         _commonDateFormatter.includeTime = YES;
         
         _requestOperationSet = [NSMutableSet set];
+        // Add early access headers only if they exist
+              NSDictionary *earlyAccessHeaders = [_config earlyAccessHeaders];
+              if (earlyAccessHeaders.count > 0) {
+                  [_stackHeaders addEntriesFromDictionary:earlyAccessHeaders];
+              }
 
         
         [self setHeader:_apiKey forKey:kCSIO_SiteApiKey];
@@ -126,6 +131,10 @@
     if (self.stackHeaders[headerKey]) {
         [self.stackHeaders removeObjectForKey:headerKey];
     }
+}
+
+- (NSDictionary *)getHeaders {
+    return [self.stackHeaders copy];
 }
 
 - (NSString *)imageTransformWithUrl:(NSString *)url andParams:(NSDictionary<NSString *, id> *)params{
