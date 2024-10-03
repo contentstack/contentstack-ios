@@ -119,6 +119,61 @@ static NSString *_numbersContentTypeUid = @"";
 #pragma mark Test Case - Header
 
 
+- (void)testStackHeadersEarlyAccess {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"EarlyAccessHeadersPassed"];
+    config = [[Config alloc] init];
+    config.setEarlyAccess = @[@"Taxonomy", @"Teams", @"Terms", @"LivePreview"];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    // Check the headers in the stack
+    NSDictionary *headers = [csStack getHeaders];
+    // Check if the early access headers are set correctly
+    NSString *expectedHeaderValue = @"Taxonomy,Teams,Terms,LivePreview";
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    
+    XCTAssertNotNil(earlyAccessHeader, @"Early access header should be present");
+    XCTAssertEqualObjects(earlyAccessHeader, expectedHeaderValue, @"Early access header should match the expected value");
+    
+    // Fulfill the expectation to mark the test as completed
+    [expectation fulfill];
+
+    // Wait for the request to complete
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:^(NSError *error) {
+        if (error) {
+            XCTFail(@"Test timed out: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)testNoEarlyAccessHeaders {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"NoEarlyAccessHeaders"];
+    config = [[Config alloc] init];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    NSDictionary *headers = [csStack getHeaders];
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    XCTAssertNil(earlyAccessHeader, @"Early access header should not be present when no early access features are set");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testSingleEarlyAccessHeader {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"SingleEarlyAccessHeader"];
+    config = [[Config alloc] init];
+    config.setEarlyAccess = @[@"LivePreview"];
+    csStack = [Contentstack stackWithAPIKey:@"apikey" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    NSDictionary *headers = [csStack getHeaders];
+    NSString *expectedHeaderValue = @"LivePreview";
+    NSString *earlyAccessHeader = headers[@"x-header-ea"];
+    XCTAssertNotNil(earlyAccessHeader, @"Early access header should be present");
+    XCTAssertEqualObjects(earlyAccessHeader, expectedHeaderValue, @"Single early access header should match the expected value");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+
 - (void)test01FetchSourceEntries {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch All Entries"];
     
@@ -203,6 +258,88 @@ static NSString *_numbersContentTypeUid = @"";
     [self waitForRequest];
 }
 
+- (void)testFetchAssetByQuery01{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By where method"];
+    AssetLibrary* assets = [csStack assetLibrary];
+    [assets where:@"title" equalTo:@"image1"];
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        if (error) {
+            XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
+        } else {
+            XCTAssert(type == NETWORK, @"Pass");
+            XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+            XCTAssert(result.count > 0, @"Expected results, but got none.");
+        }
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
+
+- (void)testFetchAssetsByValidFileSize02 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By valid file size"];
+    AssetLibrary *assets = [csStack assetLibrary];
+    [assets where:@"file_size" equalTo:@(53986)]; // Valid file size
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+        XCTAssert(result.count > 0, @"Expected results, but got none.");
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
+
+- (void)testFetchAssetsByNonExistentFileSize03 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By non-existent file size"];
+    AssetLibrary *assets = [csStack assetLibrary];
+    [assets where:@"file_size" equalTo:@(9999999)]; // Non-existent file size
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+        XCTAssertEqual(result.count, 0, @"Expected no results, but got some.");
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
+
+- (void)testFetchAssetsByNonExistentTitle04 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By non-existent title"];
+    AssetLibrary *assets = [csStack assetLibrary];
+    [assets where:@"title" equalTo:@"non-existent-title.png"]; // Non-existent title
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+        XCTAssertEqual(result.count, 0, @"Expected no results, but got some.");
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
+
+- (void)testFetchAssetsByMultipleConditions05 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By multiple conditions"];
+    AssetLibrary *assets = [csStack assetLibrary];
+    [assets where:@"file_size" equalTo:@(6884)]; // Valid file size
+    [assets where:@"title" equalTo:@"image4"]; // Valid title
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+        XCTAssert(result.count > 0, @"Expected results, but got none.");
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
+
+- (void)testFetchAssetsByInvalidFieldName06 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Asset By invalid field name"];
+    AssetLibrary *assets = [csStack assetLibrary];
+    [assets where:@"invalid_field" equalTo:@"value"]; // Invalid field name
+    [assets fetchAll:^(ResponseType type, NSArray *result, NSError *error) {
+        XCTAssert(type == NETWORK, @"Pass");
+        XCTAssertNil(error, @"Expected no error, but got: %@", error.userInfo);
+        XCTAssertEqual(result.count, 0, @"Expected no results.");
+        [expectation fulfill];
+    }];
+    [self waitForRequest];
+}
 
 - (void)testGetHeader {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Fetch Set Header"];

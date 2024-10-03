@@ -68,6 +68,8 @@ BUILT_ASSUME_NONNULL_BEGIN
 
 - (Taxonomy *)taxonomy;
 
+- (NSDictionary *)getHeaders;
+
 //MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------
  * @name Manually set headers

@@ -88,4 +88,27 @@
  */
 @property (nullable, retain) id<CSURLSessionDelegate> delegate;
 
+
+
+/**
+ Early access features
+ 
+     //Obj-C
+     Config *config = [[Config alloc] init];
+     [config setEarlyAccess:@[@"Taxonomy", @"Teams", @"Terms", @"LivePreview"]];
+     
+     //Swift
+     let config = Config()
+     config.setEarlyAccess(["Taxonomy", "Teams", "Terms", "LivePreview"])
+ 
+ */
+@property (nonatomic, strong, nullable) NSArray<NSString *> *setEarlyAccess;
+
+
+/**
+ Set early access features
+ 
+ @param setearlyAccess An array of early access feature names
+ */
+- (NSDictionary<NSString *, NSString *> *)earlyAccessHeaders;
 @end

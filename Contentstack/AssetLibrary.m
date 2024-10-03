@@ -156,6 +156,25 @@
         [self.requestOperation cancel];
     }
 }
+// MARK: - Where Query -
+- (NSDictionary*) getPostParamDictionary {
+    return [self.postParamDictionary copy];
+}
+
+- (void)where:(NSString *)field equalTo:(NSObject *)value {
+    if (field.length == 0 || !value) {
+        NSLog(@"Field or value cannot be empty");
+        return;
+    }
+    NSMutableDictionary *queryDict = [NSMutableDictionary dictionary];
+    NSDictionary *existingQuery = self.postParamDictionary[@"query"];
+    // If an existing query exists, merge it
+    if (existingQuery) {
+        [queryDict addEntriesFromDictionary:existingQuery];
+    }
+    queryDict[field] = value;
+    [self.postParamDictionary setObject:queryDict forKey:@"query"];
+}
 
 
 @end
