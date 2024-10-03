@@ -230,6 +230,24 @@ typedef NS_ENUM(NSUInteger, OrderBy) {
  */
 
 - (void)fetchAll:(void (^) (ResponseType type,NSArray<Asset *> * BUILT_NULLABLE_P result,NSError * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+ This method fetches assets using other fields than UID..
+ 
+      //Obj-C
+      [assetLib where:(NSString *)field equalTo:(NSObject *)value];
+ 
+      //Swift
+      assetLib.where("fieldName","value");
+ 
+ This allows filtering assets by specifying the field name and the value to match.
+ @param field The name of the field to filter by.
+ @param value The value that the field should match.
+ */
+- (void)where:(NSString *)field equalTo:(NSObject *)value ;
+
+- (NSDictionary*)getPostParamDictionary;
+
 @end
 
 BUILT_ASSUME_NONNULL_END
