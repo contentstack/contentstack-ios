@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContentstackDefinitions.h"
+#import <Contentstack/ContentstackDefinitions.h>
 
 @class Config;
 @class ContentType;
@@ -67,6 +67,8 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (ContentType *)contentTypeWithName:(NSString *)contentTypeName;
 
 - (Taxonomy *)taxonomy;
+
+- (NSDictionary *)getHeaders;
 
 //MARK: - Manually set headers
 /**---------------------------------------------------------------------------------------

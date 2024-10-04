@@ -15,7 +15,8 @@
     if (self) {
         _region = US;
         _host = @"cdn.contentstack.io";
-        _version = kCSIO_ApiVersion;        
+        _version = kCSIO_ApiVersion;
+        _setEarlyAccess = nil;
     }
     return self;
 }
@@ -24,5 +25,12 @@
     if ([[self hostURLS] containsObject:_host]) {
         _host = [self hostURL:_region];
     }
+}
+- (NSDictionary<NSString *, NSString *> *)earlyAccessHeaders {
+    if (_setEarlyAccess.count > 0) {
+        NSString *earlyAccessString = [_setEarlyAccess componentsJoinedByString:@","];
+        return @{@"x-header-ea": earlyAccessString};
+    }
+    return @{};
 }
 @end
