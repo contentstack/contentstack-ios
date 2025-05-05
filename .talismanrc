@@ -1,4 +1,7 @@
 fileignoreconfig:
+- filename: .github/workflows/secrets-scan.yml
+  ignore_detectors:
+    - filecontent
 - filename: Contentstack.xcodeproj/project.pbxproj
   checksum: 10cb4bc5ca755f7392309a88cd6df510a45f8c527ea2f8edc71e1ae1fda60941
 - filename: .github/workflows/sast-scan.yml
