@@ -34,6 +34,11 @@
 //AssetLibrary
 + (NSString *)fetchAssetLibraryWithVersion:(NSString*)version;
 
+// GlobalField
++(NSString*)fetchGlobalFieldWithVersion:(NSString*) globalFieldUID withVersion:(NSString*)version;
+
++(NSString*)findGlobalFieldsWithVersion:(NSString*)version;
+
 //sync
 +(NSString *)syncWithVersion:(NSString*)version;
 @end

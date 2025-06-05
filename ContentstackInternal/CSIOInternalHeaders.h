@@ -23,6 +23,7 @@
 #import "AssetLibrary.h"
 #import "Group.h"
 #import "CSError.h"
+#import "GlobalField.h"
 
 
 //MARK: Extensions -
@@ -127,5 +128,11 @@
 
 @interface CSError ()
 +(instancetype)error:(NSDictionary*) errorDictionary statusCode:(NSInteger) statusCode;
+
+@end
+
+@interface GlobalField()
+- (instancetype)initWithStack:(Stack*)stack;
+- (instancetype)initWithStack:(Stack*)stack withName:(NSString*)globalFieldName;
 
 @end
