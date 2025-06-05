@@ -59,7 +59,7 @@
         // Verify globalField properties
         XCTAssertNotNil(self.globalField.title, @"Title should not be nil");
         XCTAssertNotNil(self.globalField.uid, @"UID should not be nil");
-        XCTAssertNotNil(self.globalField.description, @"Description should not be nil");
+        XCTAssertNotNil(self.globalField.Description, @"Description should not be nil");
         
         // Verify data types
         XCTAssertTrue([self.globalField.title isKindOfClass:[NSString class]], @"Title should be NSString");
