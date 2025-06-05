@@ -13,7 +13,6 @@
 #import "CSIOAPIURLs.h"
 #import "NSObject+Extensions.h"
 #import "Stack.h"
-#import "Query.h"
 
 @interface GlobalField ()
 @property (nonatomic, strong, getter=stack) Stack *csStack;
