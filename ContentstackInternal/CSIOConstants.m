@@ -137,4 +137,14 @@ NSString *const kCSIO_Content_Type = @"content_type_uid";
 NSString *const kCSIO_Items = @"items";
 NSString *const kCSIO_Type = @"type";
 
+//GlobalFields
+NSString *const kCSIO_globalfield = @"global_field";
+NSString *const kCSIO_globalfields= @"global_fields";
+NSString *const kCSIO_version = @"_version";
+NSString *const kCSIO_branch = @"_branch";
+NSString *const kCSIO_schema = @"schema";
+NSString *const kCSIO_maintain_revisions = @"maintain_revisions";
+NSString *const kCSIO_inbuilt_class = @"inbuilt_class";
+NSString *const kCSIO_last_activity = @"last_activity";
+NSString *const kCSIO_description = @"description";
 @end

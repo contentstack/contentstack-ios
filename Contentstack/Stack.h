@@ -15,6 +15,7 @@
 @class AssetLibrary;
 @class Asset;
 @class SyncStack;
+@class GlobalField;
 
 BUILT_ASSUME_NONNULL_BEGIN
 
@@ -67,6 +68,10 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (ContentType *)contentTypeWithName:(NSString *)contentTypeName;
 
 - (Taxonomy *)taxonomy;
+
+- (GlobalField *)globalField;
+
+- (GlobalField *)globalFieldWithName:(NSString *)globalFieldName;
 
 - (NSDictionary *)getHeaders;
 

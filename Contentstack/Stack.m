@@ -14,6 +14,7 @@
 #import "Taxonomy.h"
 #import "CSIOAPIURLs.h"
 #import "NSObject+Extensions.h"
+#import "GlobalField.h"
 
 @interface Stack ()
 @property (nonatomic, copy) NSString *apiKey;
@@ -96,6 +97,16 @@
 -(Taxonomy*)taxonomy {
     Taxonomy *taxonomy = [[Taxonomy alloc] initWithStack:self];
     return taxonomy;
+}
+
+-(GlobalField*)globalField {
+    GlobalField *globalField = [[GlobalField alloc] initWithStack:self];
+    return globalField;
+}
+
+-(GlobalField*)globalFieldWithName:(NSString*)globalFieldName {
+    GlobalField *globalField = [[GlobalField alloc] initWithStack:self withName:globalFieldName];
+    return globalField;
 }
 
 //MARK: - Asset
