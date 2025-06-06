@@ -1,3 +1,22 @@
+### Version: 3.14.1
+#### Date: Jun-16-2025
+
+##### Enhancement:
+ - Added support for Global Fields
+
+### Version: 3.14.0
+#### Date: Oct-04-2024
+
+##### Enhancement:
+ - Early access header support
+ - Fetch asset by query
+
+### Version: 3.13.0
+#### Date: Aug-23-2024
+
+##### Enhancement:
+ - Added support for Taxonomy
+
 ### Version: 3.12.3
 #### Date: May-16-2023
 
