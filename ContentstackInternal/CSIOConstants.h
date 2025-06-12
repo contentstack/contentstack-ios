@@ -129,4 +129,14 @@ FOUNDATION_EXPORT NSString *const kCSIO_Content_Type;
 FOUNDATION_EXPORT NSString *const kCSIO_Type;
 FOUNDATION_EXPORT NSString *const kCSIO_Items;
 
+//GlobalFields
+FOUNDATION_EXPORT NSString *const kCSIO_version;
+FOUNDATION_EXPORT NSString *const kCSIO_branch ;
+FOUNDATION_EXPORT NSString *const kCSIO_schema;
+FOUNDATION_EXPORT NSString *const kCSIO_maintain_revisions;
+FOUNDATION_EXPORT NSString *const kCSIO_inbuilt_class ;
+FOUNDATION_EXPORT NSString *const kCSIO_last_activity;
+FOUNDATION_EXPORT NSString *const kCSIO_description;
+FOUNDATION_EXPORT NSString *const kCSIO_globalfields;
+FOUNDATION_EXPORT NSString *const kCSIO_globalfield;
 @end

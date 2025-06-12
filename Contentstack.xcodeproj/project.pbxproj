@@ -107,6 +107,9 @@
 		64B3EA282BF7C4AF009E0F38 /* libThirdPartyExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238E841B1B4FE29A00BFDB32 /* libThirdPartyExtension.a */; };
 		64F5220E2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
 		64F5220F2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */; };
+		678803D22DED82A100E4AA75 /* GlobalField.h in Headers */ = {isa = PBXBuildFile; fileRef = 678803D12DED829800E4AA75 /* GlobalField.h */; };
+		678803D42DED82AF00E4AA75 /* GlobalField.m in Sources */ = {isa = PBXBuildFile; fileRef = 678803D32DED82AC00E4AA75 /* GlobalField.m */; };
+		678803D62DEDB24800E4AA75 /* GlobalFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 678803D52DEDB23800E4AA75 /* GlobalFieldTest.m */; };
 		E653FF942F28495541E9B22B /* libPods-Contentstack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514C6AB47DF26BA926C681A /* libPods-Contentstack.a */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +247,9 @@
 		606DDA20A6F0593F40494FED /* Pods-ContentstackTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.release.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.release.xcconfig"; sourceTree = "<group>"; };
 		609D1D72B25D2FBE4E26FA70 /* Pods-ContentstackTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentstackTest.debug.xcconfig"; path = "Target Support Files/Pods-ContentstackTest/Pods-ContentstackTest.debug.xcconfig"; sourceTree = "<group>"; };
 		64F5220D2BF5C76E00AE6E0F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		678803D12DED829800E4AA75 /* GlobalField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalField.h; sourceTree = "<group>"; };
+		678803D32DED82AC00E4AA75 /* GlobalField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalField.m; sourceTree = "<group>"; };
+		678803D52DEDB23800E4AA75 /* GlobalFieldTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalFieldTest.m; sourceTree = "<group>"; };
 		7EB1C6B5FF6A451CEB50B3A4 /* libPods-ContentstackTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContentstackTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7BE798B2EEFA3CC2763E3F /* Pods-Contentstack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contentstack.release.xcconfig"; path = "Target Support Files/Pods-Contentstack/Pods-Contentstack.release.xcconfig"; sourceTree = "<group>"; };
 		9980728A1E1BDC5000524FD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 		230B38C11C16E98B00444A14 /* Contentstack */ = {
 			isa = PBXGroup;
 			children = (
+				678803D12DED829800E4AA75 /* GlobalField.h */,
+				678803D32DED82AC00E4AA75 /* GlobalField.m */,
 				0F9C0FA4221ADAC80091205A /* Asset.h */,
 				0F9C0FA3221ADAC80091205A /* Asset.m */,
 				0F9C0F98221ADAC70091205A /* AssetLibrary.h */,
@@ -432,6 +440,7 @@
 			children = (
 				0F41A91025C7CC9C007EF2DA /* ContentstackTest.m */,
 				0F41A91125C7CC9C007EF2DA /* SyncTest.m */,
+				678803D52DEDB23800E4AA75 /* GlobalFieldTest.m */,
 				23A53F591E277CD3001DBE35 /* Info.plist */,
 				473AFDAF2CA22233002D331D /* config.json */,
 			);
@@ -534,6 +543,7 @@
 				230B39011C16EB8D00444A14 /* ISO8601DateFormatter.h in Headers */,
 				23A53F401E276C83001DBE35 /* CSIOInternalHeaders.h in Headers */,
 				0F9C0FB1221ADAC90091205A /* AssetLibrary.h in Headers */,
+				678803D22DED82A100E4AA75 /* GlobalField.h in Headers */,
 				0FD6BAEF29CD6E73001A0930 /* CSURLSessionDelegate.h in Headers */,
 				0F9C0FB6221ADAC90091205A /* Config.h in Headers */,
 				0F9C0FC2221ADAC90091205A /* Query.h in Headers */,
@@ -777,6 +787,7 @@
 				230B38FA1C16EB8000444A14 /* MMGenerator.h in Sources */,
 				0FEAEF2B2361A18600985FF9 /* CSURLSessionManager.m in Sources */,
 				230B38FB1C16EB8000444A14 /* MMHTMLParser.h in Sources */,
+				678803D42DED82AF00E4AA75 /* GlobalField.m in Sources */,
 				230B38FC1C16EB8000444A14 /* MMMarkdown-Prefix.pch in Sources */,
 				0F9C0FC4221ADAC90091205A /* Config.m in Sources */,
 				230B38FD1C16EB8000444A14 /* MMMarkdown.h in Sources */,
@@ -825,6 +836,7 @@
 			files = (
 				0F41A91425C7CC9C007EF2DA /* ContentstackTest.m in Sources */,
 				0F41A91525C7CC9C007EF2DA /* SyncTest.m in Sources */,
+				678803D62DEDB24800E4AA75 /* GlobalFieldTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
