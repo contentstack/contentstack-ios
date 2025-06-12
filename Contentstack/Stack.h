@@ -240,6 +240,47 @@ BUILT_ASSUME_NONNULL_BEGIN
 - (void)sync:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
 
 /**
+ The Initial Sync request performs a complete sync of your app data. This is done for seq id.
+ It returns all the published entries and assets of the specified stack in response.
+ The response also contains a sync token, which you need to store,
+ since this token is used to get subsequent delta updates later.
+
+     //Obj-C
+         [stack syncSeqIdInit:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+
+         }];
+
+     //Swift
+         stack.syncSeqIdInit({ ( syncStack:SyncStack, error: NSError) in
+ 
+         })
+
+@param completionBlock called synchronization is done.
+*/
+- (void)initSeqSync:(void (^)(SyncStack * BUILT_NULLABLE_P syncStack, NSError  * BUILT_NULLABLE_P error))completionBlock;
+
+/**
+ You can use the seq_id (that you receive after every sync call) to get the updated content next time.
+ The seq id is alternative to pagination token where it fetches all the events data in sequence, and the details of the content that was deleted or updated.
+ 
+     //Obj-C
+ 
+         NSString *seqId = @"seq_id"; //Seq id
+         [stack seqId:seqId completion:^(SyncStack * _Nullable syncStack, NSError * _Nullable error) {
+ 
+         }];
+ 
+     //Swift
+         var seqId = @"seq_id"; //Seq id
+         stack.seqId(seqId, completion: { ( syncStack:SyncStack, error: NSError) in
+ 
+         })
+
+ @param seqId Sync token from where to perform sync
+ @param completionBlock called synchronization is done.
+ */
+-(void)syncSeqId:(NSString *)seqId syncToken:(NSString *)syncToken completion:(void (^)(SyncStack * BUILT_NULLABLE_P syncResult, NSError * BUILT_NULLABLE_P error))completionBlock;
+/**
  If the result of the initial sync (or subsequent sync) contains more than 100 records,
  the response would be paginated. It provides pagination token in the response. However,
  you do not have to use the pagination token manually to get the next batch,
