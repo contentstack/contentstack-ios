@@ -403,7 +403,7 @@ static NSString *_numbersContentTypeUid = @"";
         if (error) {
             XCTFail(@"~ ERR: %@, Message = %@", error.userInfo, error.description);
         }else {
-            NSLog(@"entry : %@", _kvoEntry);
+//            NSLog(@"entry : %@", _kvoEntry);
         }
         [expectation fulfill];
     }];
@@ -572,7 +572,7 @@ static NSString *_numbersContentTypeUid = @"";
                 }
                 
             }
-            NSLog(@"MarkDown Values = %@", markdownString);
+//            NSLog(@"MarkDown Values = %@", markdownString);
         }
         [expectation fulfill];
     }];
@@ -593,7 +593,7 @@ static NSString *_numbersContentTypeUid = @"";
         }else {
             [self checkLanguageStatus:entry];
             
-            NSLog(@"result %@", entry.locale);
+//            NSLog(@"result %@", entry.locale);
             
             NSArray *markdownArray = [entry HTMLArrayForMarkdownKey:@"markdown_multiple"];
             [markdownArray enumerateObjectsUsingBlock:^(NSString *markdownString, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -610,7 +610,7 @@ static NSString *_numbersContentTypeUid = @"";
                 }
             }];
             
-            NSLog(@"MarkDown Array = %@, Total Objects = %lu",markdownArray, (unsigned long)[markdownArray count]);
+//            NSLog(@"MarkDown Array = %@, Total Objects = %lu",markdownArray, (unsigned long)[markdownArray count]);
         }
         [expectation fulfill];
     }];
@@ -689,7 +689,7 @@ static NSString *_numbersContentTypeUid = @"";
                         [expectation fulfill];
                         
                     }else{
-                        NSLog(@"%@",connectionError);
+//                        NSLog(@"%@",connectionError);
                         [expectation fulfill];
                     }
                 }];
@@ -1076,7 +1076,7 @@ static NSString *_numbersContentTypeUid = @"";
         if (error) {
             XCTFail(@"~ ERR: %@", error.userInfo);
         }else {
-            NSLog(@"result %@", [result getResult]);
+//            NSLog(@"result %@", [result getResult]);
             [self testProductCount:[result getResult]];
             
             [[result getResult] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -1760,7 +1760,7 @@ static NSString *_numbersContentTypeUid = @"";
         if (error) {
             XCTFail(@"~ ERR: %@", error.userInfo);
         }else {
-            NSLog(@"result %@", [result getResult]);
+//            NSLog(@"result %@", [result getResult]);
             [self testProductCount:[result getResult]];
             
             [[result getResult] enumerateObjectsUsingBlock:^(Entry *entry, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -1806,7 +1806,7 @@ static NSString *_numbersContentTypeUid = @"";
         if (error) {
             XCTFail(@"~ ERR: %@", error.userInfo);
         }else {
-            NSLog(@"result %@", [result getResult]);
+//            NSLog(@"result %@", [result getResult]);
 //            [self testProductCount:[result getResult]];
             
             [[result getResult] enumerateObjectsUsingBlock:^(Entry *entry, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -2367,7 +2367,7 @@ static NSString *_numbersContentTypeUid = @"";
         }else {
             if ([assetObj.url length] > 0) {
                 if ( [assetObj.properties objectForKey:@"dimension"]){
-                    NSLog(@"%@",assetObj.properties);
+//                    NSLog(@"%@",assetObj.properties);
                     XCTAssert(YES, @"Pass");
                 }else{
                     XCTFail(@"wrong asset object");

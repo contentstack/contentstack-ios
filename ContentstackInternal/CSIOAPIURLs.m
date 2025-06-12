@@ -31,6 +31,11 @@ static NSString *fetchContentTypeSchema = @"/%@/content_types/%@";
 static NSString *syncData = @"/%@/stacks/sync";
 // Taxonomy
 static NSString *fetchTaxonomyWithVersion = @"/%@/taxonomies/entries";
+//GlobalField
+static NSString *fetchGlobalFieldWithVersion = @"/%@/global_fields/%@";
+//GlobalFields
+static NSString *findGlobalFieldsWithVersion = @"/%@/global_fields";
+
 
 //MARK: Methods -
 
@@ -76,5 +81,13 @@ static NSString *fetchTaxonomyWithVersion = @"/%@/taxonomies/entries";
 //sync
 +(NSString *)syncWithVersion:(NSString*)version {
     return [NSString stringWithFormat:syncData,version];
+}
+
++(NSString*)fetchGlobalFieldWithVersion:(NSString*)globalFieldUID withVersion:(NSString*)version {
+    return [NSString stringWithFormat:fetchGlobalFieldWithVersion, version, globalFieldUID];
+}
+
++(NSString*)findGlobalFieldsWithVersion:(NSString*)version {
+    return [NSString stringWithFormat:findGlobalFieldsWithVersion, version];
 }
 @end
