@@ -1,3 +1,9 @@
+### Version: 3.16.0
+#### Date: Sep-22-2025
+
+##### Feature:
+ - Added support for AU and GCP-EU regions
+
 ### Version: 3.15.0
 #### Date: Jun-16-2025
 
