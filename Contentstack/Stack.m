@@ -20,21 +20,19 @@
 @property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) Config *config;
-
 @property (nonatomic, copy) NSString *environment;
 
 @end
 
 @implementation Stack
 
+- (NSString *)hostURL {
+    return self.config.host;
+}
+
 - (instancetype)initWithAPIKey:(NSString*)apiKey andaccessToken:(NSString *)accessToken andEnvironment:(NSString*)environment andConfig:(Config *)sConfig {
     if (self = [super init]) {
         _config = sConfig;
-
-        _hostURL = [sConfig.host copy];
-        if (_config.region != US) {
-            _hostURL = [NSString stringWithFormat:@"%@-%@", [self regionCode:_config.region], sConfig.host];
-        }
         _version = [sConfig.version copy];
         _environment = [environment copy];
 
@@ -49,18 +47,17 @@
         
         _requestOperationSet = [NSMutableSet set];
         // Add early access headers only if they exist
-              NSDictionary *earlyAccessHeaders = [_config earlyAccessHeaders];
-              if (earlyAccessHeaders.count > 0) {
-                  [_stackHeaders addEntriesFromDictionary:earlyAccessHeaders];
-              }
+        NSDictionary *earlyAccessHeaders = [_config earlyAccessHeaders];
+        if (earlyAccessHeaders.count > 0) {
+            [_stackHeaders addEntriesFromDictionary:earlyAccessHeaders];
+        }
 
-        
         [self setHeader:_apiKey forKey:kCSIO_SiteApiKey];
         [self setHeader:_accessToken forKey:kCSIO_Accesstoken];
-     
     }
     return self;
 }
+
 
 //MARK: - Get ContentTypes
 -(void)getContentTypes:(NSDictionary<NSString *,id> *)params completion:(void (^)(NSArray<NSString *> * _Nullable, NSError * _Nullable))completionBlock {

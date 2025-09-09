@@ -22,10 +22,10 @@
 }
 - (void)setRegion:(ContentstackRegion)region {
     _region = region;
-    if ([[self hostURLS] containsObject:_host]) {
-        _host = [self hostURL:_region];
-    }
+    // Always update host when region changes and notify observers
+    _host = [self hostURL:_region];  // Update host based on region
 }
+
 - (NSDictionary<NSString *, NSString *> *)earlyAccessHeaders {
     if (_setEarlyAccess.count > 0) {
         NSString *earlyAccessString = [_setEarlyAccess componentsJoinedByString:@","];

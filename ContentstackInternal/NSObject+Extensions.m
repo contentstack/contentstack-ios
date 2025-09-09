@@ -42,11 +42,13 @@
     static NSArray* hostURLS;
     static dispatch_once_t hostURLSOnceToken;
     dispatch_once(&hostURLSOnceToken, ^{
-        hostURLS = @[@"cdn.contentstack.io",
-                     @"cdn.contentstack.com",
-                     @"cdn.contentstack.com",
-                     @"cdn.contentstack.com",
-                     @"cdn.contentstack.com"];
+        hostURLS = @[@"cdn.contentstack.io",        // US
+                            @"eu-cdn.contentstack.com",    // EU
+                            @"au-cdn.contentstack.com",    // AU
+                            @"azure-na-cdn.contentstack.com", // Azure NA
+                            @"azure-eu-cdn.contentstack.com", // Azure EU
+                            @"gcp-na-cdn.contentstack.com",   // GCP NA
+                            @"gcp-eu-cdn.contentstack.com"];  // GCP EU
     });
     return hostURLS;
 }
@@ -61,9 +63,12 @@
      dispatch_once(&regionCodesOnceToken, ^{
          regionCodes = @[@"us",
                          @"eu",
+                         @"au",
                          @"azure-na",
                          @"azure-eu",
-                         @"gcp-na"];
+                         @"gcp-na",
+                         @"gcp-eu"
+         ];
      });
     return regionCodes;
 }
