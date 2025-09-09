@@ -1067,7 +1067,7 @@ static NSString *_numbersContentTypeUid = @"";
     
     ContentType* csForm = [csStack contentTypeWithName:@"source"];
     Query* csQuery = [csForm query];
-    __block NSString *objectValue = @"source";
+    __block NSString *objectValue = @"source1";
     [csQuery whereKey:@"title" equalTo:objectValue];
     
     [csQuery find:^(ResponseType type, QueryResult *result, NSError *error) {
@@ -2013,7 +2013,7 @@ static NSString *_numbersContentTypeUid = @"";
     ContentType* csForm = [csStack contentTypeWithName:@"source"];
     
     Query* csQuery = [csForm query];
-    __block NSMutableArray *tags = [NSMutableArray arrayWithArray:@[@"tags1",@"tags2"]];
+    __block NSMutableArray *tags = [NSMutableArray arrayWithArray:@[@"tag1",@"tag2"]];
     [csQuery tags:tags];
     [csQuery find:^(ResponseType type, QueryResult *result, NSError *error) {
         
@@ -2122,7 +2122,7 @@ static NSString *_numbersContentTypeUid = @"";
     
     ContentType* csForm = [csStack contentTypeWithName:@"source"];
     
-    __block NSInteger skipObject = 4;
+    __block NSInteger skipObject = 1;
     Query* csQuery = [csForm query];
     [csQuery includeCount];
     [csQuery skipObjects:@(skipObject)];
@@ -2133,7 +2133,7 @@ static NSString *_numbersContentTypeUid = @"";
             XCTFail(@"~ ERR: %@", error.userInfo);
         } else {
             
-            XCTAssertTrue(([result totalCount]-skipObject) <= [result getResult].count, "query should skip 4 objects");
+            XCTAssertTrue(([result totalCount]-skipObject) <= [result getResult].count, "query should skip 1 objects");
         }
         
         [expectation fulfill];
@@ -2543,6 +2543,98 @@ static NSString *_numbersContentTypeUid = @"";
             XCTFail(@"Expectation failed with error:");
         }
     }];
+}
+
+#pragma mark - Region Support Tests
+
+- (void)testDefaultRegion {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"DefaultRegionTest"];
+    config = [[Config alloc] init];
+    Stack *stack = [Contentstack stackWithAPIKey:@"api_key" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    // Verify default region is US
+    XCTAssertEqual(config.region, US, @"Default region should be US");
+    XCTAssertEqualObjects(config.host, @"cdn.contentstack.io", @"Config host should be US region");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testAllRegionsSupport {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"AllRegionsTest"];
+    config = [[Config alloc] init];
+    Stack *stack = [Contentstack stackWithAPIKey:@"api_key" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    // Test all regions
+    NSDictionary *regionHosts = @{
+        @(US): @"cdn.contentstack.io",
+        @(EU): @"eu-cdn.contentstack.com",
+        @(AU): @"au-cdn.contentstack.com",
+        @(AZURE_NA): @"azure-na-cdn.contentstack.com",
+        @(AZURE_EU): @"azure-eu-cdn.contentstack.com",
+        @(GCP_NA): @"gcp-na-cdn.contentstack.com",
+        @(GCP_EU): @"gcp-eu-cdn.contentstack.com"
+    };
+    
+    [regionHosts enumerateKeysAndObjectsUsingBlock:^(NSNumber *region, NSString *expectedHost, BOOL *stop) {
+        [config setRegion:region.intValue];
+        XCTAssertEqualObjects(config.host, expectedHost, 
+            @"Config host should be updated for region %@", region);
+    }];
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testCustomHostOverride {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"CustomHostTest"];
+    config = [[Config alloc] init];
+    Stack *stack = [Contentstack stackWithAPIKey:@"api_key" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    // Set custom host
+    NSString *customHost = @"custom.contentstack.com";
+    config.host = customHost;
+    XCTAssertEqualObjects(config.host, customHost, @"Config should use custom host");
+    
+    // Verify region change overrides custom host
+    [config setRegion:AU];
+    XCTAssertEqualObjects(config.host, @"au-cdn.contentstack.com", @"Region change should override custom host");
+   
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testRegionChangeReflection {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"RegionChangeTest"];
+    config = [[Config alloc] init];
+    Stack *stack = [Contentstack stackWithAPIKey:@"api_key" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    // Change regions multiple times
+    [config setRegion:EU];
+    XCTAssertEqualObjects(config.host, @"eu-cdn.contentstack.com", @"Config should update to EU host");
+    
+    [config setRegion:AU];
+    XCTAssertEqualObjects(config.host, @"au-cdn.contentstack.com", @"Config should update to AU host");
+    
+    [config setRegion:US];
+    XCTAssertEqualObjects(config.host, @"cdn.contentstack.io", @"Config should update back to US host");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
+}
+
+- (void)testAURegion {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"DefaultRegionTest"];
+    config = [[Config alloc] init];
+    [config setRegion:AU];
+    Stack *stack = [Contentstack stackWithAPIKey:@"api_key" accessToken:@"delivery_token" environmentName:@"environment" config:config];
+    
+    // Verify default region is US
+    XCTAssertEqual(config.region, AU, @"Default region should be AU");
+    XCTAssertEqualObjects(config.host, @"au-cdn.contentstack.com", @"Config host should be AU region");
+    
+    [expectation fulfill];
+    [self waitForExpectationsWithTimeout:kRequestTimeOutInSeconds handler:nil];
 }
 
 @end
