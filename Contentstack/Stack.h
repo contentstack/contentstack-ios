@@ -45,6 +45,12 @@ BUILT_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) Config *config;
 
+/**
+ *  Readonly property to get the current host URL for the stack.
+ *  This value is derived from the config's host and updates automatically when the region changes.
+ */
+@property (nonatomic, copy, readonly) NSString *hostURL;
+
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 //MARK: - ContentType
