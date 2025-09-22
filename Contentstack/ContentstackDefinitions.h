@@ -78,9 +78,11 @@
     typedef NS_ENUM(NSUInteger, ContentstackRegion){
         US = 0,
         EU,
+        AU,
         AZURE_NA,
         AZURE_EU,
-        GCP_NA
+        GCP_NA,
+        GCP_EU
     };
 
     typedef NS_ENUM(NSUInteger, Language) {
