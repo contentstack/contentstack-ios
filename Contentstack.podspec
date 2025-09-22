@@ -15,7 +15,7 @@ s.author           = { 'Contentstack' => 'support@contentstack.io' }
 s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.14.0' }
 s.social_media_url = 'https://twitter.com/Contentstack'
 
-s.ios.deployment_target = '11.0'
+s.ios.deployment_target = '12.0'
 
 
 s.source_files = 'ThirdPartyExtension/ISO8601DateFormatter/*.{h,m}','ThirdPartyExtension/Networking/*.{h,m}','ThirdPartyExtension/MMarkDown/*.{h,m}', 'Contentstack/*.{h,m}', 'Contentstack/ThirdPartyNamespaceHeader/*.h', 'ContentstackInternal/*.{h,m}'
