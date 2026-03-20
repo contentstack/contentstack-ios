@@ -1,0 +1,36 @@
+---
+description: PR and code review checklist – API stability, errors, compatibility, security, testing
+alwaysApply: true
+---
+
+# Code Review Checklist – Contentstack iOS CDA SDK
+
+Use this checklist when reviewing pull requests or before opening a PR.
+
+## API design and stability
+
+- [ ] **Public API:** New or changed public classes/methods/properties are necessary and documented (header comments / doc comments where the project documents API).
+- [ ] **Backward compatibility:** No breaking changes to public API unless explicitly called out and justified (e.g. major semver bump per release policy).
+- [ ] **Naming:** Method and type names are consistent with existing SDK style (Objective-C / Swift import names) and CDA terminology.
+
+## Error handling and robustness
+
+- [ ] **Errors:** API failures surface through existing patterns (`NSError **` out-parameters, failure blocks, or delegate callbacks as used in the touched code).
+- [ ] **Nullability:** `NS_ASSUME_NONNULL` / `nullable` annotations stay accurate; no unintended force-unwraps or ignored errors in new paths.
+- [ ] **Memory / threading:** Blocks and delegates retain cycles are avoided; main-queue vs background behavior matches existing networking code.
+
+## Dependencies and security
+
+- [ ] **Dependencies:** No new third-party or vendored code without justification; version bumps are intentional and do not introduce known vulnerabilities.
+- [ ] **SCA:** Address any security findings (e.g. from Snyk or similar) in the scope of the PR or in a follow-up.
+
+## Testing
+
+- [ ] **Coverage:** New or modified behavior is covered by XCTest unit and/or integration-style tests as appropriate.
+- [ ] **Test quality:** Tests are readable, stable (no flakiness), and follow project conventions (see **testing.mdc**).
+
+## Severity (optional)
+
+- **Blocker:** Must fix before merge (e.g. breaking public API without approval, security issue, no tests for new code).
+- **Major:** Should fix (e.g. inconsistent error handling, missing documentation on new public API).
+- **Minor:** Nice to fix (e.g. style, minor docs).
