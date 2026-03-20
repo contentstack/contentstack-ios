@@ -294,6 +294,7 @@
 - (NSString *)jsonStringFromArray:(NSArray*)array {
     if (array == nil) { return nil; }
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:array options:0 error:NULL];
+    if (JSONData == nil) { return nil; }
     return [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
 }
 
