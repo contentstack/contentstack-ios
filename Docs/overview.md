@@ -1,9 +1,17 @@
-#Overview
+# Overview
+
+## Important: CocoaPods and this SDK
+
+**We are deprecating** the **Contentstack** CocoaPods distribution and this **Objective-C** CDA SDK as the path for **new** development. **New projects should use the [Contentstack Swift CDA SDK](https://github.com/contentstack/contentstack-swift)** with **[Swift Package Manager](https://swiftpackageindex.com/contentstack/contentstack-swift)** and the [Swift CDA reference](https://www.contentstack.com/docs/developers/sdks/content-delivery-sdk/swift/reference).
+
+**Already using this SDK?** You can keep your current CocoaPods setup and migrate when ready. More detail: **[DEPRECATION.md](../DEPRECATION.md)**.
+
+---
 
 [Contentstack](https://www.contentstack.com/) is a content management system that facilitates the process of publication by separating the content from site-related programming and design.
 
 #### Installation
-#####**[CocoaPods (Recommended)](https://cocoapods.org)**
+##### **[CocoaPods](https://cocoapods.org)**
 
 Add the following line to your Podfile:  
 
