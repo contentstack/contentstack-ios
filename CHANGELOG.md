@@ -1,3 +1,10 @@
+### Documentation (announcement phase)
+#### Date: Mar-31-2026
+
+##### Documentation:
+ - README and Docs/overview: Customer-facing deprecation announcement (new development → Swift CDA + SPM).
+ - Added `DEPRECATION.md`: customer-facing deprecation notice (Swift SDK + SPM, existing CocoaPods users, support expectations, industry context).
+
 ### Version: 3.16.0
 #### Date: Sep-22-2025
 
