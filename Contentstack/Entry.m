@@ -350,13 +350,14 @@
 - (NSArray *)assetsForKey:(NSString *)key {
     NSMutableArray *fileArray = [NSMutableArray array];
     id obj = [self.objectProperties objectForKey:key];
-    if (obj && [obj isKindOfClass:[NSArray class]]) {
-        NSArray *arr = (NSArray *)obj;
-        for (NSDictionary *dict in arr) {
-            Asset *file = [self assetFile:dict];
-            if (file && ![file isKindOfClass:[NSNull class]]) {
-                [fileArray addObject:file];
-            }
+    if (!(obj && [obj isKindOfClass:[NSArray class]])) {
+        return fileArray;
+    }
+    NSArray *arr = (NSArray *)obj;
+    for (NSDictionary *dict in arr) {
+        Asset *file = [self assetFile:dict];
+        if (file && ![file isKindOfClass:[NSNull class]]) {
+            [fileArray addObject:file];
         }
     }
     return fileArray;
