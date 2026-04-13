@@ -267,27 +267,34 @@
 }
 
 - (NSDictionary *)dictionaryFromJSONData:(NSData *)data {
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    return dict;
+    if (data == nil) { return nil; }
+    if (data.length == 0) { return nil; }
+    id obj = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    return [obj isKindOfClass:[NSDictionary class]] ? obj : nil;
 }
 
 - (NSData *)jsonDataFromDictonary:(NSDictionary *)dict {
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
-    return JSONData;
+    if (dict == nil) { return nil; }
+    return [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
 }
 
 - (NSString *)jsonStringFromDictonary:(NSDictionary *)dict {
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
+    NSData *JSONData = [self jsonDataFromDictonary:dict];
+    if (JSONData == nil) { return nil; }
     return [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
 }
 
 - (NSArray *)arrayFromJSONData:(NSData *)data {
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    return array;
+    if (data == nil) { return nil; }
+    if (data.length == 0) { return nil; }
+    id obj = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    return [obj isKindOfClass:[NSArray class]] ? obj : nil;
 }
 
 - (NSString *)jsonStringFromArray:(NSArray*)array {
+    if (array == nil) { return nil; }
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:array options:0 error:NULL];
+    if (JSONData == nil) { return nil; }
     return [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
 }
 

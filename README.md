@@ -1,10 +1,16 @@
 [![Contentstack](https://www.contentstack.com/docs/static/images/contentstack.png)](https://www.contentstack.com/)
 
+## Important: CocoaPods and this SDK
+
+**We are deprecating** the **Contentstack** CocoaPods distribution and this **Objective-C** Content Delivery API (CDA) SDK as the supported path for **new** development. **New iOS projects should use the [Contentstack Swift CDA SDK](https://github.com/contentstack/contentstack-swift)** with **[Swift Package Manager](https://swiftpackageindex.com/contentstack/contentstack-swift)** and the [Swift CDA reference](https://www.contentstack.com/docs/developers/sdks/content-delivery-sdk/swift/reference).
+
+**Already using this SDK?** You can keep shipping with your current CocoaPods setup and migrate to the Swift SDK when it makes sense for your app. More detail: **[DEPRECATION.md](DEPRECATION.md)**.
+
 ## iOS SDK for Contentstack
 
 Contentstack is a headless CMS with an API-first approach. It is a CMS that developers can use to build powerful cross-platform applications in their favorite languages. Build your application frontend, and Contentstack will take care of the rest. [Read More](https://www.contentstack.com/).
 
-Contentstack provides iOS SDK to build application on top of iOS. Given below is the detailed guide and helpful resources to get started with our iOS SDK.
+Contentstack provides iOS SDK to build application on top of iOS. Given below is the detailed guide and helpful resources to get started with our iOS SDK. 
 
 
 ### Prerequisite
