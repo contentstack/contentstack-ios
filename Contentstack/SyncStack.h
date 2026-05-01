@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) NSString * _Nullable syncToken;
 /**
+ *Readonly property to sync.
+ */
+@property (nonatomic, copy, readonly) NSString * _Nullable seqId;
+/**
  *  Readonly property to check skip count
  */
 @property (nonatomic, assign, readonly) unsigned int skip;
