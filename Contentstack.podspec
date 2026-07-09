@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'Contentstack'
-s.version          = '3.16.0'
+s.version          = '3.16.1'
 s.summary          = 'Contentstack is a headless CMS with an API-first approach that puts content at the centre.'
 
 s.description      = <<-DESC
@@ -9,10 +9,10 @@ In a world where content is consumed via countless channels and form factors acr
 DESC
 
 s.homepage         = 'https://www.contentstack.com/'
-s.license          = { :type => 'Commercial',:text => 'See https://www.contentstack.com/'}
+s.license          = { :type => 'MIT',:file => 'LICENSE'}
 s.author           = { 'Contentstack' => 'support@contentstack.io' }
 
-s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.14.0' }
+s.source           = { :git => 'https://github.com/contentstack/contentstack-ios.git', :tag => 'v3.16.1' }
 s.social_media_url = 'https://twitter.com/Contentstack'
 
 s.ios.deployment_target = '12.0'
