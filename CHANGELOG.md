@@ -6,7 +6,7 @@
  - Added `DEPRECATION.md`: customer-facing deprecation notice (Swift SDK + SPM, existing CocoaPods users, support expectations, industry context).
 
 ### Version: 3.16.1
-#### Date: Jul-13-2026
+#### Date: Jul-27-2026
 
 ##### Maintenance:
  - Synced runtime SDK version (`X-User-Agent` header and bundle version) with the podspec release version
