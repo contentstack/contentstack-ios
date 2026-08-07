@@ -15,7 +15,7 @@
 #import "NSObject+Extensions.h"
 #import "CSURLSessionManager.h"
 
-NSString *const sdkVersion = @"3.10.1";
+NSString *const sdkVersion = @"3.16.1";
 
 @interface CSIOCoreHTTPNetworking (){
     id networkChangeObserver;

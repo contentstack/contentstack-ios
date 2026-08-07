@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: |
           # Add commands to build and test your package
-          xcodebuild -workspace Contentstack.xcworkspace -scheme 'Contentstack' -destination 'platform=iOS Simulator,name=iPhone 16'
+          xcodebuild -workspace Contentstack.xcworkspace -scheme 'Contentstack' -destination 'generic/platform=iOS Simulator'
 
       - name: CocoaPods trunk push
         run: pod trunk push --allow-warnings
